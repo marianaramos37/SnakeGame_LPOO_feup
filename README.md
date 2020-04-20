@@ -1,5 +1,5 @@
-#SNAKE
+# SNAKE
 
-###### Funcionalidades:
+## Funcionalidades:
 
-Dois modos de jogo: Single Player e Multi Player
+**Dois modos de jogo:** Single Player e Multi Player

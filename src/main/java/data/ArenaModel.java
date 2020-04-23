@@ -11,11 +11,13 @@ public class ArenaModel {
         this.snake = new Snake(new Position(width / 2, height / 2));
     }
 
-    public Position getSnakePosition() {
-        return snake.getPosition();
+    public Position getSnakeHeadPosition() {
+        return snake.getHeadPosition();
     }
 
-    public void setSnakePosition(Position position) {
-        snake.setPosition(position);
+    public Snake getSnake(){return snake;}
+
+    public void setSnakeHeadPosition(Position position) {
+        snake.setHeadPosition(position);
     }
 }

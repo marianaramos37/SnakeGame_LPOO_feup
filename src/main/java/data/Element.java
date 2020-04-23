@@ -1,16 +1,13 @@
 package data;
 
-public class Hero {
+public abstract class Element {
     private Position position;
-
-    public Hero(Position position) {
-        this.position = position;
+    public Element(int x, int y) {
+        this.position = new Position(x, y);
     }
-
     public Position getPosition() {
         return position;
     }
-
     public void setPosition(Position position) {
         this.position = position;
     }

@@ -13,7 +13,7 @@ import data.ArenaModel;
 import java.io.IOException;
 
 public class ArenaView {
-    private Screen screen;
+    public Screen screen;
 
     public enum COMMAND {UP, RIGHT, DOWN, LEFT}
 
@@ -32,8 +32,8 @@ public class ArenaView {
             for(int j=0; j<arena.getWalls().size();j++){
                 screen.setCharacter(arena.getWalls().get(j).getPosition().getX(),arena.getWalls().get(j).getPosition().getY(), new TextCharacter('#'));
             }
-            screen.setCharacter(arena.getSnakePosition().getX(), arena.getSnakePosition().getY(), new TextCharacter('-'));
             screen.setCharacter(arena.getApplePosition().getX(),arena.getApplePosition().getY(),new TextCharacter('O'));
+            arena.getSnake().drawSnake(screen);
             screen.refresh();
         } catch (IOException e) {
             e.printStackTrace();

@@ -19,12 +19,14 @@ public class ArenaModel {
         buildWalls();
     }
 
-    public Position getSnakePosition() {
-        return snake.getPosition();
+    public Position getSnakeHeadPosition() {
+        return snake.getHeadPosition();
     }
 
-    public void setSnakePosition(Position position) {
-        snake.setPosition(position);
+    public Snake getSnake(){return snake;}
+
+    public void setSnakeHeadPosition(Position position) {
+        snake.setHeadPosition(position);
     }
 
     public Position getApplePosition() {

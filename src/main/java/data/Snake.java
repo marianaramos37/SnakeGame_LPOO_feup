@@ -72,8 +72,6 @@ public class Snake{
             headOrientation=previousOrientation;
             index++;
         }
-
-
     }
 
     public void drawSnake(Screen screen){

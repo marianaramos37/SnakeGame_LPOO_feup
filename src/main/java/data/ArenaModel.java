@@ -51,4 +51,23 @@ public class ArenaModel {
     public List<Wall> getWalls(){
         return this.walls;
     }
+
+    public void checkCollisions(Position position) {
+        List<Element> apples=new ArrayList<>();
+        apples.add(apple);
+        Snake snake = (Snake) getCollidingElement(position, apples);
+        if (snake != null) {
+           snake.growSnake();
+           System.out.println("Colidiu");
+           //apaga maça;
+        }
+    }
+
+    private Element getCollidingElement(Position position, List<? extends Element> elements) {
+        for (Element element : elements)
+            if (element.getPosition().equals(position))
+                return element;
+
+        return null;
+    }
 }

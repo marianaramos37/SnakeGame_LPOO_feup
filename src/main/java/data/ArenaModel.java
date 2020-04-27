@@ -12,6 +12,7 @@ public class ArenaModel {
     private List<Wall> walls= new ArrayList<>();
     private List<Apple> apples=new ArrayList<>();
     private SinglePlayerScore score = new SinglePlayerScore();
+    private boolean game_over;
 
     public ArenaModel(int width, int height) {
         this.width = width;
@@ -20,6 +21,14 @@ public class ArenaModel {
         this.apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         this.apples.add(apple);
         buildWalls();
+        this.game_over=false;
+    }
+    public int getWidth(){
+        return width;
+    }
+
+    public int getHeight(){
+        return height;
     }
 
     public SinglePlayerScore getScore() {
@@ -42,6 +51,10 @@ public class ArenaModel {
 
     public void setApplePosition(Position position) {
         apple.setPosition(position);
+    }
+
+    public boolean getGameOver(){
+        return game_over;
     }
 
     public void buildWalls(){
@@ -75,17 +88,14 @@ public class ArenaModel {
         Apple eaten = (Apple) getCollidingElement(position, apples);
         Wall hit = (Wall) getCollidingElement(position, walls);
 
-
         if (eaten != null) {
            snake.growSnake();
            eatenApple(apple);
            score.incrementScore();
         }
-
         if(hit != null){
-            //leave program pls
+            game_over=true;
         }
-
     }
 
     private Element getCollidingElement(Position position, List<? extends Element> elements) {

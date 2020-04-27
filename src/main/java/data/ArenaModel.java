@@ -16,7 +16,7 @@ public class ArenaModel {
         this.width = width;
         this.height = height;
         this.snake = new Snake(new Position(width / 2, height / 2));
-        this.apple = new Apple(ThreadLocalRandom.current().nextInt(0, width), ThreadLocalRandom.current().nextInt(0, height));
+        this.apple = new Apple(ThreadLocalRandom.current().nextInt(0, width-1), ThreadLocalRandom.current().nextInt(0, height-1));
         this.apples.add(apple);
         buildWalls();
     }
@@ -60,7 +60,7 @@ public class ArenaModel {
         int index=0;
         for(Apple apple: apples){
             if(apple.getPosition().equals(a.getPosition())) {
-                apples.get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(0, width), ThreadLocalRandom.current().nextInt(0, height)));
+                apples.get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(0, width-1), ThreadLocalRandom.current().nextInt(0, height-1)));
                 break;
             }
             index++;
@@ -87,7 +87,6 @@ public class ArenaModel {
         for (Element element : elements)
             if (element.getPosition().equals(position))
                 return element;
-
         return null;
     }
 }

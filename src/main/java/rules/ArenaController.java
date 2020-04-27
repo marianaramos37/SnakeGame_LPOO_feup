@@ -54,7 +54,9 @@ public class ArenaController {
         timer1.scheduleAtFixedRate(new TimerTask() {
             ArenaView.COMMAND prevcommand = null;
             ArenaView.COMMAND command = null;
+            ArenaView.COMMAND lastmove=null;
             public void run() {
+
                 try {
                     command=gui.getCommand();
                     if(command!=null){
@@ -63,21 +65,25 @@ public class ArenaController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if (command == ArenaView.COMMAND.UP) {
+                if (command == ArenaView.COMMAND.UP && lastmove != ArenaView.COMMAND.DOWN) {
                     arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().up());
                     arena.getSnake().walkSnake(arena.getSnakeHeadPosition(),'|');
+                    lastmove=command;
                 }
-                if (command == ArenaView.COMMAND.RIGHT) {
+                if (command == ArenaView.COMMAND.RIGHT && lastmove != ArenaView.COMMAND.LEFT) {
                     arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().right());
                     arena.getSnake().walkSnake(arena.getSnakeHeadPosition(), '-');
+                    lastmove=command;
                 }
-                if (command == ArenaView.COMMAND.DOWN) {
+                if (command == ArenaView.COMMAND.DOWN && lastmove != ArenaView.COMMAND.UP) {
                     arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().down());
                     arena.getSnake().walkSnake(arena.getSnakeHeadPosition(), '|');
+                    lastmove=command;
                 }
-                if (command == ArenaView.COMMAND.LEFT) {
+                if (command == ArenaView.COMMAND.LEFT && lastmove != ArenaView.COMMAND.RIGHT) {
                     arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().left());
                     arena.getSnake().walkSnake(arena.getSnakeHeadPosition(), '-');
+                    lastmove=command;
                 }
                 if(command==null){
                     if (prevcommand == ArenaView.COMMAND.UP) {
@@ -97,7 +103,9 @@ public class ArenaController {
                         arena.getSnake().walkSnake(arena.getSnakeHeadPosition(), '-');
                     }
                 }
-                arena.checkCollisions(arena.getSnake().getPosition());
+
+
+                arena.checkCollisions(arena.getSnake().getHeadPosition());
                 gui.drawArena(arena);
             }
         }, delay, interval);

@@ -47,6 +47,12 @@ public class ArenaView {
             for(Apple a:arena.getApples())
                 screen.setCharacter(a.getPosition().getX(),a.getPosition().getY(),new TextCharacter('O'));
 
+            int x = 5;
+            for(TextCharacter c:arena.getScore().getPrintableScore()){
+                screen.setCharacter(x,33, c);
+                x++;
+            }
+
             arena.getSnake().drawSnake(screen);
             screen.refresh();
         } catch (IOException e) {

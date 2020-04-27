@@ -34,13 +34,14 @@ public class ArenaView {
     public void drawArena(ArenaModel arena) {
         try {
             screen.clear();
+            /*
             TextGraphics graphics = screen.newTextGraphics();
             graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
             graphics.fillRectangle(
                     new TerminalPosition(0, 0),
                     new TerminalSize(arena.getWidth(), arena.getHeight()),
                     ' '
-            );
+            );*/
             for(Wall w:arena.getWalls())
                 screen.setCharacter(w.getPosition().getX(),w.getPosition().getY(), new TextCharacter('#'));
 
@@ -59,6 +60,23 @@ public class ArenaView {
             e.printStackTrace();
         }
     }
+
+    public void drawGameOver(ArenaModel arena) {
+        try {
+            screen.clear();
+            TextGraphics graphics = screen.newTextGraphics();
+            graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+            graphics.fillRectangle(
+                    new TerminalPosition(0, 0),
+                    new TerminalSize(arena.getWidth(), arena.getHeight()),
+                    ' '
+            );
+            screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public COMMAND getCommand() throws IOException {

@@ -73,10 +73,15 @@ public class ArenaController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                ArenaController c=new ArenaController(gui,arena); //DUVIDA!!!!!!
-                c.movement(command,prevcommand);
-                arena.checkCollisions(arena.getSnake().getHeadPosition());
-                gui.drawArena(arena);
+                if(!arena.getGameOver()){
+                    ArenaController c=new ArenaController(gui,arena); //DUVIDA!!!!!!
+                    c.movement(command,prevcommand);
+                    arena.checkCollisions(arena.getSnake().getHeadPosition());
+                    gui.drawArena(arena);
+                }
+                else{
+                    gui.drawGameOver(arena);
+                }
             }
         }, delay, interval);
     }

@@ -72,10 +72,10 @@ public class ArenaController {
                 try {
                     command=gui.getCommand();
                     if(command!=null){
-                        if(command==ArenaView.COMMAND.UP&&prevcommand==ArenaView.COMMAND.DOWN){command=ArenaView.COMMAND.DOWN;}
-                        if(command==ArenaView.COMMAND.DOWN&&prevcommand==ArenaView.COMMAND.UP){command=ArenaView.COMMAND.UP;}
-                        if(command==ArenaView.COMMAND.RIGHT&&prevcommand==ArenaView.COMMAND.LEFT){command=ArenaView.COMMAND.LEFT;}
-                        if(command==ArenaView.COMMAND.LEFT&&prevcommand==ArenaView.COMMAND.RIGHT){command=ArenaView.COMMAND.RIGHT;}
+                        if(command==ArenaView.COMMAND.UP && prevcommand==ArenaView.COMMAND.DOWN){command=ArenaView.COMMAND.DOWN;}
+                        if(command==ArenaView.COMMAND.DOWN && prevcommand==ArenaView.COMMAND.UP){command=ArenaView.COMMAND.UP;}
+                        if(command==ArenaView.COMMAND.RIGHT && prevcommand==ArenaView.COMMAND.LEFT){command=ArenaView.COMMAND.LEFT;}
+                        if(command==ArenaView.COMMAND.LEFT && prevcommand==ArenaView.COMMAND.RIGHT){command=ArenaView.COMMAND.RIGHT;}
                         prevcommand=command;
                     }
                 } catch (IOException e) {

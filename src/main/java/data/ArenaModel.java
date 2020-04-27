@@ -67,7 +67,6 @@ public class ArenaModel {
         for (Element element : elements)
             if (element.getPosition().equals(position))
                 return element;
-
         return null;
     }
 }

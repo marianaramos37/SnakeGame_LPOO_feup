@@ -2,21 +2,29 @@ package data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ArenaModel {
     private int width;
     private int height;
     private Snake snake;
     private Apple apple;
-    private List<Wall> walls;
+    private List<Wall> walls= new ArrayList<>();
+    private List<Apple> apples=new ArrayList<>();
 
     public ArenaModel(int width, int height) {
         this.width = width;
         this.height = height;
         this.snake = new Snake(new Position(width / 2, height / 2));
-        this.apple = new Apple(22,22);
-        this.walls = new ArrayList<>();
+        this.apple = new Apple(ThreadLocalRandom.current().nextInt(0, width-1), ThreadLocalRandom.current().nextInt(0, height-1));
+        this.apples.add(apple);
         buildWalls();
+    }
+    public int getWidth(){
+        return width;
+    }
+    public int getHeight(){
+        return height;
     }
 
     public Position getSnakeHeadPosition() {
@@ -46,21 +54,39 @@ public class ArenaModel {
             this.walls.add(new Wall(0,i));
             this.walls.add(new Wall(this.width-1,i));
         }
-
     }
+
     public List<Wall> getWalls(){
         return this.walls;
     }
 
-    public void checkCollisions(Position position) {
-        List<Element> apples=new ArrayList<>();
-        apples.add(apple);
-        Snake snake = (Snake) getCollidingElement(position, apples);
-        if (snake != null) {
-           snake.growSnake();
-           System.out.println("Colidiu");
-           //apaga maça;
+    public List<Apple> getApples(){return this.apples;}
+
+    public void eatenApple(Apple a){
+        int index=0;
+        for(Apple apple: apples){
+            if(apple.getPosition().equals(a.getPosition())) {
+                apples.get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(0, width-1), ThreadLocalRandom.current().nextInt(0, height-1)));
+                break;
+            }
+            index++;
         }
+    }
+    public void checkCollisions(Position position) {
+        Apple eaten = (Apple) getCollidingElement(position, apples);
+        Wall hit = (Wall) getCollidingElement(position, walls);
+
+
+        if (eaten != null) {
+           snake.growSnake();
+
+           eatenApple(apple);
+        }
+
+        if(hit != null){
+            //leave program pls
+        }
+
     }
 
     private Element getCollidingElement(Position position, List<? extends Element> elements) {

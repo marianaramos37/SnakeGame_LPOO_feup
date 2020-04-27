@@ -8,7 +8,9 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import data.Apple;
 import data.ArenaModel;
+import data.Wall;
 
 import java.io.IOException;
 
@@ -29,10 +31,12 @@ public class ArenaView {
     public void drawArena(ArenaModel arena) {
         try {
             screen.clear();
-            for(int j=0; j<arena.getWalls().size();j++){
-                screen.setCharacter(arena.getWalls().get(j).getPosition().getX(),arena.getWalls().get(j).getPosition().getY(), new TextCharacter('#'));
-            }
-            screen.setCharacter(arena.getApplePosition().getX(),arena.getApplePosition().getY(),new TextCharacter('O'));
+            for(Wall w:arena.getWalls())
+                screen.setCharacter(w.getPosition().getX(),w.getPosition().getY(), new TextCharacter('#'));
+
+            for(Apple a:arena.getApples())
+                screen.setCharacter(a.getPosition().getX(),a.getPosition().getY(),new TextCharacter('O'));
+
             arena.getSnake().drawSnake(screen);
             screen.refresh();
         } catch (IOException e) {

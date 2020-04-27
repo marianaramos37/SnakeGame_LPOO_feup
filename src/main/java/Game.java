@@ -10,7 +10,6 @@ public class Game {
         ArenaView gui = new ArenaView(60, 30);
 
         ArenaController controller = new ArenaController(gui, arena);
-        controller.Tarefa1();
-        //controller.start();
+        controller.start();
     }
 }

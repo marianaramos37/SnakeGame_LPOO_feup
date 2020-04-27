@@ -17,6 +17,7 @@ public class ArenaView {
 
     public enum COMMAND {UP, RIGHT, DOWN, LEFT}
 
+
     public ArenaView(int width, int height) throws IOException {
         Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
         screen = new TerminalScreen(terminal);
@@ -24,7 +25,6 @@ public class ArenaView {
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
     }
-
 
     public void drawArena(ArenaModel arena) {
         try {
@@ -40,9 +40,10 @@ public class ArenaView {
         }
     }
 
+
     public COMMAND getCommand() throws IOException {
-        while (true) {
-            KeyStroke key = screen.readInput();
+        KeyStroke key = screen.pollInput();
+        if(key!=null){
             if (key.getKeyType() == KeyType.ArrowUp) {
                 return COMMAND.UP;
             }
@@ -55,6 +56,8 @@ public class ArenaView {
             if (key.getKeyType() == KeyType.ArrowLeft){
                 return COMMAND.LEFT;
             }
+            else return null;
         }
+        else return null;
     }
 }

@@ -6,13 +6,14 @@ import com.googlecode.lanterna.screen.Screen;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Snake{
+public class Snake extends Element{
     private Position headPosition;
     private List<Character> snake = new ArrayList<>();
     private List<Position> pos = new ArrayList<>();
     private int length=0;
 
     public Snake(Position position) {
+        super(position.getX(),position.getY());
         this.headPosition = position;
         snake.add(length, '-');
         pos.add(length,position);
@@ -63,7 +64,6 @@ public class Snake{
             nextPosition=previous;
             index++;
         }
-
         index=0;
         Character previousOrientation;
         for(Character c:snake){
@@ -72,8 +72,6 @@ public class Snake{
             headOrientation=previousOrientation;
             index++;
         }
-
-
     }
 
     public void drawSnake(Screen screen){
@@ -83,5 +81,7 @@ public class Snake{
             index++;
         }
     }
+
+
 
 }

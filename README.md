@@ -26,13 +26,15 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 **Multi Player**
 - Estão duas cobras na mesma arena, a ser controladas por partes do teclado diferentes;
 - **Ataque**: Se uma cobra tocar no corpo da outra perde, isto dá possibilidade de uma cobra "matar" outra colocando o seu corpo à frente da cabeça da mesma;
-- **Rondas*: Esta versão é constituida por três rondas, quando um dos players morre o outro ganha um ponto;
+- **Rondas**: Esta versão é constituida por três rondas, quando um dos players morre o outro ganha um ponto;
 
 **Construção de mapas**
-- No menu principal irá existir uma funcionalidade que permitirá aos jogadores construir os seus próprios mapas. Estes poderão ter uma serie de obstáculos previamente selecionados e podeão ser usados nas versões multiplayer.
+- No menu principal irá existir uma funcionalidade que permitirá aos jogadores construir os seus próprios mapas. Estes poderão ter uma serie de obstáculos previamente selecionados e poderão ser usados nas versões multiplayer.
 
 ## Design
-
+ - **MVC**: 
+ - **Factory Method**: Classe abstrata Element que engloba todos os elementos de jogo (classe Snake, classe Apple, classe Wall). Os Elements concretos são definidos e usados pela classe ArenaModel.
+ 
 ## Code Smells and Refactoring Technics
 
 ## Self Evaluation

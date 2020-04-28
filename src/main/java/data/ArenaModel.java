@@ -8,7 +8,6 @@ public class ArenaModel {
     private int width;
     private int height;
     private Snake snake;
-    private Apple apple;
     private List<Wall> walls= new ArrayList<>();
     private List<Apple> apples=new ArrayList<>();
     private SinglePlayerScore score = new SinglePlayerScore();
@@ -18,7 +17,7 @@ public class ArenaModel {
         this.width = width;
         this.height = height;
         this.snake = new Snake(new Position(width / 2, height / 2));
-        this.apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
+        Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         this.apples.add(apple);
         buildWalls();
         this.game_over=false;
@@ -45,13 +44,6 @@ public class ArenaModel {
         snake.setHeadPosition(position);
     }
 
-    public Position getApplePosition() {
-        return apple.getPosition();
-    }
-
-    public void setApplePosition(Position position) {
-        apple.setPosition(position);
-    }
 
     public boolean getGameOver(){
         return game_over;
@@ -90,7 +82,7 @@ public class ArenaModel {
 
         if (eaten != null) {
            snake.growSnake();
-           eatenApple(apple);
+           eatenApple(eaten);
            score.incrementScore();
         }
         if(hit != null){

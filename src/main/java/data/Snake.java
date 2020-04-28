@@ -21,6 +21,15 @@ public class Snake extends Element{
         snake.add(length, '-');
         pos.add(length,new Position(position.getX()-1,position.getY()));
     }
+    public List<Character> getSnake(){
+        return snake;
+    }
+    public int getLength(){
+        return length;
+    }
+    public List<Position> getPos(){
+        return pos;
+    }
 
     public Position getHeadPosition() {
         return headPosition;
@@ -35,7 +44,6 @@ public class Snake extends Element{
 
         if(snake.get(length - 1) == '-'){
             snake.add(length,'-');
-
             if(pos.get(length-2).getX()+1 == pos.get(length-1).getX()){
                 pos.add(length,new Position(pos.get(length-1).getX()+1,pos.get(length-1).getY()));
             }

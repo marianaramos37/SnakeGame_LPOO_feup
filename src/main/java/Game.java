@@ -10,6 +10,7 @@ public class Game {
         ArenaView gui = new ArenaView(60, 35);
 
         ArenaController controller = new ArenaController(gui, arena);
-        controller.start();
+        //controller.start();
+        controller.mov();
     }
 }

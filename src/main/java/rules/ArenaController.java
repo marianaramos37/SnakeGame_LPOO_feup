@@ -4,8 +4,8 @@ import data.ArenaModel;
 import gui.ArenaView;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import static java.lang.Thread.sleep;
 
 public class ArenaController {
     private ArenaView gui;
@@ -53,7 +53,42 @@ public class ArenaController {
         }
     }
 
-    Timer timer1 = new Timer();
+    public void mov(){
+        new Thread(new Runnable(){
+            ArenaView.COMMAND prevcommand = null;
+            ArenaView.COMMAND command = null;
+            @Override
+            public void run(){
+                while(true){
+                    System.out.println("OLAAAA");
+                    try {
+                        sleep(100);
+                        command=gui.getCommand();
+                        if(command!=null){
+                            if(command==ArenaView.COMMAND.UP && prevcommand==ArenaView.COMMAND.DOWN){command=ArenaView.COMMAND.DOWN;}
+                            if(command==ArenaView.COMMAND.DOWN && prevcommand==ArenaView.COMMAND.UP){command=ArenaView.COMMAND.UP;}
+                            if(command==ArenaView.COMMAND.RIGHT && prevcommand==ArenaView.COMMAND.LEFT){command=ArenaView.COMMAND.LEFT;}
+                            if(command==ArenaView.COMMAND.LEFT && prevcommand==ArenaView.COMMAND.RIGHT){command=ArenaView.COMMAND.RIGHT;}
+                            prevcommand=command;
+                        }
+                    } catch (IOException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(!arena.getGameOver()){
+                        ArenaController c=new ArenaController(gui,arena);
+                        c.movement(command,prevcommand);
+                        arena.checkCollisions(arena.getSnake().getHeadPosition());
+                        gui.drawArena(arena);
+                    }
+                    else{
+                        gui.drawGameOver(arena);
+                    }
+                }
+            }
+        }).start();
+    }
+
+   /* Timer timer1 = new Timer();
     public void start() throws IOException {
         int delay = 1000;   // delay de 2 seg.
         int interval = 100;  // intervalo de 1 seg.
@@ -74,7 +109,7 @@ public class ArenaController {
                     e.printStackTrace();
                 }
                 if(!arena.getGameOver()){
-                    ArenaController c=new ArenaController(gui,arena); //DUVIDA!!!!!!
+                    ArenaController c=new ArenaController(gui,arena);
                     c.movement(command,prevcommand);
                     arena.checkCollisions(arena.getSnake().getHeadPosition());
                     gui.drawArena(arena);
@@ -84,5 +119,5 @@ public class ArenaController {
                 }
             }
         }, delay, interval);
-    }
+    }*/
 }

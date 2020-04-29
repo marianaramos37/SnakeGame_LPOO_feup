@@ -1,54 +1,88 @@
 package rules;
 
-import data.ArenaModel;
+import data.*;
 import gui.ArenaView;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static java.lang.Thread.sleep;
 
 public class ArenaController {
     private ArenaView gui;
     private ArenaModel arena;
+    private SnakeController snake;
 
     public ArenaController(ArenaView gui, ArenaModel arena) {
         this.gui = gui;
         this.arena = arena;
+        this.snake=new SnakeController(arena);
+    }
+
+    public void eatenApple(Apple a, ArenaModel ar){
+        int index=0;
+        for(Apple apple: ar.getApples()){
+            if(apple.getPosition().equals(a.getPosition())) {
+                ar.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, ar.getWidth()-1), ThreadLocalRandom.current().nextInt(1, ar.getHeight()-1)));
+                break;
+            }
+            index++;
+        }
+    }
+    public void checkCollisions(Position position,ArenaModel a) {
+        Apple eaten = (Apple) getCollidingElement(position, a.getApples());
+        Wall hit = (Wall) getCollidingElement(position, a.getWalls());
+
+        if (eaten != null) {
+            snake.growSnake();
+            eatenApple(eaten,a);
+            a.getScore().incrementScore();
+        }
+        if(hit != null){
+            a.endGame();
+        }
+    }
+    private Element getCollidingElement(Position position, List<? extends Element> elements) {
+        for (Element element : elements)
+            if (element.getPosition().equals(position))
+                return element;
+        return null;
     }
 
     public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand){
         if (command == ArenaView.COMMAND.UP) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().up());
-            arena.getSnake().walkSnake(arena.getSnakeHeadPosition(),'|');
+            snake.walkSnake(arena.getSnakeHeadPosition(),'|');
         }
         if (command == ArenaView.COMMAND.RIGHT) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().right());
-            arena.getSnake().walkSnake(arena.getSnakeHeadPosition(), '-');
+            snake.walkSnake(arena.getSnakeHeadPosition(), '-');
         }
         if (command == ArenaView.COMMAND.DOWN) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().down());
-            arena.getSnake().walkSnake(arena.getSnakeHeadPosition(), '|');
+            snake.walkSnake(arena.getSnakeHeadPosition(), '|');
         }
         if (command == ArenaView.COMMAND.LEFT) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().left());
-            arena.getSnake().walkSnake(arena.getSnakeHeadPosition(), '-');
+            snake.walkSnake(arena.getSnakeHeadPosition(), '-');
         }
         if(command==null){
             if (prevcommand == ArenaView.COMMAND.UP) {
                 arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().up());
-                arena.getSnake().walkSnake(arena.getSnakeHeadPosition(),'|');
+                snake.walkSnake(arena.getSnakeHeadPosition(),'|');
             }
             if (prevcommand == ArenaView.COMMAND.RIGHT) {
                 arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().right());
-                arena.getSnake().walkSnake(arena.getSnakeHeadPosition(), '-');
+                snake.walkSnake(arena.getSnakeHeadPosition(), '-');
             }
             if (prevcommand == ArenaView.COMMAND.DOWN) {
                 arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().down());
-                arena.getSnake().walkSnake(arena.getSnakeHeadPosition(), '|');
+                snake.walkSnake(arena.getSnakeHeadPosition(), '|');
             }
             if (prevcommand == ArenaView.COMMAND.LEFT) {
                 arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().left());
-                arena.getSnake().walkSnake(arena.getSnakeHeadPosition(), '-');
+                snake.walkSnake(arena.getSnakeHeadPosition(), '-');
             }
         }
     }
@@ -76,8 +110,8 @@ public class ArenaController {
                     }
                     if(!arena.getGameOver()){
                         ArenaController c=new ArenaController(gui,arena);
+                        c.checkCollisions(arena.getSnake().getHeadPosition(),arena);
                         c.movement(command,prevcommand);
-                        arena.checkCollisions(arena.getSnake().getHeadPosition());
                         gui.drawArena(arena);
                     }
                     else{

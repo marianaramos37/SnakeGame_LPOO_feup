@@ -25,7 +25,14 @@ public class ArenaController {
         int index=0;
         for(AppleInterface apple: arena.getApples()){
             if(apple.getPosition().equals(a.getPosition())) {
-                arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth()-1), ThreadLocalRandom.current().nextInt(1, arena.getHeight()-1)));
+
+                arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1)));
+
+                //DEBUG PLS
+                while(getCollidingElement(arena.getApples().get(index).getPosition(),arena.getWalls()) != null && getCollidingBody(arena.getApples().get(index).getPosition(),arena.getSnake().getPos())) {
+                    arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1)));
+                }
+
                 break;
             }
             index++;

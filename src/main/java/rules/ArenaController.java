@@ -24,7 +24,14 @@ public class ArenaController {
         int index=0;
         for(AppleInterface apple: arena.getApples()){
             if(apple.getPosition().equals(a.getPosition())) {
-                arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth()-1), ThreadLocalRandom.current().nextInt(1, arena.getHeight()-1)));
+
+                arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1)));
+
+                //DEBUG PLS
+                while(getCollidingElement(arena.getApples().get(index).getPosition(),arena.getWalls()) != null && getCollidingBody(arena.getApples().get(index).getPosition(),arena.getSnake().getPos())) {
+                    arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1)));
+                }
+
                 break;
             }
             index++;
@@ -49,6 +56,9 @@ public class ArenaController {
         if(hit != null){
             a.endGame();
         }
+        if(getCollidingBody(position,a.getSnake().getPos())){
+            a.endGame();
+        }
     }
     private AppleInterface getCollidingApples(Position position, List<AppleInterface> apples) {
         for (AppleInterface apple : apples)
@@ -62,6 +72,13 @@ public class ArenaController {
             if (element.getPosition().equals(position))
                 return element;
         return null;
+    }
+
+    private boolean getCollidingBody(Position position, List<Position> body){
+        for (int i = 1; i<body.size();i++)
+            if (body.get(i).equals(position))
+                return true;
+        return false;
     }
 
     public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand){

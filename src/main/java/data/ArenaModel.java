@@ -1,5 +1,8 @@
 package data;
 
+import maps.CharacterReader;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -24,6 +27,26 @@ public class ArenaModel {
         this.apples.add(apple);
         this.apples.add(appleS);
         buildWalls();
+        this.game_over=false;
+    }
+
+
+    public ArenaModel(int width, int height,String filename) {
+        this.width = width;
+        this.height = height;
+        this.snake = new Snake(new Position(width / 2, height / 2));
+        Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
+        SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
+        this.apples.add(apple);
+        this.apples.add(appleS);
+
+        try {
+            CharacterReader c=new CharacterReader(filename);
+            walls=c.getWallsRead();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         this.game_over=false;
     }
 

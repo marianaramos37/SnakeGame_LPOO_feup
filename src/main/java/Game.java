@@ -11,6 +11,6 @@ public class Game {
 
         ArenaController controller = new ArenaController(gui, arena);
         //controller.start();
-        controller.mov();
+        controller.mov(controller);
     }
 }

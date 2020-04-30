@@ -10,7 +10,7 @@ public class ArenaModel {
 
     private Snake snake;
     private List<Wall> walls= new ArrayList<>();
-    private List<Apple> apples=new ArrayList<>();
+    private List<AppleInterface> apples=new ArrayList<>();
     private SinglePlayerScore score = new SinglePlayerScore();
 
     private boolean game_over;
@@ -20,7 +20,9 @@ public class ArenaModel {
         this.height = height;
         this.snake = new Snake(new Position(width / 2, height / 2));
         Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
+        SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         this.apples.add(apple);
+        this.apples.add(appleS);
         buildWalls();
         this.game_over=false;
     }
@@ -70,6 +72,6 @@ public class ArenaModel {
         return this.walls;
     }
 
-    public List<Apple> getApples(){return this.apples;}
+    public List<AppleInterface> getApples(){return this.apples;}
 
 }

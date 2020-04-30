@@ -8,10 +8,12 @@ import java.util.List;
 
 public class SnakeController {
     private ArenaModel arena;
+    private int velocidade;
 
-    public SnakeController(ArenaModel arena){
-        this.arena=arena;
+    public SnakeController(ArenaModel arena,int vel){
+        this.arena=arena; this.velocidade=vel;
     }
+
 
     public void growSnake(){
         Snake snake=this.arena.getSnake();
@@ -73,4 +75,11 @@ public class SnakeController {
         arena.setSnake(snake);
     }
 
+    public int getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(int velocidade) {
+        this.velocidade = velocidade;
+    }
 }

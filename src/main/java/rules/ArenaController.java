@@ -2,6 +2,7 @@ package rules;
 
 import data.*;
 import gui.ArenaView;
+import javafx.geometry.Pos;
 
 import java.io.IOException;
 import java.util.List;
@@ -49,6 +50,9 @@ public class ArenaController {
         if(hit != null){
             a.endGame();
         }
+        if(getCollidingBody(position,a.getSnake().getPos())){
+            a.endGame();
+        }
     }
     private AppleInterface getCollidingApples(Position position, List<AppleInterface> apples) {
         for (AppleInterface apple : apples)
@@ -61,6 +65,13 @@ public class ArenaController {
             if (element.getPosition().equals(position))
                 return element;
         return null;
+    }
+
+    private boolean getCollidingBody(Position position, List<Position> body){
+        for (int i = 1; i<body.size();i++)
+            if (body.get(i).equals(position))
+                return true;
+        return false;
     }
 
     public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand){

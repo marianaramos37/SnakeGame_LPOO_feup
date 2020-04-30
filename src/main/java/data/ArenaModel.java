@@ -7,22 +7,26 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ArenaModel {
     private int width;
     private int height;
+
     private Snake snake;
-    private Apple apple;
     private List<Wall> walls= new ArrayList<>();
-    private List<Apple> apples=new ArrayList<>();
+    private List<AppleInterface> apples=new ArrayList<>();
     private SinglePlayerScore score = new SinglePlayerScore();
+
     private boolean game_over;
 
     public ArenaModel(int width, int height) {
         this.width = width;
         this.height = height;
         this.snake = new Snake(new Position(width / 2, height / 2));
-        this.apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
+        Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
+        SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         this.apples.add(apple);
+        this.apples.add(appleS);
         buildWalls();
         this.game_over=false;
     }
+
     public int getWidth(){
         return width;
     }
@@ -41,21 +45,17 @@ public class ArenaModel {
 
     public Snake getSnake(){return snake;}
 
+    public void setSnake(Snake s){this.snake=s;}
+
     public void setSnakeHeadPosition(Position position) {
         snake.setHeadPosition(position);
-    }
-
-    public Position getApplePosition() {
-        return apple.getPosition();
-    }
-
-    public void setApplePosition(Position position) {
-        apple.setPosition(position);
     }
 
     public boolean getGameOver(){
         return game_over;
     }
+
+    public void endGame(){this.game_over=true;}
 
     public void buildWalls(){
         for(int i=0; i<width; i++){
@@ -72,36 +72,6 @@ public class ArenaModel {
         return this.walls;
     }
 
-    public List<Apple> getApples(){return this.apples;}
+    public List<AppleInterface> getApples(){return this.apples;}
 
-    public void eatenApple(Apple a){
-        int index=0;
-        for(Apple apple: apples){
-            if(apple.getPosition().equals(a.getPosition())) {
-                apples.get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1)));
-                break;
-            }
-            index++;
-        }
-    }
-    public void checkCollisions(Position position) {
-        Apple eaten = (Apple) getCollidingElement(position, apples);
-        Wall hit = (Wall) getCollidingElement(position, walls);
-
-        if (eaten != null) {
-           snake.growSnake();
-           eatenApple(apple);
-           score.incrementScore();
-        }
-        if(hit != null){
-            game_over=true;
-        }
-    }
-
-    private Element getCollidingElement(Position position, List<? extends Element> elements) {
-        for (Element element : elements)
-            if (element.getPosition().equals(position))
-                return element;
-        return null;
-    }
 }

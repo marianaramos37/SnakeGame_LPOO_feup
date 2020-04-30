@@ -11,7 +11,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import data.Apple;
+import data.AppleInterface;
 import data.ArenaModel;
 import data.Wall;
 
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class ArenaView {
     public Screen screen;
 
-    public enum COMMAND {UP, RIGHT, DOWN, LEFT}
+    public enum COMMAND {UP, RIGHT, DOWN, LEFT, ESC}
 
 
     public ArenaView(int width, int height) throws IOException {
@@ -34,19 +34,12 @@ public class ArenaView {
     public void drawArena(ArenaModel arena) {
         try {
             screen.clear();
-            /*
-            TextGraphics graphics = screen.newTextGraphics();
-            graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
-            graphics.fillRectangle(
-                    new TerminalPosition(0, 0),
-                    new TerminalSize(arena.getWidth(), arena.getHeight()),
-                    ' '
-            );*/
-            for(Wall w:arena.getWalls())
-                screen.setCharacter(w.getPosition().getX(),w.getPosition().getY(), new TextCharacter('#'));
 
-            for(Apple a:arena.getApples())
-                screen.setCharacter(a.getPosition().getX(),a.getPosition().getY(),new TextCharacter('O'));
+            for(Wall w:arena.getWalls())
+                w.draw(screen);
+
+            for(AppleInterface a:arena.getApples())
+                a.draw(screen);
 
             int x = 5;
             for(TextCharacter c:arena.getScore().getPrintableScore()){
@@ -54,7 +47,7 @@ public class ArenaView {
                 x++;
             }
 
-            arena.getSnake().drawSnake(screen);
+            arena.getSnake().draw(screen);
             screen.refresh();
         } catch (IOException e) {
             e.printStackTrace();
@@ -93,6 +86,9 @@ public class ArenaView {
             }
             if (key.getKeyType() == KeyType.ArrowLeft){
                 return COMMAND.LEFT;
+            }
+            if (key.getKeyType() == KeyType.Escape ){
+                return COMMAND.ESC;
             }
             else return null;
         }

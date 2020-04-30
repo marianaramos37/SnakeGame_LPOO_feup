@@ -3,10 +3,10 @@ package data;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.screen.Screen;
 
-public class Apple implements AppleInterface{
+public class SpecialApple implements AppleInterface{
     Position position;
 
-    public Apple(int x, int y) {
+    public SpecialApple(int x, int y) {
         this.position = new Position(x, y);
     }
 
@@ -22,7 +22,7 @@ public class Apple implements AppleInterface{
 
     @Override
     public void draw(Screen screen) {
-        screen.setCharacter(this.getPosition().getX(), this.getPosition().getY(), new TextCharacter('O'));
+        screen.setCharacter(this.getPosition().getX(), this.getPosition().getY(), new TextCharacter('S'));
     }
 
 }

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="data.ArenaTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-04-30T12:12:37" hostname="LAPTOP-GER1ALIG" time="1.005">
-  <properties/>
-  <testcase name="getWidthTest" classname="data.ArenaTest" time="1.003"/>
-  <testcase name="getSnakeTest" classname="data.ArenaTest" time="0.0"/>
-  <testcase name="getHeightTest" classname="data.ArenaTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

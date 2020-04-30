@@ -47,6 +47,12 @@ public class ArenaView {
                 x++;
             }
 
+            x=40;
+            for(TextCharacter c:arena.getTopScore().getPrintable()){
+                screen.setCharacter(x,33, c);
+                x++;
+            }
+
             arena.getSnake().draw(screen);
             screen.refresh();
         } catch (IOException e) {

@@ -53,6 +53,10 @@ public class ArenaController {
             snake.growSnake();
             eatenApple(eaten,a);
             a.getScore().incrementScore();
+
+            if(a.getScore().getScore() > a.getTopScore().getTopScore()){
+                a.getTopScore().incrementTopScore();
+            }
         }
         if(hit != null){
             a.endGame();

@@ -1,4 +1,4 @@
-package maps;
+package filereaders;
 
 import data.Wall;
 
@@ -33,7 +33,6 @@ public class CharacterReader {
         while ((r = reader.read()) != -1) {
             char ch = (char) r;
             if(ch == '#'){
-                System.out.println("EU LI ISTO");
                 this.wallsRead.add(new Wall(x,y));
                 x++;
                 continue;

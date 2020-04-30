@@ -42,21 +42,27 @@ public class SinglePlayerScore {
         int number = score;
         int digit;
 
+        List<TextCharacter> numberConversion=new ArrayList<>();
+
         while (number > 0) {
             digit = number % 10;
 
-            if(digit == 1) printable.add(new TextCharacter('1'));
-            if(digit == 2) printable.add(new TextCharacter('2'));
-            if(digit == 3) printable.add(new TextCharacter('3'));
-            if(digit == 4) printable.add(new TextCharacter('4'));
-            if(digit == 5) printable.add(new TextCharacter('5'));
-            if(digit == 6) printable.add(new TextCharacter('6'));
-            if(digit == 7) printable.add(new TextCharacter('7'));
-            if(digit == 8) printable.add(new TextCharacter('8'));
-            if(digit == 9) printable.add(new TextCharacter('9'));
-            if(digit == 0) printable.add(new TextCharacter('0'));
+            if(digit == 1) numberConversion.add(new TextCharacter('1'));
+            if(digit == 2) numberConversion.add(new TextCharacter('2'));
+            if(digit == 3) numberConversion.add(new TextCharacter('3'));
+            if(digit == 4) numberConversion.add(new TextCharacter('4'));
+            if(digit == 5) numberConversion.add(new TextCharacter('5'));
+            if(digit == 6) numberConversion.add(new TextCharacter('6'));
+            if(digit == 7) numberConversion.add(new TextCharacter('7'));
+            if(digit == 8) numberConversion.add(new TextCharacter('8'));
+            if(digit == 9) numberConversion.add(new TextCharacter('9'));
+            if(digit == 0) numberConversion.add(new TextCharacter('0'));
 
             number = number/ 10;
+        }
+
+        for(int i=numberConversion.size()-1;i>=0;i--){
+            printable.add(numberConversion.get(i));
         }
 
         return printable;

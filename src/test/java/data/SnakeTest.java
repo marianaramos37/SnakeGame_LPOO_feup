@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class SnakeTest {
     Position headPosition;
@@ -22,13 +22,21 @@ public class SnakeTest {
     }
 
     @Test
-    public void growSnakeTest(){
-        Position position= new Position(5,5);
-        Snake cobra= new Snake(position);
-        cobra.growSnake();
-        assertEquals(headPosition,cobra.getHeadPosition());
-        assertEquals(snake,cobra.getSnake());
-        assertEquals(length,cobra.getLength());
-        assertEquals(pos,cobra.getPos());
+    public void testConstructor() {
+        Snake snake = new Snake(headPosition);
+
+        assertEquals(5, snake.getHeadPosition().getX());
+        assertEquals(5, snake.getHeadPosition().getY());
     }
+
+    @Test
+    public void testSetPosition() {
+        Snake snake = new Snake(headPosition);
+
+        snake.setHeadPosition(new Position(15, 20));
+
+        assertEquals(15, snake.getHeadPosition().getX());
+        assertEquals(20, snake.getHeadPosition().getY());
+    }
+
 }

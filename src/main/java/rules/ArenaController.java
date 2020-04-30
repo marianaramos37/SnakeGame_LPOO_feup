@@ -2,7 +2,6 @@ package rules;
 
 import data.*;
 import gui.ArenaView;
-import javafx.geometry.Pos;
 
 import java.io.IOException;
 import java.util.List;
@@ -46,7 +45,7 @@ public class ArenaController {
         }
     }
     public void checkCollisions(Position position,ArenaModel a) {
-        AppleInterface eaten = (AppleInterface) getCollidingApples(position, a.getApples());
+        AppleInterface eaten = getCollidingApples(position, a.getApples());
         Wall hit = (Wall) getCollidingElement(position, a.getWalls());
 
         if (eaten != null) {
@@ -71,6 +70,7 @@ public class ArenaController {
                 return apple;
         return null;
     }
+
     private Element getCollidingElement(Position position, List<? extends Element> elements) {
         for (Element element : elements)
             if (element.getPosition().equals(position))
@@ -122,34 +122,35 @@ public class ArenaController {
         }
     }
 
-    public void mov(ArenaController c){
+    public void mov(ArenaController c) throws NullPointerException{
         new Thread(new Runnable(){
             ArenaView.COMMAND prevcommand = null;
             ArenaView.COMMAND command = null;
             @Override
-            public void run(){
+            public void run() {
                 while(true){
                     System.out.println("OLAAAA");
                     try {
                         sleep(snake.getVelocidade());
                         command=gui.getCommand();
                         if(command!=null){
-                            if(command==ArenaView.COMMAND.UP && prevcommand==ArenaView.COMMAND.DOWN){command=ArenaView.COMMAND.DOWN;}
-                            if(command==ArenaView.COMMAND.DOWN && prevcommand==ArenaView.COMMAND.UP){command=ArenaView.COMMAND.UP;}
-                            if(command==ArenaView.COMMAND.RIGHT && prevcommand==ArenaView.COMMAND.LEFT){command=ArenaView.COMMAND.LEFT;}
-                            if(command==ArenaView.COMMAND.LEFT && prevcommand==ArenaView.COMMAND.RIGHT){command=ArenaView.COMMAND.RIGHT;}
-                            prevcommand=command;
+                            if(command==ArenaView.COMMAND.UP && prevcommand ==ArenaView.COMMAND.DOWN){command=ArenaView.COMMAND.DOWN;}
+                            if(command==ArenaView.COMMAND.DOWN && prevcommand ==ArenaView.COMMAND.UP){command=ArenaView.COMMAND.UP;}
+                            if(command==ArenaView.COMMAND.RIGHT && prevcommand ==ArenaView.COMMAND.LEFT){command=ArenaView.COMMAND.LEFT;}
+                            if(command==ArenaView.COMMAND.LEFT && prevcommand ==ArenaView.COMMAND.RIGHT){command=ArenaView.COMMAND.RIGHT;}
+                            prevcommand =command;
                         }
+/*
                         if(command==ArenaView.COMMAND.ESC){
                             gui.drawGameOver(arena);
                             break;
-                        }
-                    } catch (IOException | InterruptedException e) {
+                        }*/
+                    } catch (InterruptedException | IOException e) {
                         e.printStackTrace();
                     }
                     if(!arena.getGameOver()){
                         c.checkCollisions(arena.getSnake().getHeadPosition(),arena);
-                        c.movement(command,prevcommand);
+                        c.movement(command, prevcommand);
                         gui.drawArena(arena);
                     }
                     else{

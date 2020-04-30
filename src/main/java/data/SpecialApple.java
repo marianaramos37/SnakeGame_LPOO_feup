@@ -1,8 +1,5 @@
 package data;
 
-import com.googlecode.lanterna.TextCharacter;
-import com.googlecode.lanterna.screen.Screen;
-
 public class SpecialApple implements AppleInterface{
     Position position;
 
@@ -21,8 +18,9 @@ public class SpecialApple implements AppleInterface{
     }
 
     @Override
-    public void draw(Screen screen) {
-        screen.setCharacter(this.getPosition().getX(), this.getPosition().getY(), new TextCharacter('S'));
+    public Character getChar() {
+        return 'S';
     }
+
 
 }

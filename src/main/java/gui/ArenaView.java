@@ -8,14 +8,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import data.AppleInterface;
-import data.ArenaModel;
-import data.Wall;
+import data.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ArenaView {
     public Screen screen;
@@ -23,23 +19,47 @@ public class ArenaView {
     public enum COMMAND {UP, RIGHT, DOWN, LEFT, ESC}
 
 
-    public ArenaView(int width, int height) throws IOException {
-        Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
-        screen = new TerminalScreen(terminal);
+    public ArenaView(int width, int height,Screen screen) throws IOException {
+        this.screen=screen;
+        //Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
+        //screen = new TerminalScreen(terminal);
         screen.setCursorPosition(null);   // we don't need a cursor
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
     }
 
+    public void drawSnake(ArenaModel arena) {
+        Snake snake=arena.getSnake();
+        int index=0;
+        for(Character c:snake.getSnakeBody()){
+            if(index>=snake.getPos().size()){
+                snake.getPos().add(snake.getLength(),new Position(snake.getPos().get(snake.getLength()-1).getX()+1,snake.getPos().get(snake.getLength()-1).getY()));
+            }
+            screen.setCharacter(snake.getPos().get(index).getX(), snake.getPos().get(index).getY(), new TextCharacter(snake.getSnakeBody().get(index)));
+            index++;
+        }
+    }
+
+    public void drawWalls(ArenaModel arena) {
+        List<Wall> walls=arena.getWalls();
+        for(Wall wall:walls)
+            screen.setCharacter(wall.getPosition().getX(),wall.getPosition().getY(), new TextCharacter('#'));
+    }
+
+    public void drawApples(ArenaModel arena) {
+        List<AppleInterface> apples=arena.getApples();
+        for(AppleInterface apple:apples)
+            screen.setCharacter(apple.getPosition().getX(),apple.getPosition().getY(), new TextCharacter(apple.getChar()));
+    }
+
+
     public void drawArena(ArenaModel arena) {
         try {
             screen.clear();
 
-            for(Wall w:arena.getWalls())
-                w.draw(screen);
+            drawWalls(arena);
 
-            for(AppleInterface a:arena.getApples())
-                a.draw(screen);
+            drawApples(arena);
 
             int x = 5;
             for(TextCharacter c:arena.getScore().getPrintableScore()){
@@ -53,7 +73,7 @@ public class ArenaView {
                 x++;
             }
 
-            arena.getSnake().draw(screen);
+            drawSnake(arena);
             screen.refresh();
         } catch (IOException e) {
             e.printStackTrace();

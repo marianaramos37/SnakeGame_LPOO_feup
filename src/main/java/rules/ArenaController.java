@@ -56,6 +56,7 @@ public class ArenaController {
                 return apple;
         return null;
     }
+
     private Element getCollidingElement(Position position, List<? extends Element> elements) {
         for (Element element : elements)
             if (element.getPosition().equals(position))

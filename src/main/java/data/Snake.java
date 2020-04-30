@@ -1,8 +1,5 @@
 package data;
 
-import com.googlecode.lanterna.TextCharacter;
-import com.googlecode.lanterna.screen.Screen;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,16 +40,5 @@ public class Snake extends Element{
         this.headPosition = position;
     }
 
-
-    public void draw(Screen screen) {
-        int index=0;
-        for(Character c:snakebody){
-            if(index>=pos.size()){
-                pos.add(length,new Position(pos.get(length-1).getX()+1,pos.get(length-1).getY()));
-            }
-            screen.setCharacter(pos.get(index).getX(), pos.get(index).getY(), new TextCharacter(snakebody.get(index)));
-            index++;
-        }
-    }
 
 }

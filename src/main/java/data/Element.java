@@ -1,7 +1,5 @@
 package data;
 
-import com.googlecode.lanterna.screen.Screen;
-
 public abstract class Element {
     private Position position;
     public Element(int x, int y) {
@@ -13,5 +11,4 @@ public abstract class Element {
     public void setPosition(Position position) {
         this.position = position;
     }
-    public abstract void draw(Screen screen);
 }

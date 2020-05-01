@@ -31,12 +31,22 @@ public class ArenaView {
     public void drawSnake(ArenaModel arena) {
         Snake snake=arena.getSnake();
         int index=0;
-        for(Character c:snake.getSnakeBody()){
-            if(index>=snake.getPos().size()){
-                snake.getPos().add(snake.getLength(),new Position(snake.getPos().get(snake.getLength()-1).getX()+1,snake.getPos().get(snake.getLength()-1).getY()));
+        if(!snake.isShrink) {
+            for (Character c : snake.getSnakeBody()) {
+                if (index >= snake.getPos().size()) {
+                    snake.getPos().add(snake.getLength(), new Position(snake.getPos().get(snake.getLength() - 1).getX() + 1, snake.getPos().get(snake.getLength() - 1).getY()));
+                }
+                screen.setCharacter(snake.getPos().get(index).getX(), snake.getPos().get(index).getY(), new TextCharacter(snake.getSnakeBody().get(index)));
+                index++;
             }
-            screen.setCharacter(snake.getPos().get(index).getX(), snake.getPos().get(index).getY(), new TextCharacter(snake.getSnakeBody().get(index)));
-            index++;
+        }else{
+            for (Character c : snake.getSnakeBody().subList(0,2)) {
+                if (index >= snake.getPos().size()) {
+                    snake.getPos().add(snake.getLength(), new Position(snake.getPos().get(snake.getLength() - 1).getX() + 1, snake.getPos().get(snake.getLength() - 1).getY()));
+                }
+                screen.setCharacter(snake.getPos().get(index).getX(), snake.getPos().get(index).getY(), new TextCharacter(snake.getSnakeBody().get(index)));
+                index++;
+            }
         }
     }
 

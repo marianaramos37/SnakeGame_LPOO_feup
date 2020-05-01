@@ -39,6 +39,7 @@ public class ArenaController {
         if(a instanceof SpecialApple){
             System.out.println("SPECIAL");
             this.snake.setVelocidade(this.snake.getVelocidade()/2);
+            this.snake.shrink();
         }
         else if (a instanceof Apple){
 
@@ -79,9 +80,11 @@ public class ArenaController {
     }
 
     private boolean getCollidingBody(Position position, List<Position> body){
-        for (int i = 1; i<body.size();i++)
-            if (body.get(i).equals(position))
-                return true;
+        if(!arena.getSnake().isShrink) {
+            for (int i = 1; i < body.size(); i++)
+                if (body.get(i).equals(position))
+                    return true;
+        }
         return false;
     }
 
@@ -126,10 +129,11 @@ public class ArenaController {
         new Thread(new Runnable(){
             ArenaView.COMMAND prevcommand = null;
             ArenaView.COMMAND command = null;
+            int counter;
             @Override
             public void run() {
                 while(true){
-                    System.out.println("OLAAAA");
+                    //System.out.println("OLAAAA");
                     try {
                         sleep(snake.getVelocidade());
                         command=gui.getCommand();
@@ -150,6 +154,16 @@ public class ArenaController {
                     }
                     if(!arena.getGameOver()){
                         c.checkCollisions(arena.getSnake().getHeadPosition(),arena);
+
+                        if(snake.getVelocidade() != 150){
+                            counter++;
+                            if(counter == 100){
+                                snake.setVelocidade(150);
+                                snake.unshrink();
+                                counter=0;
+                            }
+                        }
+
                         c.movement(command, prevcommand);
                         gui.drawArena(arena);
                     }

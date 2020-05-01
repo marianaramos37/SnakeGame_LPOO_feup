@@ -8,6 +8,7 @@ public class Snake extends Element{
     private List<Character> snakebody = new ArrayList<>();
     private List<Position> pos = new ArrayList<>();
     private int length=0;
+    public boolean isShrink = false;
 
     public Snake(Position position) {
         super(position.getX(),position.getY());

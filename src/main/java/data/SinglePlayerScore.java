@@ -32,9 +32,14 @@ public class SinglePlayerScore {
 
     public void incrementScore(){
         score++;
+        updatePrintable();
     }
 
-    public List<TextCharacter> getPrintableScore(){
+    public List<TextCharacter> getPrintableScore() {
+        return printable;
+    }
+
+    public List<TextCharacter> updatePrintable(){
 
         printable.clear();
         printable.addAll(text);

@@ -67,13 +67,18 @@ public class ArenaView {
                 x++;
             }
 
+            x=40;
+            for(TextCharacter c:arena.getTopScore().getPrintable()){
+                screen.setCharacter(x,33, c);
+                x++;
+            }
+
             drawSnake(arena);
             screen.refresh();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     public void drawGameOver(ArenaModel arena) {
         try {

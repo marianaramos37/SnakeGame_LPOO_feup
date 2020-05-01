@@ -1,6 +1,7 @@
 package data;
 
-import maps.CharacterReader;
+import filereaders.CharacterReader;
+import filewritters.SinglePlayerTopScoreFileWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +16,15 @@ public class ArenaModel {
     private List<Wall> walls= new ArrayList<>();
     private List<AppleInterface> apples=new ArrayList<>();
     private SinglePlayerScore score = new SinglePlayerScore();
+
+    private SinglePlayerTopScore topScore;
+    {
+        try {
+            topScore = new SinglePlayerTopScore();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private boolean game_over;
 
@@ -78,7 +88,12 @@ public class ArenaModel {
         return game_over;
     }
 
-    public void endGame(){this.game_over=true;}
+    public void endGame(){
+        this.game_over=true;
+
+        new SinglePlayerTopScoreFileWriter(topScore.getFilename(),topScore.getTopScore());
+
+    }
 
     public void buildWalls(){
         for(int i=0; i<width; i++){
@@ -96,5 +111,7 @@ public class ArenaModel {
     }
 
     public List<AppleInterface> getApples(){return this.apples;}
+
+    public SinglePlayerTopScore getTopScore(){return this.topScore;}
 
 }

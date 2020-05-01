@@ -17,7 +17,6 @@ public class SinglePlayerTopScore {
     public SinglePlayerTopScore() throws IOException {
 
         this.filename = "src/main/java/files/topScore.txt";
-        //n=new SinglePlayerTopScoreFileReader(filename);
 
         text.add(new TextCharacter('T'));
         text.add(new TextCharacter('O'));

@@ -10,6 +10,7 @@ public class SnakeController {
     private ArenaModel arena;
     private int velocidade;
 
+
     public SnakeController(ArenaModel arena,int vel){
         this.arena=arena; this.velocidade=vel;
     }
@@ -81,5 +82,21 @@ public class SnakeController {
 
     public void setVelocidade(int velocidade) {
         this.velocidade = velocidade;
+    }
+
+    public void shrink(){
+        Snake snake=this.arena.getSnake();
+
+        snake.isShrink = true;
+
+        arena.setSnake(snake);
+    }
+
+    public void unshrink(){
+        Snake snake=this.arena.getSnake();
+
+        snake.isShrink = false;
+
+        arena.setSnake(snake);
     }
 }

@@ -39,6 +39,7 @@ public class ArenaController {
         if(a instanceof SpecialApple){
             System.out.println("SPECIAL");
             this.snake.setVelocidade(this.snake.getVelocidade()/2);
+            this.snake.shrink();
         }
         else if (a instanceof Apple){
 
@@ -81,10 +82,12 @@ public class ArenaController {
         return null;
     }
 
-    public boolean getCollidingBody(Position position, List<Position> body){
-        for (int i = 1; i<body.size();i++)
-            if (body.get(i).equals(position))
-                return true;
+    private boolean getCollidingBody(Position position, List<Position> body){
+        if(!arena.getSnake().isShrink) {
+            for (int i = 1; i < body.size(); i++)
+                if (body.get(i).equals(position))
+                    return true;
+        }
         return false;
     }
 
@@ -137,6 +140,7 @@ public class ArenaController {
         new Thread(new Runnable(){
             ArenaView.COMMAND prevcommand = null;
             ArenaView.COMMAND command = null;
+            int counter;
             @Override
             public void run() {
                 while(true){
@@ -162,6 +166,14 @@ public class ArenaController {
                     if(!arena.getGameOver()){
                         try {
                             c.checkCollisions(arena.getSnake().getHeadPosition(),arena);
+                            if(snake.getVelocidade() != 150){
+                                counter++;
+                                if(counter == 100){
+                                    snake.setVelocidade(150);
+                                    snake.unshrink();
+                                    counter=0;
+                                }
+                            }
                             c.movement(command, prevcommand);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -175,6 +187,7 @@ public class ArenaController {
             }
         }).start();
     }
+
 
    /* Timer timer1 = new Timer();
     public void start() throws IOException {

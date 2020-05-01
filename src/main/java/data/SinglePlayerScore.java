@@ -39,6 +39,10 @@ public class SinglePlayerScore {
         updatePrintable();
     }
 
+    public List<TextCharacter> getPrintableScore() {
+        return printable;
+    }
+
     public List<TextCharacter> updatePrintable(){
 
         printable.clear();
@@ -72,5 +76,4 @@ public class SinglePlayerScore {
         return printable;
     }
 
-    public List<TextCharacter> getPrintableScore(){return printable;}
  }

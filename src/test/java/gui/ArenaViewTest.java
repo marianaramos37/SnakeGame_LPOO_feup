@@ -62,7 +62,7 @@ public class ArenaViewTest {
     }
 
     @Test
-    public void testApplesWalls() throws IOException {
+    public void testDrawApples() throws IOException {
         ArenaModel arena=Mockito.mock(ArenaModel.class);
         Mockito.when(arena.getSnake()).thenReturn((snake));
         Mockito.when(arena.getWalls()).thenReturn((walls));

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Game {
     public static void main(String[] args) throws IOException {
 
-        ArenaModel arena = new ArenaModel(60, 30,"C:\\Users\\Mariana Ramos\\Desktop\\2ano\\2semestre\\lpoo\\proj\\src\\main\\java\\files\\mapHard.txt");
+        ArenaModel arena = new ArenaModel(60, 30,"C:\\Users\\Mariana Ramos\\Desktop\\2ano\\2semestre\\lpoo\\proj\\src\\main\\java\\files\\mapMedium.txt");
 
         Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(60, 35)).createTerminal();
         TerminalScreen screen = new TerminalScreen(terminal);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="gui.ArenaViewTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-04-30T13:51:23" hostname="LAPTOP-GER1ALIG" time="1.308">
+<testsuite name="gui.ArenaViewTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-04-30T14:08:41" hostname="LAPTOP-GER1ALIG" time="0.818">
   <properties/>
-  <testcase name="testDrawSnake" classname="gui.ArenaViewTest" time="1.3"/>
-  <testcase name="testDrawWalls" classname="gui.ArenaViewTest" time="0.003"/>
-  <testcase name="testApplesWalls" classname="gui.ArenaViewTest" time="0.004"/>
+  <testcase name="testDrawApples" classname="gui.ArenaViewTest" time="0.811"/>
+  <testcase name="testDrawSnake" classname="gui.ArenaViewTest" time="0.004"/>
+  <testcase name="testDrawWalls" classname="gui.ArenaViewTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

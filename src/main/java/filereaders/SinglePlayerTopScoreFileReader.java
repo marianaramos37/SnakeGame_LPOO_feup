@@ -1,16 +1,8 @@
 package filereaders;
 
-import com.googlecode.lanterna.TextCharacter;
-import data.Wall;
-
-import java.io.*;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-
 public class SinglePlayerTopScoreFileReader {
 
-    private String filename;
+   /* private String filename;
     private int topScore=0;
 
     public SinglePlayerTopScoreFileReader(String filename) throws IOException {
@@ -57,12 +49,11 @@ public class SinglePlayerTopScoreFileReader {
             numbers.add(numberConversion.get(i));
         }
 
-
         return numbers;
     }
 
     public int getTopScore(){
         return topScore;
     }
-
+*/
 }

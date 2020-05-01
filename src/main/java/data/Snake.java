@@ -18,6 +18,7 @@ public class Snake extends Element{
         snakebody.add(length, '-');
         pos.add(length,new Position(position.getX()-1,position.getY()));
     }
+
     public List<Character> getSnakeBody(){ return snakebody; }
     public void setSnakeBody(List<Character> sb){this.snakebody=sb;}
 

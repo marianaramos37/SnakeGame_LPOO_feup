@@ -26,15 +26,20 @@ public class SinglePlayerScore {
         return score;
     }
 
+    public void setScore(int s) {
+        this.score=s;
+    }
+
     public List<TextCharacter> getText() {
         return text;
     }
 
     public void incrementScore(){
         score++;
+        updatePrintable();
     }
 
-    public List<TextCharacter> getPrintableScore(){
+    public List<TextCharacter> updatePrintable(){
 
         printable.clear();
         printable.addAll(text);
@@ -43,7 +48,6 @@ public class SinglePlayerScore {
         int digit;
 
         List<TextCharacter> numberConversion=new ArrayList<>();
-
         while (number > 0) {
             digit = number % 10;
 
@@ -67,4 +71,6 @@ public class SinglePlayerScore {
 
         return printable;
     }
-}
+
+    public List<TextCharacter> getPrintableScore(){return printable;}
+ }

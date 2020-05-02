@@ -1,7 +1,6 @@
 package filereaders;
 
 import com.googlecode.lanterna.TextCharacter;
-import data.Wall;
 
 import java.io.*;
 import java.nio.charset.Charset;

@@ -7,21 +7,28 @@ Na nossa versão do jogo vamos ter uma versão single player descrita acima com 
 Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) e Mariana Ramos (up201806869@fe.up.pt) no âmbito da cadeira Laboratório de Programação Orientada por Objectos no ano letivo 19/20.
 
 ## Funcionalidades Implementadas
-
-## Funcionalidades Planeadas
-
-**Dois modos de jogo:** Single Player e Multi Player
-
 **Single Player**
 - **Virar**: A cobra está sempre em movimento, o jogador usa as teclas para mudar a direção em que a cobra vai;
 - **Score**: A score é calculada pelo número de maçãs comidas;
+- **Mapas**: Mapas diferentes para cada nível de dificuldade
+- **Maçãs**: As maçãs são colocadas em posições aleatórias na arena à medida que a cobra as vai comendo;
+- **Maças Especiais**: Maçãs especiais dão poderes há cobra: ficar mais curta e rápida durante um intervalo de tempo OU conseguir passar por entre obstáculos;
+- **TopScore**: Top score é sempre guardado;
+
+(falta screenshots)
+
+## Funcionalidades Planeadas
+
+**Menu**: para selecionar o modo de jogo e o nível de dificuldade do modo de jogo Single Player
+
+**Dois modos de jogo:** Single Player e Multi Player, selecionáveis a partir de um menu
+
+**Single Player**
 - **Níveis**: Existem três níveis distintos: Fácil, Médio e Difícil;
 - **Obstáculos**: Existem obstáculos no meio da arena que vão aparecendo ao longo do tempo;
-- **Maçãs**: As maçãs são colocadas em posições aleatórias na arena à medida que a cobra as vai comedo;
 - **Maçãs envenenadas**: Maçãs envenenadas fazem a cobra diminuir de tamanho;
-- **Maças Especiais**: Maçãs especiais dão poderes há cobra: ficar mais curta e rápida durante um intervalo de tempo OU conseguir passar por entre obstáculos;
 - **Velocidade** e **tamanho dos obstáculos** mudam ao longo do nível e de nível para nível
-- **TopScore**: Top score é sempre guardado;
+
 
 **Multi Player**
 - Estão duas cobras na mesma arena, a ser controladas por partes do teclado diferentes;
@@ -32,9 +39,16 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 - No menu principal irá existir uma funcionalidade que permitirá aos jogadores construir os seus próprios mapas. Estes poderão ter uma serie de obstáculos previamente selecionados e poderão ser usados nas versões multiplayer.
 
 ## Design
- - **MVC**: 
+ - **MVC**: O nosso programa tem o design arquitetural MVC dado que é um jogo (foi implementado logo desde início dadas as vantagens que este design apresenta)
  - **Factory Method**: Classe abstrata Element que engloba todos os elementos de jogo (classe Snake, classe Apple, classe Wall). Os Elements concretos são definidos e usados pela classe ArenaModel.
  
 ## Code Smells and Refactoring Technics
+A velocidade default da snake é 150 (de momento, mais tarde este valor será variável). É o que se chama um Magic Number e deve ser substituído através da utilizacão de uma Symbolic Constant para uma melhor organização e compreeensão do código.
+
+A classe Snake tem um public field boolean isShrink que devia ser encapsulado através da criação de métodos get e set para esta variável, uma vez que não é boa prática ter campos públicos numa classe.
+
+As classes SinglePlayerTopScoreFileReader e SinglePlayerTopScoreFileWritter tem construtores que além de atribuírem valores aos campos das classes, chamam outros métodos desta mesma classe para ler ou escrever nos ficheiros, respetivamente. Logo estes construtores fazem mais do que deveriam fazer e devem ser substituídos/simplificados por um Factory Method.
+
+O método movement da ArenaController pode ser simplificado removendo o código duplicado para um método diferente, tornando o método movement muito mais legível e pequeno, uma vez que as if-statements do mesmo são longas e complexas.
 
 ## Self Evaluation

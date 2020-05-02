@@ -8,6 +8,9 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 import data.*;
 
 import java.io.IOException;
@@ -18,6 +21,13 @@ public class ArenaView {
 
     public enum COMMAND {UP, RIGHT, DOWN, LEFT, ESC}
 
+    public ArenaView(int width, int height) throws IOException {
+        Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
+        screen = new TerminalScreen(terminal);
+        screen.setCursorPosition(null);   // we don't need a cursor
+        screen.startScreen();             // screens must be started
+        screen.doResizeIfNecessary();     // resize screen if necessary
+    }
 
     public ArenaView(int width, int height,Screen screen) throws IOException {
         this.screen=screen;
@@ -27,6 +37,7 @@ public class ArenaView {
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
     }
+
 
     public void drawSnake(ArenaModel arena) {
         Snake snake=arena.getSnake();
@@ -61,7 +72,6 @@ public class ArenaView {
         for(AppleInterface apple:apples)
             screen.setCharacter(apple.getPosition().getX(),apple.getPosition().getY(), new TextCharacter(apple.getChar()));
     }
-
 
     public void drawArena(ArenaModel arena) {
         try {
@@ -105,7 +115,6 @@ public class ArenaView {
             e.printStackTrace();
         }
     }
-
 
 
     public COMMAND getCommand() throws IOException {

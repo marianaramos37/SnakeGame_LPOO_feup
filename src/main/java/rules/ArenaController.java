@@ -24,14 +24,13 @@ public class ArenaController {
         int index=0;
         for(AppleInterface apple: arena.getApples()){
             if(apple.getPosition().equals(a.getPosition())) {
-
                 arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1)));
-
-                //DEBUG PLS
-                while(getCollidingElement(arena.getApples().get(index).getPosition(),arena.getWalls()) != null && getCollidingBody(arena.getApples().get(index).getPosition(),arena.getSnake().getPos())) {
+                if(getCollidingElement(arena.getApples().get(index).getPosition(),arena.getWalls()) != null && getCollidingBody(arena.getApples().get(index).getPosition(),arena.getSnake().getPos())) {
                     arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1)));
                 }
-
+                else{
+                    System.out.println("thats ok");
+                }
                 break;
             }
             index++;
@@ -45,9 +44,11 @@ public class ArenaController {
 
         }
     }
-    public void checkCollisions(Position position,ArenaModel a) {
+
+    public void checkCollisions(Position position,ArenaModel a) throws IOException {
         AppleInterface eaten = getCollidingApples(position, a.getApples());
         Wall hit = (Wall) getCollidingElement(position, a.getWalls());
+        Boolean ownBody= getCollidingBody(position,a.getSnake().getPos());
 
         if (eaten != null) {
             snake.growSnake();
@@ -61,25 +62,26 @@ public class ArenaController {
         if(hit != null){
             a.endGame();
         }
-        if(getCollidingBody(position,a.getSnake().getPos())){
+        if(ownBody){
             a.endGame();
         }
     }
-    private AppleInterface getCollidingApples(Position position, List<AppleInterface> apples) {
+
+    public AppleInterface getCollidingApples(Position position, List<AppleInterface> apples) {
         for (AppleInterface apple : apples)
             if (apple.getPosition().equals(position))
                 return apple;
         return null;
     }
 
-    private Element getCollidingElement(Position position, List<? extends Element> elements) {
+    public Element getCollidingElement(Position position, List<? extends Element> elements) {
         for (Element element : elements)
             if (element.getPosition().equals(position))
                 return element;
         return null;
     }
 
-    private boolean getCollidingBody(Position position, List<Position> body){
+    public boolean getCollidingBody(Position position, List<Position> body){
         if(!arena.getSnake().isShrink) {
             for (int i = 1; i < body.size(); i++)
                 if (body.get(i).equals(position))
@@ -88,7 +90,7 @@ public class ArenaController {
         return false;
     }
 
-    public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand){
+    public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand) throws IOException {
         if (command == ArenaView.COMMAND.UP) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().up());
             snake.walkSnake(arena.getSnakeHeadPosition(),'|');
@@ -104,6 +106,10 @@ public class ArenaController {
         if (command == ArenaView.COMMAND.LEFT) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().left());
             snake.walkSnake(arena.getSnakeHeadPosition(), '-');
+        }
+        if(command==ArenaView.COMMAND.ESC){
+            arena.endGame();
+            gui.drawGameOver(arena);
         }
         if(command==null){
             if (prevcommand == ArenaView.COMMAND.UP) {
@@ -122,10 +128,14 @@ public class ArenaController {
                 arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().left());
                 snake.walkSnake(arena.getSnakeHeadPosition(), '-');
             }
+            if(prevcommand==ArenaView.COMMAND.ESC){
+                arena.endGame();
+                gui.drawGameOver(arena);
+            }
         }
     }
 
-    public void mov(ArenaController c) throws NullPointerException{
+    public void starting(ArenaController c) throws NullPointerException{
         new Thread(new Runnable(){
             ArenaView.COMMAND prevcommand = null;
             ArenaView.COMMAND command = null;
@@ -144,8 +154,8 @@ public class ArenaController {
                             if(command==ArenaView.COMMAND.LEFT && prevcommand ==ArenaView.COMMAND.RIGHT){command=ArenaView.COMMAND.RIGHT;}
                             prevcommand =command;
                         }
-/*
-                        if(command==ArenaView.COMMAND.ESC){
+
+                        /*if(command==ArenaView.COMMAND.ESC){
                             gui.drawGameOver(arena);
                             break;
                         }*/
@@ -153,27 +163,37 @@ public class ArenaController {
                         e.printStackTrace();
                     }
                     if(!arena.getGameOver()){
-                        c.checkCollisions(arena.getSnake().getHeadPosition(),arena);
-
-                        if(snake.getVelocidade() != 150){
-                            counter++;
-                            if(counter == 100){
-                                snake.setVelocidade(150);
-                                snake.unshrink();
-                                counter=0;
+                        try {
+                            c.checkCollisions(arena.getSnake().getHeadPosition(),arena);
+                            if(snake.getVelocidade() != 150){
+                                counter++;
+                                if(counter == 100){
+                                    snake.setVelocidade(150);
+                                    snake.unshrink();
+                                    counter=0;
+                                }
                             }
+                            c.movement(command, prevcommand);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
-
-                        c.movement(command, prevcommand);
                         gui.drawArena(arena);
                     }
                     else{
                         gui.drawGameOver(arena);
+                        try {
+                            sleep(1000);
+                            gui.screen.stopScreen();
+                            break;
+                        } catch (InterruptedException | IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
         }).start();
     }
+
 
    /* Timer timer1 = new Timer();
     public void start() throws IOException {

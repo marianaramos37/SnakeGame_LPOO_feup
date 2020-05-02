@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.List;
 
-import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.*;
 
 public class SnakeControllerTest {
     Snake snakeMock;
@@ -34,7 +34,7 @@ public class SnakeControllerTest {
     }
 
     @Test
-    public void walkSnake() {
+    public void walkSnakeTest() {
         ArenaModel arena=Mockito.mock(ArenaModel.class);
         Mockito.when(arena.getSnake()).thenReturn((snakeMock));
 
@@ -59,7 +59,7 @@ public class SnakeControllerTest {
     }
 
     @Test
-    public void growSnake() {
+    public void growSnakeTest() {
         ArenaModel arena=Mockito.mock(ArenaModel.class);
         Mockito.when(arena.getSnake()).thenReturn((snakeMock));
 
@@ -82,6 +82,28 @@ public class SnakeControllerTest {
 
         assertEquals(snakeAfter.getSnakeBody(),arena.getSnake().getSnakeBody());
         assertEquals(snakeAfter.getPos(),arena.getSnake().getPos());
+    }
+
+    @Test
+    public void shrinkSnakeTest() {
+        ArenaModel arena=Mockito.mock(ArenaModel.class);
+        Mockito.when(arena.getSnake()).thenReturn((snakeMock));
+
+        SnakeController snakeCtrl = new SnakeController(arena,vel);
+        snakeCtrl.shrink();
+
+        assertTrue(snakeMock.isShrink);
+    }
+
+    @Test
+    public void unshrinkSnakeTest() {
+        ArenaModel arena=Mockito.mock(ArenaModel.class);
+        Mockito.when(arena.getSnake()).thenReturn((snakeMock));
+
+        SnakeController snakeCtrl = new SnakeController(arena,vel);
+        snakeCtrl.unshrink();
+
+        assertFalse(snakeMock.isShrink);
     }
 
 }

@@ -26,6 +26,10 @@ public class SinglePlayerScore {
         return score;
     }
 
+    public void setScore(int s) {
+        this.score=s;
+    }
+
     public List<TextCharacter> getText() {
         return text;
     }
@@ -48,7 +52,6 @@ public class SinglePlayerScore {
         int digit;
 
         List<TextCharacter> numberConversion=new ArrayList<>();
-
         while (number > 0) {
             digit = number % 10;
 
@@ -72,4 +75,5 @@ public class SinglePlayerScore {
 
         return printable;
     }
-}
+
+ }

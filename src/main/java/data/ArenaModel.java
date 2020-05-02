@@ -1,7 +1,6 @@
 package data;
 
 import filereaders.CharacterReader;
-import filewritters.SinglePlayerTopScoreFileWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,7 +77,21 @@ public class ArenaModel {
 
     public Snake getSnake(){return snake;}
 
+    public List<Wall> getWalls(){
+        return this.walls;
+    }
+
+    public List<AppleInterface> getApples(){return this.apples;}
+
+    public SinglePlayerTopScore getTopScore(){return this.topScore;}
+
     public void setSnake(Snake s){this.snake=s;}
+
+    public void setWalls(List<Wall> l){this.walls=l;}
+
+    public void setApples(List<AppleInterface> l){this.apples=l;}
+
+    public void setScore(SinglePlayerScore s){this.score=s;}
 
     public void setSnakeHeadPosition(Position position) {
         snake.setHeadPosition(position);
@@ -88,10 +101,10 @@ public class ArenaModel {
         return game_over;
     }
 
-    public void endGame(){
+    public void endGame() throws IOException {
         this.game_over=true;
 
-        new SinglePlayerTopScoreFileWriter(topScore.getFilename(),topScore.getTopScore());
+        topScore.fileWriter(topScore.getFilename());
 
     }
 
@@ -106,12 +119,5 @@ public class ArenaModel {
         }
     }
 
-    public List<Wall> getWalls(){
-        return this.walls;
-    }
-
-    public List<AppleInterface> getApples(){return this.apples;}
-
-    public SinglePlayerTopScore getTopScore(){return this.topScore;}
 
 }

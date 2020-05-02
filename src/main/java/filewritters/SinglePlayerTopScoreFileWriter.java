@@ -1,14 +1,8 @@
 package filewritters;
 
-import java.io.*;
-
-import java.io.IOException;
-import java.io.Writer;
-import java.nio.charset.Charset;
-
 public class SinglePlayerTopScoreFileWriter {
 
-
+/*
     private String filename;
     private int topScore;
 
@@ -28,7 +22,7 @@ public class SinglePlayerTopScoreFileWriter {
         file.write(Integer.toString(topScore));
         file.flush();
     }
-
+*/
 
 
 }

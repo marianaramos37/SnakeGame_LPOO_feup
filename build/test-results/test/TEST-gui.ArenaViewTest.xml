@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="gui.ArenaViewTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-02T00:11:22" hostname="LAPTOP-GER1ALIG" time="1.005">
+  <properties/>
+  <testcase name="testDrawArena" classname="gui.ArenaViewTest" time="1.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

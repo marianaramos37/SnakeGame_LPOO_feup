@@ -86,17 +86,13 @@ public class SnakeController {
 
     public void shrink(){
         Snake snake=this.arena.getSnake();
-
         snake.isShrink = true;
-
         arena.setSnake(snake);
     }
 
     public void unshrink(){
         Snake snake=this.arena.getSnake();
-
         snake.isShrink = false;
-
         arena.setSnake(snake);
     }
 }

@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 
 public class SPTopScoreTest {
     @Test
-    public void testConstructor() throws IOException {
+    public void testConstructor() throws IOException { //NOT WORKING, HELP
         String filename= "src/main/java/files/topScore.txt";
 
         List<TextCharacter> textExpected=new ArrayList<>();
@@ -55,26 +55,27 @@ public class SPTopScoreTest {
         assertEquals(3, sptscore1.getTopScore());
     }
 
+
     @Test
-    public void testSetScore() {
-        SinglePlayerScore spscore = new SinglePlayerScore();
-        spscore.setScore(3);
-        assertEquals(3, spscore.getScore());
+    public void testIncrementScore() throws IOException {
+        SinglePlayerTopScore sptscore1 = new SinglePlayerTopScore();
+        SinglePlayerTopScore sptscore2 = new SinglePlayerTopScore();
+        sptscore2.incrementTopScore();
+        assertEquals(sptscore1.getTopScore()+1, sptscore2.getTopScore());
     }
 
     @Test
-    public void testIncrementScore() {
-        SinglePlayerScore spscore = new SinglePlayerScore();
-        spscore.incrementScore();
-        assertEquals(1, spscore.getScore());
-    }
+    public void updatePrintableTest() throws IOException {
+        /*
+        SinglePlayerTopScore sptscore = new SinglePlayerTopScore();
+        sptscore.incrementTopScore();
+        sptscore.updatePrintable();
 
-    @Test
-    public void updatePrintableTest() {
-        SinglePlayerScore spscore = new SinglePlayerScore();
-        spscore.incrementScore();
-        spscore.updatePrintable();
         List<TextCharacter> expected=new ArrayList<>();
+        expected.add(new TextCharacter('T'));
+        expected.add(new TextCharacter('O'));
+        expected.add(new TextCharacter('P'));
+        expected.add(new TextCharacter(' '));
         expected.add(new TextCharacter('S'));
         expected.add(new TextCharacter('C'));
         expected.add(new TextCharacter('O'));
@@ -82,8 +83,16 @@ public class SPTopScoreTest {
         expected.add(new TextCharacter('E'));
         expected.add(new TextCharacter(':'));
         expected.add(new TextCharacter(' '));
-        expected.add(new TextCharacter('1'));
+        expected.add(new TextCharacter(t));
 
         assertEquals(expected, spscore.getPrintableScore());
+         */
+    }
+    @Test
+    public void testFileWriter() throws IOException {
+        /*
+        SinglePlayerTopScore sptscore = EasyMock.createMock(SinglePlayerTopScore.class);
+        EasyMock.expect(mock.)
+         */
     }
 }

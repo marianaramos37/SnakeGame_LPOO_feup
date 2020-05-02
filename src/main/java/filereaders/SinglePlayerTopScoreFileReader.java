@@ -3,7 +3,7 @@ package filereaders;
 public class SinglePlayerTopScoreFileReader {
 
    /* private String filename;
-    private int topScore=0;
+    private int topScore=0
 
     public SinglePlayerTopScoreFileReader(String filename) throws IOException {
         this.filename =filename;

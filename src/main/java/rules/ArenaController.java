@@ -24,14 +24,13 @@ public class ArenaController {
         int index=0;
         for(AppleInterface apple: arena.getApples()){
             if(apple.getPosition().equals(a.getPosition())) {
-
                 arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1)));
-
-                //DEBUG PLS
-                while(getCollidingElement(arena.getApples().get(index).getPosition(),arena.getWalls()) != null && getCollidingBody(arena.getApples().get(index).getPosition(),arena.getSnake().getPos())) {
+                if(getCollidingElement(arena.getApples().get(index).getPosition(),arena.getWalls()) != null && getCollidingBody(arena.getApples().get(index).getPosition(),arena.getSnake().getPos())) {
                     arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1)));
                 }
-
+                else{
+                    System.out.println("thats ok");
+                }
                 break;
             }
             index++;
@@ -82,7 +81,7 @@ public class ArenaController {
         return null;
     }
 
-    private boolean getCollidingBody(Position position, List<Position> body){
+    public boolean getCollidingBody(Position position, List<Position> body){
         if(!arena.getSnake().isShrink) {
             for (int i = 1; i < body.size(); i++)
                 if (body.get(i).equals(position))
@@ -182,6 +181,13 @@ public class ArenaController {
                     }
                     else{
                         gui.drawGameOver(arena);
+                        try {
+                            sleep(1000);
+                            gui.screen.stopScreen();
+                            break;
+                        } catch (InterruptedException | IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }

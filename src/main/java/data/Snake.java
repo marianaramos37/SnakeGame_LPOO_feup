@@ -42,5 +42,5 @@ public class Snake extends Element{
         this.headPosition = position;
     }
 
-
+    public boolean getShrink(){return isShrink;}
 }

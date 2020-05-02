@@ -21,7 +21,6 @@ public class ArenaView {
 
     public enum COMMAND {UP, RIGHT, DOWN, LEFT, ESC}
 
-
     public ArenaView(int width, int height) throws IOException {
         Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
         screen = new TerminalScreen(terminal);
@@ -38,6 +37,7 @@ public class ArenaView {
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
     }
+
 
     public void drawSnake(ArenaModel arena) {
         Snake snake=arena.getSnake();
@@ -72,7 +72,6 @@ public class ArenaView {
         for(AppleInterface apple:apples)
             screen.setCharacter(apple.getPosition().getX(),apple.getPosition().getY(), new TextCharacter(apple.getChar()));
     }
-
 
     public void drawArena(ArenaModel arena) {
         try {
@@ -116,7 +115,6 @@ public class ArenaView {
             e.printStackTrace();
         }
     }
-
 
 
     public COMMAND getCommand() throws IOException {

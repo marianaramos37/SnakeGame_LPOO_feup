@@ -15,7 +15,9 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 - **Maças Especiais**: Maçãs especiais dão poderes há cobra: ficar mais curta e rápida durante um intervalo de tempo;
 - **TopScore**: Top score é sempre guardado;
 
-(falta screenshots)
+
+![screenshot of game](/docs/images/screenshot.png)
+
 
 ## Funcionalidades Planeadas
 
@@ -37,12 +39,41 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 **Construção de mapas**
 - No menu principal irá existir uma funcionalidade que permitirá aos jogadores construir os seus próprios mapas. Estes poderão ter uma serie de obstáculos previamente selecionados e poderão ser usados nas versões multiplayer.
 
+## Architetural Pattern
+O nosso programa tem o padrão arquitetural MVC (Model-View-Controller) dado que é um jogo. 
+Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
+- Model (**data**): Contém a informação "interna" do jogo (?)
+- View (**gui**): Representa a visualização de todos os dados contidos no model.
+- Controller (**rules**): Existe entre a view e o model. O controller responde aos eventos enviados 
+por view e executa a reação apropriada a esses eventos. Na maioria dos casos, essa reação irá mudar o model e será
+visualizado por view.
+
+A maior vantagem que encontramos ao implementar este padrão 
+(foi implementado logo desde início dadas as vantagens que este design apresenta)
+
+
 ## Design
- - **MVC**: O nosso programa tem o design arquitetural MVC dado que é um jogo (foi implementado logo desde início dadas as vantagens que este design apresenta)
- - **Factory Method**: Classe abstrata Element que engloba todos os elementos de jogo (classe Snake, classe Apple, classe Wall). Os Elements concretos são definidos e usados pela classe ArenaModel.
- - **Command Pattern**: Classe Apple, todas as maças fazem getChar(). Vantagens: acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface Apple; ArenaModel pode ter uma lista da interface Apple em vez que ter uma lista diferente para cada classe que implementa a interface; podemos usar o método getChar num elemento da interface Apple que o mesmo vai devolver o valor correto da instância concreta da Apple que o chama.
- - **Observer Pattern**: 
- - **Strategy Method**:
+ ###### Common methods to different classes ######
+ - **Contexto do problema**
+ - **Factory Method**
+ Classe abstrata Element que engloba todos os elementos de jogo (classe Snake, classe Wall). Os Elements concretos são definidos e usados pela classe ArenaModel.
+ - **Implementação**
+ - **Consequências**
+ 
+ ###### Different apples ######
+ - **Contexto do problema**
+ - **Command Pattern**
+ - **Implementação**
+ - **Consequências**
+  Classe Apple, todas as maças fazem getChar(). Vantagens: acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface Apple; ArenaModel pode ter uma lista da interface Apple em vez que ter uma lista diferente para cada classe que implementa a interface; podemos usar o método getChar num elemento da interface Apple que o mesmo vai devolver o valor correto da instância concreta da Apple que o chama.
+ 
+ 
+ ###### Different strategies for collision checking ######
+ - **Contexto do problema**
+ - **Strategy Method**
+ - **Implementação**
+ - **Consequências**
+
  
  
 ## Code Smells and Refactoring Technics

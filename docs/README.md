@@ -59,7 +59,7 @@ Para além dos packages já mencionados decidimos adicionar:
 
  ###### Common methods to different classes ######
  - **Contexto do problema**
- Tanto a classe Snake como a classe Wall funcionam à base de getters e setters de posições (apesar da classe Snake ter uma lista de posições, é necessário saber a posição da cabeça da Snake a todo o momento). Como era necessário fazer comparações de posições e usar métodos muito comuns às duas classes, decidimos que as duas classes deviam extender a mesma classe Element.
+ Tanto a classe Snake![Snake Code](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/7194fca72d4975f532b82e50f981bdc8e7ece2c9/src/main/java/data/Snake.java#L6) como a classe Wall funcionam à base de getters e setters de posições (apesar da classe Snake ter uma lista de posições, é necessário saber a posição da cabeça da Snake a todo o momento). Como era necessário fazer comparações de posições e usar métodos muito comuns às duas classes, decidimos que as duas classes deviam extender a mesma classe Element.
  
  - **Factory Method**
  O Factory Method permite instanciar a superclasse e só depois dizer qual das classes concretas (que extendem essa mesma superclasse) é que queremos usar, além de agrupar classes com propriedades semelhantes numa mesma superclasse. No nosso caso, isto permite avaliar as colisões entre elementos muito mais facilmente.
@@ -113,4 +113,9 @@ O construtor da ArenaView (ArenaView(int width, int height,Screen screen)) receb
 
 ## Testing Results
 
+
 ## Self Evaluation
+Mariana Ramos: 50%
+
+Flávia Carvalhido: 50%
+

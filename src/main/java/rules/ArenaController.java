@@ -13,11 +13,13 @@ public class ArenaController {
     private ArenaView gui;
     private ArenaModel arena;
     private SnakeController snake;
+    private ScoreController scoreController;
 
     public ArenaController(ArenaView gui, ArenaModel arena) {
         this.gui = gui;
         this.arena = arena;
         this.snake=new SnakeController(arena,150);
+        this.scoreController=new ScoreController();
     }
 
     public void eatenApple(AppleInterface a, ArenaModel arena){
@@ -53,10 +55,9 @@ public class ArenaController {
         if (eaten != null) {
             snake.growSnake();
             eatenApple(eaten,a);
-            a.getScore().incrementScore();
-
-            if(a.getScore().getScore() > a.getTopScore().getTopScore()){
-                a.getTopScore().incrementTopScore();
+            scoreController.incrementScore(a.getScore());
+            if(a.getScore().getScore() > a.getTopScore().getScore()){
+               scoreController.incrementScore(a.getTopScore());
             }
         }
         if(hit != null){
@@ -109,7 +110,6 @@ public class ArenaController {
         }
         if(command==ArenaView.COMMAND.ESC){
             arena.endGame();
-            gui.drawGameOver(arena);
         }
         if(command==null){
             if (prevcommand == ArenaView.COMMAND.UP) {
@@ -130,7 +130,6 @@ public class ArenaController {
             }
             if(prevcommand==ArenaView.COMMAND.ESC){
                 arena.endGame();
-                gui.drawGameOver(arena);
             }
         }
     }
@@ -142,6 +141,13 @@ public class ArenaController {
             int counter;
             @Override
             public void run() {
+                //lê score logo de inicio
+                try {
+                    scoreController.fileReader(arena.getTopScore().getFilename(),arena.getTopScore());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //comeca jogo
                 while(true){
                     //System.out.println("OLAAAA");
                     try {
@@ -154,11 +160,6 @@ public class ArenaController {
                             if(command==ArenaView.COMMAND.LEFT && prevcommand ==ArenaView.COMMAND.RIGHT){command=ArenaView.COMMAND.RIGHT;}
                             prevcommand =command;
                         }
-
-                        /*if(command==ArenaView.COMMAND.ESC){
-                            gui.drawGameOver(arena);
-                            break;
-                        }*/
                     } catch (InterruptedException | IOException e) {
                         e.printStackTrace();
                     }
@@ -182,6 +183,8 @@ public class ArenaController {
                     else{
                         gui.drawGameOver(arena);
                         try {
+                            //jogo acabou , atualiza topScore
+                            scoreController.fileWriter(arena.getTopScore().getFilename(),arena.getTopScore());
                             sleep(1000);
                             gui.screen.stopScreen();
                             break;

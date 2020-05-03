@@ -14,20 +14,13 @@ public class ArenaModel {
     private Snake snake;
     private List<Wall> walls= new ArrayList<>();
     private List<AppleInterface> apples=new ArrayList<>();
-    private SinglePlayerScore score = new SinglePlayerScore();
 
-    private SinglePlayerTopScore topScore;
-    {
-        try {
-            topScore = new SinglePlayerTopScore();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    private SinglePlayerScore score = new SinglePlayerScore();
+    private SinglePlayerTopScore topScore = new SinglePlayerTopScore();
 
     private boolean game_over;
 
-    public ArenaModel(int width, int height) {
+    public ArenaModel(int width, int height) throws IOException {
         this.width = width;
         this.height = height;
         this.snake = new Snake(new Position(width / 2, height / 2));
@@ -40,7 +33,7 @@ public class ArenaModel {
     }
 
 
-    public ArenaModel(int width, int height,String filename) {
+    public ArenaModel(int width, int height,String filename) throws IOException {
         this.width = width;
         this.height = height;
         this.snake = new Snake(new Position(width / 2, height / 2));
@@ -104,7 +97,7 @@ public class ArenaModel {
     public void endGame() throws IOException {
         this.game_over=true;
 
-        topScore.fileWriter(topScore.getFilename());
+       // topScore.controller.fileWriter(topScore.getFilename(),topScore);
 
     }
 

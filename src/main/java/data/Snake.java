@@ -43,4 +43,5 @@ public class Snake extends Element{
     }
 
     public boolean getShrink(){return isShrink;}
+
 }

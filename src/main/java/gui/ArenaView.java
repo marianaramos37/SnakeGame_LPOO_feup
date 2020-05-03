@@ -88,7 +88,7 @@ public class ArenaView {
             }
 
             x=40;
-            for(TextCharacter c:arena.getTopScore().getPrintable()){
+            for(TextCharacter c:arena.getTopScore().getPrintableScore()){
                 screen.setCharacter(x,33, c);
                 x++;
             }

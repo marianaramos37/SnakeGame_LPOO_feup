@@ -40,30 +40,48 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 - No menu principal irá existir uma funcionalidade que permitirá aos jogadores construir os seus próprios mapas. Estes poderão ter uma serie de obstáculos previamente selecionados e poderão ser usados nas versões multiplayer.
 
 ## Architetural Pattern
-O nosso programa tem o padrão arquitetural MVC (Model-View-Controller) dado que é um jogo. 
+O nosso programa tem o padrão arquitetural MVC (Model-View-Controller). 
 Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
-- Model (**data**): Contém a informação "interna" do jogo (?)
-- View (**gui**): Representa a visualização de todos os dados contidos no model.
-- Controller (**rules**): Existe entre a view e o model. O controller responde aos eventos enviados 
+- Model (package **data**): Contém a informação "interna" do jogo (?)
+- View (package **gui**): Representa a visualização de todos os dados contidos no model.
+- Controller (package **rules**): Existe entre a view e o model. O controller responde aos eventos enviados 
 por view e executa a reação apropriada a esses eventos. Na maioria dos casos, essa reação irá mudar o model e será
 visualizado por view.
 
-A maior vantagem que encontramos ao implementar este padrão 
-(foi implementado logo desde início dadas as vantagens que este design apresenta)
+A maior vantagem que encontramos ao implementar este padrão ...
+Foi implementado logo desde início dadas as vantagens que este design apresenta.
 
+Para além dos packages já mencionados decidimos adicionar:
+- **files**: Este package contém todos os ficheiros necessários para o funcionamento do jogo. Entre eles 3 mapas para 3 níveis diferentes (fácil, médio e díficil) e um ficheiro que guarda a atual top score do jogo.
+- **fileReaders**: Este package para já contém uma classe mapReader que tal como o nome indica lê os ficheiros dos mapas e encarrega-se de colocar as paredes da arena nas posições indicadas no ficheiro.
 
 ## Design
  ###### Common methods to different classes ######
  - **Contexto do problema**
+ Tanto a classe Snake como a classe Wall funcionam à base de getters e setters de posições (apesar da classe Snake ter uma lista de posições, é necessário saber a posição da cabeça da Snake a todo o momento). Como era necessário fazer comparações de posições e usar métodos muito comuns às duas classes, decidimos que as duas classes deviam extender a mesma classe Element.
+ 
  - **Factory Method**
- Classe abstrata Element que engloba todos os elementos de jogo (classe Snake, classe Wall). Os Elements concretos são definidos e usados pela classe ArenaModel.
+ O Factory Method permite instanciar a superclasse e só depois dizer qual das classes concretas (que extendem essa mesma superclasse) é que queremos usar, além de agrupar classes com propriedades semelhantes numa mesma superclasse. No nosso caso, isto permite avaliar as colisões entre elementos muito mais facilmente.
+ 
  - **Implementação**
+ Classe abstrata Element que engloba vários elementos de jogo (classe Snake, classe Wall).
+ 
+ ![diagrama factory](/docs/images/factoryMethod.png)
+ 
  - **Consequências**
+ Os Elements concretos são definidos e usados pela classe ArenaModel. As colisões e a verificação da posição dos vários elementos é facilitada.
  
  ###### Different apples ######
  - **Contexto do problema**
+ 
+ 
  - **Command Pattern**
+ 
+ 
  - **Implementação**
+ 
+  ![diagrama command](/docs/images/commandPattern.png)
+  
  - **Consequências**
   Classe Apple, todas as maças fazem getChar(). Vantagens: acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface Apple; ArenaModel pode ter uma lista da interface Apple em vez que ter uma lista diferente para cada classe que implementa a interface; podemos usar o método getChar num elemento da interface Apple que o mesmo vai devolver o valor correto da instância concreta da Apple que o chama.
  

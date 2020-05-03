@@ -42,14 +42,14 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 ## Architetural Pattern
 O nosso programa tem o padrão arquitetural MVC (Model-View-Controller). 
 Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
-- Model (package **data**): Contém a informação "interna" do jogo (?)
+- Model (package **data**): Contém todos os elementos do jogo.
 - View (package **gui**): Representa a visualização de todos os dados contidos no model.
-- Controller (package **rules**): Existe entre a view e o model. O controller responde aos eventos enviados 
-por view e executa a reação apropriada a esses eventos. Na maioria dos casos, essa reação irá mudar o model e será
+- Controller (package **rules**): Existe entre a *view* e o *model*. O controller responde aos eventos enviados 
+por *view* e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação irá mudar o *model* e será
 visualizado por view.
 
-A maior vantagem que encontramos ao implementar este padrão ...
-Foi implementado logo desde início dadas as vantagens que este design apresenta.
+
+Implementamos este modelo logo desde início dadas as vantagens que este design apresenta, entre elas a organização do nosso código, o que facilitou o uso e paralelismo entre classes.
 
 Para além dos packages já mencionados decidimos adicionar:
 - **files**: Este package contém todos os ficheiros necessários para o funcionamento do jogo. Entre eles 3 mapas para 3 níveis diferentes (fácil, médio e díficil) e um ficheiro que guarda a atual top score do jogo.
@@ -57,9 +57,9 @@ Para além dos packages já mencionados decidimos adicionar:
 
 ## Design
 
- ###### Common methods to different classes ######
+ ###### Métodos iguais em classes diferentes ######
  - **Contexto do problema**
- Tanto a classe Snake![Snake Code](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/7194fca72d4975f532b82e50f981bdc8e7ece2c9/src/main/java/data/Snake.java#L6) como a classe Wall funcionam à base de getters e setters de posições (apesar da classe Snake ter uma lista de posições, é necessário saber a posição da cabeça da Snake a todo o momento). Como era necessário fazer comparações de posições e usar métodos muito comuns às duas classes, decidimos que as duas classes deviam extender a mesma classe Element.
+ Tanto a classe [Snake](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/7194fca72d4975f532b82e50f981bdc8e7ece2c9/src/main/java/data/Snake.java#L6) como a classe [Wall](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/Wall.java#L3) funcionam à base de getters e setters de posições (apesar da classe Snake ter uma lista de posições, é necessário saber a posição da cabeça da Snake a todo o momento). Como era necessário fazer comparações de posições e usar métodos muito comuns às duas classes, decidimos que as duas classes deviam extender a mesma classe Element.
  
  - **Factory Method**
  O Factory Method permite instanciar a superclasse e só depois dizer qual das classes concretas (que extendem essa mesma superclasse) é que queremos usar, além de agrupar classes com propriedades semelhantes numa mesma superclasse. No nosso caso, isto permite avaliar as colisões entre elementos muito mais facilmente.
@@ -73,7 +73,7 @@ Para além dos packages já mencionados decidimos adicionar:
  Os Elements concretos são definidos e usados pela classe ArenaModel. As colisões e a verificação da posição dos vários elementos é facilitada.
  
  
- ###### Different apples ######
+ ###### Maçãs diferentes ######
  - **Contexto do problema**
  No nosso jogo é necessário criar maçãs consumíveis que adoptam posições aleatórias depois de consumidas e têm poderes especificos associados, além de terem TextCharacter diferentes atribuídos a cada tipo de maçã. Isso torna imperativo uma interface comum às diferentes classes de maçãs com os métodos comuns às classes de maçãs que a implementam.
  
@@ -81,38 +81,30 @@ Para além dos packages já mencionados decidimos adicionar:
  O Abstract-Factory Pattern permite criar várias instanciações concretas de objetos com propriedades semelhantes através da criação de classes que implementem uma mesma interface abstrata que instancia todas as propriedades comuns a esses objetos.
  
  - **Implementação**
- As classes Apple e SpecialApple ambas implementam a Interface AppleInterface. 
+ As classes [Apple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/Apple.java#L3) e [SpecialApple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/SpecialApple.java#L3) ambas implementam a Interface [AppleInterface](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/AppleInterface.java#L3). 
+  
   ![diagrama command](/docs/images/abstractPattern.png)
   
  - **Consequências**
   Nas Classes Apple, todas as maçãs implementam os mesmos métodos. Acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface AppleInterface. ArenaModel pode ter uma lista de objetos AppleInterface em vez que ter uma lista diferente para cada classe que implementa a interface. Podemos usar o método getChar, ou outro método qualquer instanciado na interface, num elemento da interface Apple que o mesmo vai devolver o valor correto da classe concreta da Apple que o chama.
  Ao implementar este padrão respeitamos o Open-Close Principle.
  
- ######  ######
- - **Contexto do problema**
- 
- - ** **
- 
- - **Implementação**
- 
- - **Consequências**
-
  
  
 ## Code Smells and Refactoring Technics
-A velocidade default da snake é 150 (de momento, mais tarde este valor será variável). É o que se chama um Magic Number e deve ser substituído através da utilizacão de uma Symbolic Constant para uma melhor organização e compreeensão do código.
+ - A velocidade default da snake é 150 (de momento, mais tarde este valor será variável). É o que se chama um **Magic Number** e deve ser substituído através da utilizacão de uma **Symbolic Constant** para uma melhor organização e compreeensão do código.
 
-A classe Snake tem um public field boolean isShrink que devia ser encapsulado através da criação de métodos get e set para esta variável (Encapsulate Field), uma vez que não é boa prática ter campos públicos numa classe.
+ - A classe Snake tem um public field boolean isShrink que devia ser encapsulado através da criação de métodos get e set para esta variável (Encapsulate Field), uma vez que não é boa prática ter campos públicos numa classe.
 
-O método movement() da ArenaController pode ser simplificado removendo o código duplicado para um método diferente (Extract Method). Tornando o método movement muito mais legível e pequeno, uma vez que as if-statements do mesmo são longas e complexas.
+ - O método movement() da ArenaController pode ser simplificado removendo o código duplicado para um método diferente (**Extract Method**). Tornando o método movement muito mais legível e pequeno, uma vez que as if-statements do mesmo são longas e complexas.
 
-O construtor da Class MapReader chama o método fileReader(), tendo assim mais uma responsabilidade que não deveria estar a seu cargo (Replace Constructor with Factory Method). Devemos chamar o método fileReader() fora do construtor.
+ - O construtor da Class MapReader chama o método fileReader(), tendo assim mais uma responsabilidade que não deveria estar a seu cargo (Replace Constructor with Factory Method). Devemos chamar o método fileReader() fora do construtor.
 
-O construtor da ArenaView (ArenaView(int width, int height,Screen screen)) recebe os parâmetros Width e Height e não os usa dentro do mesmo. Eliminando esses mesmos parâmetros, uma vez que são obsoletos, removemos o Code Smell (Remove Parameters).
+ - O construtor da ArenaView (ArenaView(int width, int height,Screen screen)) recebe os parâmetros Width e Height e não os usa dentro do mesmo. Eliminando esses mesmos parâmetros, uma vez que são obsoletos, removemos o Code Smell (Remove Parameters).
 
 
 ## Testing Results
-
+![diagrama command](/docs/images/testing.png)
 
 ## Self Evaluation
 Mariana Ramos: 50%

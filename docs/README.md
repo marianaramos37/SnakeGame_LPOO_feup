@@ -12,7 +12,7 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 - **Score**: A score é calculada pelo número de maçãs comidas;
 - **Mapas**: Mapas diferentes para cada nível de dificuldade
 - **Maçãs**: As maçãs são colocadas em posições aleatórias na arena à medida que a cobra as vai comendo;
-- **Maças Especiais**: Maçãs especiais dão poderes há cobra: ficar mais curta e rápida durante um intervalo de tempo OU conseguir passar por entre obstáculos;
+- **Maças Especiais**: Maçãs especiais dão poderes há cobra: ficar mais curta e rápida durante um intervalo de tempo;
 - **TopScore**: Top score é sempre guardado;
 
 (falta screenshots)
@@ -29,7 +29,6 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 - **Maçãs envenenadas**: Maçãs envenenadas fazem a cobra diminuir de tamanho;
 - **Velocidade** e **tamanho dos obstáculos** mudam ao longo do nível e de nível para nível
 
-
 **Multi Player**
 - Estão duas cobras na mesma arena, a ser controladas por partes do teclado diferentes;
 - **Ataque**: Se uma cobra tocar no corpo da outra perde, isto dá possibilidade de uma cobra "matar" outra colocando o seu corpo à frente da cabeça da mesma;
@@ -41,6 +40,10 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 ## Design
  - **MVC**: O nosso programa tem o design arquitetural MVC dado que é um jogo (foi implementado logo desde início dadas as vantagens que este design apresenta)
  - **Factory Method**: Classe abstrata Element que engloba todos os elementos de jogo (classe Snake, classe Apple, classe Wall). Os Elements concretos são definidos e usados pela classe ArenaModel.
+ - **Command Pattern**: Classe Apple, todas as maças fazem getChar(). Vantagens: acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface Apple; ArenaModel pode ter uma lista da interface Apple em vez que ter uma lista diferente para cada classe que implementa a interface; podemos usar o método getChar num elemento da interface Apple que o mesmo vai devolver o valor correto da instância concreta da Apple que o chama.
+ - **Observer Pattern**: 
+ - **Strategy Method**:
+ 
  
 ## Code Smells and Refactoring Technics
 A velocidade default da snake é 150 (de momento, mais tarde este valor será variável). É o que se chama um Magic Number e deve ser substituído através da utilizacão de uma Symbolic Constant para uma melhor organização e compreeensão do código.

@@ -16,7 +16,7 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 - **TopScore**: Top score é sempre guardado;
 
 
-![screenshot of game](/images/screenshot.png)
+![screenshot of game](/docs/images/screenshot.png)
 
 
 ## Funcionalidades Planeadas
@@ -40,10 +40,15 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 - No menu principal irá existir uma funcionalidade que permitirá aos jogadores construir os seus próprios mapas. Estes poderão ter uma serie de obstáculos previamente selecionados e poderão ser usados nas versões multiplayer.
 
 ## Architetural Pattern
-O nosso programa tem o padrão arquitetural MVC (Model-View-Controller) dado que é um jogo. Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
+O nosso programa tem o padrão arquitetural MVC (Model-View-Controller) dado que é um jogo. 
+Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
 - Model (**data**): Contém a informação "interna" do jogo (?)
 - View (**gui**): Representa a visualização de todos os dados contidos no model.
-- Controller (**rules**): Existe entre a view e o model.  
+- Controller (**rules**): Existe entre a view e o model. O controller responde aos eventos enviados 
+por view e executa a reação apropriada a esses eventos. Na maioria dos casos, essa reação irá mudar o model e será
+visualizado por view.
+
+A maior vantagem que encontramos ao implementar este padrão 
 (foi implementado logo desde início dadas as vantagens que este design apresenta)
 
 

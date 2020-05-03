@@ -94,19 +94,19 @@ public class ArenaController {
     public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand) throws IOException {
         if (command == ArenaView.COMMAND.UP) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().up());
-            snake.walkSnake(arena.getSnakeHeadPosition(),'|');
+            snake.walkSnake(arena.getSnakeHeadPosition(),'|',arena.getSnake());
         }
         if (command == ArenaView.COMMAND.RIGHT) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().right());
-            snake.walkSnake(arena.getSnakeHeadPosition(), '-');
+            snake.walkSnake(arena.getSnakeHeadPosition(), '-',arena.getSnake());
         }
         if (command == ArenaView.COMMAND.DOWN) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().down());
-            snake.walkSnake(arena.getSnakeHeadPosition(), '|');
+            snake.walkSnake(arena.getSnakeHeadPosition(), '|',arena.getSnake());
         }
         if (command == ArenaView.COMMAND.LEFT) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().left());
-            snake.walkSnake(arena.getSnakeHeadPosition(), '-');
+            snake.walkSnake(arena.getSnakeHeadPosition(), '-',arena.getSnake());
         }
         if(command==ArenaView.COMMAND.ESC){
             arena.endGame();
@@ -114,19 +114,19 @@ public class ArenaController {
         if(command==null){
             if (prevcommand == ArenaView.COMMAND.UP) {
                 arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().up());
-                snake.walkSnake(arena.getSnakeHeadPosition(),'|');
+                snake.walkSnake(arena.getSnakeHeadPosition(),'|',arena.getSnake());
             }
             if (prevcommand == ArenaView.COMMAND.RIGHT) {
                 arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().right());
-                snake.walkSnake(arena.getSnakeHeadPosition(), '-');
+                snake.walkSnake(arena.getSnakeHeadPosition(), '-',arena.getSnake());
             }
             if (prevcommand == ArenaView.COMMAND.DOWN) {
                 arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().down());
-                snake.walkSnake(arena.getSnakeHeadPosition(), '|');
+                snake.walkSnake(arena.getSnakeHeadPosition(), '|',arena.getSnake());
             }
             if (prevcommand == ArenaView.COMMAND.LEFT) {
                 arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().left());
-                snake.walkSnake(arena.getSnakeHeadPosition(), '-');
+                snake.walkSnake(arena.getSnakeHeadPosition(), '-',arena.getSnake());
             }
             if(prevcommand==ArenaView.COMMAND.ESC){
                 arena.endGame();

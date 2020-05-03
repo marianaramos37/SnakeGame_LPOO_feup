@@ -15,7 +15,6 @@ public class SnakeController {
         this.arena=arena; this.velocidade=vel;
     }
 
-
     public void growSnake(){
         Snake snake=this.arena.getSnake();
         List<Character> snakebody = this.arena.getSnake().getSnakeBody();
@@ -49,8 +48,8 @@ public class SnakeController {
         arena.setSnake(snake);
     }
 
-    public void walkSnake(Position nextPosition, Character headOrientation){
-        Snake snake=this.arena.getSnake();
+    public void walkSnake(Position nextPosition, Character headOrientation, Snake snake){
+        //Snake snake=this.arena.getSnake();
         List<Character> snakebody = snake.getSnakeBody();
         List<Position> pos = snake.getPos();
 

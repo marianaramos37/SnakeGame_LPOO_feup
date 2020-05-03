@@ -38,24 +38,23 @@ public class SnakeControllerTest {
         ArenaModel arena=Mockito.mock(ArenaModel.class);
         Mockito.when(arena.getSnake()).thenReturn((snakeMock));
 
+        Snake snake= new Snake(new Position(7,5));
         SnakeController snakeCtrl = new SnakeController(arena,vel);
-        Position npos=new Position(8,5);
-        snakeCtrl.walkSnake(npos, '-');
 
-        Snake snakeMockAfter = Mockito.mock(Snake.class);
+        Position npos=new Position(8,5);
+        snakeCtrl.walkSnake(npos, '-',snake);
+
+
         List<Character> snakebodyAfter = new ArrayList<>();
         List<Position> posAfter = new ArrayList<>();
         snakebodyAfter.add('-');
         snakebodyAfter.add('-');
-        snakebodyAfter.add('-');
-        posAfter.add(new Position(6, 5));
-        posAfter.add(new Position(7, 5));
         posAfter.add(new Position(8, 5));
-        Mockito.when(snakeMockAfter.getSnakeBody()).thenReturn(snakebodyAfter);
-        Mockito.when(snakeMockAfter.getPos()).thenReturn(posAfter);
+        posAfter.add(new Position(7, 5));
 
-        assertEquals(snakeMockAfter.getSnakeBody(),arena.getSnake().getSnakeBody());
-        assertEquals(snakeMockAfter.getPos(),arena.getSnake().getPos());
+
+        assertEquals(snakebodyAfter,snake.getSnakeBody());
+        assertEquals(posAfter,snake.getPos());
     }
 
     @Test

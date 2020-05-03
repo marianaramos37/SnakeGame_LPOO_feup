@@ -2,18 +2,17 @@ package data;
 
 import com.googlecode.lanterna.TextCharacter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SinglePlayerTopScore implements Score{
+
     private int topScore;
     private List<TextCharacter> text=new ArrayList<>();
     private List<TextCharacter> printable=new ArrayList<>();
     private String filename;
-    //public ScoreController controller = new ScoreController();
 
-    public SinglePlayerTopScore() throws IOException {
+    public SinglePlayerTopScore() {
 
         this.filename = "src/main/java/files/topScore.txt";
 
@@ -30,17 +29,6 @@ public class SinglePlayerTopScore implements Score{
         text.add(new TextCharacter(' '));
 
         this.printable.addAll(text);
-
-        /*List<TextCharacter> top=this.controller.fileReader(filename);
-        StringBuilder aux= new StringBuilder();
-        for(TextCharacter ch:top){
-            aux.append(ch.getCharacter());
-        }
-        String aux2= aux.toString();
-
-        this.printable.addAll(top);
-        this.topScore=Integer.parseInt(aux2);
-         */
 
     }
 

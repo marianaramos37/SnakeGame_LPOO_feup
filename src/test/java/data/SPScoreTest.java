@@ -13,6 +13,7 @@ public class SPScoreTest {
     @Test
     public void testConstructor() {
         SinglePlayerScore spscore = new SinglePlayerScore();
+
         List<TextCharacter> textExpected=new ArrayList<>();
         textExpected.add(new TextCharacter('S'));
         textExpected.add(new TextCharacter('C'));
@@ -21,6 +22,7 @@ public class SPScoreTest {
         textExpected.add(new TextCharacter('E'));
         textExpected.add(new TextCharacter(':'));
         textExpected.add(new TextCharacter(' '));
+
         assertEquals(0, spscore.getScore());
         assertEquals(textExpected, spscore.getText());
     }
@@ -33,27 +35,15 @@ public class SPScoreTest {
     }
 
     @Test
-    public void testIncrementScore() {
+    public void testSetPrintableScore() {
         SinglePlayerScore spscore = new SinglePlayerScore();
-        spscore.incrementScore();
-        assertEquals(1, spscore.getScore());
+        List<TextCharacter> textExpected=new ArrayList<>();
+        textExpected.add(new TextCharacter('O'));
+        textExpected.add(new TextCharacter('L'));
+        textExpected.add(new TextCharacter('A'));
+        spscore.setPrintableScore(textExpected);
+        assertEquals(textExpected, spscore.getPrintableScore());
     }
 
-    @Test
-    public void updatePrintableTest() {
-        SinglePlayerScore spscore = new SinglePlayerScore();
-        spscore.incrementScore();
-        spscore.updatePrintable();
-        List<TextCharacter> expected=new ArrayList<>();
-        expected.add(new TextCharacter('S'));
-        expected.add(new TextCharacter('C'));
-        expected.add(new TextCharacter('O'));
-        expected.add(new TextCharacter('R'));
-        expected.add(new TextCharacter('E'));
-        expected.add(new TextCharacter(':'));
-        expected.add(new TextCharacter(' '));
-        expected.add(new TextCharacter('1'));
 
-        assertEquals(expected, spscore.getPrintableScore());
-    }
 }

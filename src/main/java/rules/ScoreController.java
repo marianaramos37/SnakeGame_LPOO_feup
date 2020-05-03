@@ -49,7 +49,7 @@ public class ScoreController {
     }
 
 
-    public /*List<TextCharacter>*/void fileReader(String filename,Score s) throws IOException {
+    public void fileReader(String filename,Score s) throws IOException {
         List<TextCharacter> numbers = new ArrayList<>();
         List<TextCharacter> numberConversion=new ArrayList<>();
 
@@ -60,10 +60,9 @@ public class ScoreController {
         BufferedReader buffer = new BufferedReader(reader);
         String r = buffer.readLine();
 
-        //int aux=Integer.parseInt(r);
         s.setScore(Integer.parseInt(r));
 
-        int number = s.getScore()/*this.topScore*/;
+        int number = s.getScore();
         int digit;
 
 
@@ -90,7 +89,6 @@ public class ScoreController {
 
         List<TextCharacter> n=updatePrintable(s);
         s.setPrintableScore(n);
-        //return numbers;
     }
 
     public void fileWriter(String filename,Score s) throws IOException {

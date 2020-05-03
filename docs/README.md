@@ -56,6 +56,7 @@ Para além dos packages já mencionados decidimos adicionar:
 - **fileReaders**: Este package para já contém uma classe mapReader que tal como o nome indica lê os ficheiros dos mapas e encarrega-se de colocar as paredes da arena nas posições indicadas no ficheiro.
 
 ## Design
+
  ###### Common methods to different classes ######
  - **Contexto do problema**
  Tanto a classe Snake como a classe Wall funcionam à base de getters e setters de posições (apesar da classe Snake ter uma lista de posições, é necessário saber a posição da cabeça da Snake a todo o momento). Como era necessário fazer comparações de posições e usar métodos muito comuns às duas classes, decidimos que as duas classes deviam extender a mesma classe Element.
@@ -71,25 +72,29 @@ Para além dos packages já mencionados decidimos adicionar:
  - **Consequências**
  Os Elements concretos são definidos e usados pela classe ArenaModel. As colisões e a verificação da posição dos vários elementos é facilitada.
  
+ 
  ###### Different apples ######
  - **Contexto do problema**
+ No nosso jogo é necessário criar maçãs consumíveis que adoptam posições aleatórias depois de consumidas e têm poderes especificos associados, além de terem TextCharacter diferentes atribuídos a cada tipo de maçã. Isso torna imperativo uma interface comum às diferentes classes de maçãs com os métodos comuns às classes de maçãs que a implementam.
  
- 
- - **Command Pattern**
- 
+ - **Abstract-Factory Pattern**
+ O Abstract-Factory Pattern permite criar várias instanciações concretas de objetos com propriedades semelhantes através da criação de classes que implementem uma mesma interface abstrata que instancia todas as propriedades comuns a esses objetos.
  
  - **Implementação**
- 
-  ![diagrama command](/docs/images/commandPattern.png)
+ As classes Apple e SpecialApple ambas implementam a Interface AppleInterface. 
+  ![diagrama command](/docs/images/abstractPattern.png)
   
  - **Consequências**
-  Classe Apple, todas as maças fazem getChar(). Vantagens: acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface Apple; ArenaModel pode ter uma lista da interface Apple em vez que ter uma lista diferente para cada classe que implementa a interface; podemos usar o método getChar num elemento da interface Apple que o mesmo vai devolver o valor correto da instância concreta da Apple que o chama.
+  Nas Classes Apple, todas as maçãs implementam os mesmos métodos. Acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface AppleInterface. ArenaModel pode ter uma lista de objetos AppleInterface em vez que ter uma lista diferente para cada classe que implementa a interface. Podemos usar o método getChar, ou outro método qualquer instanciado na interface, num elemento da interface Apple que o mesmo vai devolver o valor correto da classe concreta da Apple que o chama.
+ Ao implementar este padrão respeitamos o Open-Close Principle.
  
- 
- ###### Different strategies for collision checking ######
+ ######  ######
  - **Contexto do problema**
- - **Strategy Method**
+ 
+ - ** **
+ 
  - **Implementação**
+ 
  - **Consequências**
 
  
@@ -97,10 +102,15 @@ Para além dos packages já mencionados decidimos adicionar:
 ## Code Smells and Refactoring Technics
 A velocidade default da snake é 150 (de momento, mais tarde este valor será variável). É o que se chama um Magic Number e deve ser substituído através da utilizacão de uma Symbolic Constant para uma melhor organização e compreeensão do código.
 
-A classe Snake tem um public field boolean isShrink que devia ser encapsulado através da criação de métodos get e set para esta variável, uma vez que não é boa prática ter campos públicos numa classe.
+A classe Snake tem um public field boolean isShrink que devia ser encapsulado através da criação de métodos get e set para esta variável (Encapsulate Field), uma vez que não é boa prática ter campos públicos numa classe.
 
-As classes SinglePlayerTopScoreFileReader e SinglePlayerTopScoreFileWritter tem construtores que além de atribuírem valores aos campos das classes, chamam outros métodos desta mesma classe para ler ou escrever nos ficheiros, respetivamente. Logo estes construtores fazem mais do que deveriam fazer e devem ser substituídos/simplificados por um Factory Method.
+O método movement() da ArenaController pode ser simplificado removendo o código duplicado para um método diferente (Extract Method). Tornando o método movement muito mais legível e pequeno, uma vez que as if-statements do mesmo são longas e complexas.
 
-O método movement da ArenaController pode ser simplificado removendo o código duplicado para um método diferente, tornando o método movement muito mais legível e pequeno, uma vez que as if-statements do mesmo são longas e complexas.
+O construtor da Class MapReader chama o método fileReader(), tendo assim mais uma responsabilidade que não deveria estar a seu cargo (Replace Constructor with Factory Method). Devemos chamar o método fileReader() fora do construtor.
+
+O construtor da ArenaView (ArenaView(int width, int height,Screen screen)) recebe os parâmetros Width e Height e não os usa dentro do mesmo. Eliminando esses mesmos parâmetros, uma vez que são obsoletos, removemos o Code Smell (Remove Parameters).
+
+
+## Testing Results
 
 ## Self Evaluation

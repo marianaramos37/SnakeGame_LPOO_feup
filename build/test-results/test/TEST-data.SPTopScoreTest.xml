@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="data.SPTopScoreTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-05-03T19:32:30" hostname="LAPTOP-DDA1VVIE" time="0.001">
+  <properties/>
+  <testcase name="testSetPrintableScore" classname="data.SPTopScoreTest" time="0.001"/>
+  <testcase name="testConstructor" classname="data.SPTopScoreTest" time="0.0"/>
+  <testcase name="testSetScore" classname="data.SPTopScoreTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

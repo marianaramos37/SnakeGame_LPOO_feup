@@ -154,4 +154,24 @@ public class ArenaControllerTest {
         arenaController.checkCollisions(new Position(6,5),arena2);
         assertTrue(arena.getGameOver());
     }
+
+    @Test
+    public void movementTest() throws IOException {
+        //Confirmair este teste mais tarde
+        ArenaModel arena=new ArenaModel(20,20);
+        ArenaView gui= new ArenaView(20,20);
+        SnakeController snake=new SnakeController(arena,30);
+        ArenaController arenaController= new ArenaController(gui,arena);
+
+        ArenaView.COMMAND cmd=  ArenaView.COMMAND.DOWN;
+        ArenaView.COMMAND prevcmd= ArenaView.COMMAND.DOWN;
+
+        arenaController.movement(cmd,prevcmd,arena,snake);
+
+
+        snake.walkSnake(arena.getSnakeHeadPosition(), '|',arena.getSnake());
+
+        assertEquals(new Position(10, 11), arena.getSnake().getPosition());
+    }
+
 }

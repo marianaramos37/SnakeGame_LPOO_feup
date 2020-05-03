@@ -28,7 +28,7 @@ public class ArenaModel {
         SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         this.apples.add(apple);
         this.apples.add(appleS);
-        buildWalls();
+        //buildWalls();
         this.game_over=false;
     }
 

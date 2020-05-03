@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="rules.SnakeControllerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-05-03T21:19:34" hostname="LAPTOP-GER1ALIG" time="0.009">
+<testsuite name="rules.SnakeControllerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-05-03T22:18:05" hostname="LAPTOP-GER1ALIG" time="0.008">
   <properties/>
-  <testcase name="unshrinkSnakeTest" classname="rules.SnakeControllerTest" time="0.003"/>
+  <testcase name="unshrinkSnakeTest" classname="rules.SnakeControllerTest" time="0.002"/>
   <testcase name="growSnakeTest" classname="rules.SnakeControllerTest" time="0.003"/>
   <testcase name="shrinkSnakeTest" classname="rules.SnakeControllerTest" time="0.002"/>
   <testcase name="walkSnakeTest" classname="rules.SnakeControllerTest" time="0.001"/>

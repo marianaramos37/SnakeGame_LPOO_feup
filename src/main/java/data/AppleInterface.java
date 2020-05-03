@@ -1,6 +1,6 @@
 package data;
 
-public interface AppleInterface {
+public abstract interface AppleInterface {
     Position getPosition();
     void setPosition(Position position);
     Character getChar();

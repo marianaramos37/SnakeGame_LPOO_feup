@@ -24,18 +24,18 @@ public class SnakeTest {
     @Test
     public void testConstructor() {
         Snake snake = new Snake(headPosition);
-        assertEquals(5, snake.getHeadPosition().getX());
-        assertEquals(5, snake.getHeadPosition().getY());
+        assertEquals(5, snake.getPosition().getX());
+        assertEquals(5, snake.getPosition().getY());
     }
 
     @Test
     public void testSetHeadPosition() {
         Snake snake = new Snake(headPosition);
 
-        snake.setHeadPosition(new Position(15, 20));
+        snake.setPosition(new Position(15, 20));
 
-        assertEquals(15, snake.getHeadPosition().getX());
-        assertEquals(20, snake.getHeadPosition().getY());
+        assertEquals(15, snake.getPosition().getX());
+        assertEquals(20, snake.getPosition().getY());
     }
 
     @Test

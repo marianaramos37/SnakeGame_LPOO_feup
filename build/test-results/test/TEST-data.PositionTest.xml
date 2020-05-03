@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="data.PositionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-05-03T21:19:33" hostname="LAPTOP-GER1ALIG" time="0.003">
+  <properties/>
+  <testcase name="downPositionTest" classname="data.PositionTest" time="0.0"/>
+  <testcase name="upPositionTest" classname="data.PositionTest" time="0.001"/>
+  <testcase name="leftPositionTest" classname="data.PositionTest" time="0.0"/>
+  <testcase name="getTest" classname="data.PositionTest" time="0.0"/>
+  <testcase name="equalsTest" classname="data.PositionTest" time="0.001"/>
+  <testcase name="setXTest" classname="data.PositionTest" time="0.0"/>
+  <testcase name="setYTest" classname="data.PositionTest" time="0.0"/>
+  <testcase name="rightPositionTest" classname="data.PositionTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

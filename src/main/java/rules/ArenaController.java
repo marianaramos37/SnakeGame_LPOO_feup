@@ -94,7 +94,7 @@ public class ArenaController {
         return false;
     }
 
-    public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand) throws IOException {
+    public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand, ArenaModel arena, SnakeController snake) throws IOException {
         if (command == ArenaView.COMMAND.UP) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().up());
             snake.walkSnake(arena.getSnakeHeadPosition(),'|',arena.getSnake());
@@ -146,6 +146,7 @@ public class ArenaController {
             public void run() {
                 //lê score logo de inicio
                 try {
+                    arena.buildWalls();
                     scoreController.fileReader(arena.getTopScore().getFilename(),arena.getTopScore());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -177,7 +178,7 @@ public class ArenaController {
                                     counter=0;
                                 }
                             }
-                            c.movement(command, prevcommand);
+                            c.movement(command, prevcommand, arena, snake);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

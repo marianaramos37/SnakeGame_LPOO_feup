@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="gui.ArenaViewTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-05-03T22:18:04" hostname="LAPTOP-GER1ALIG" time="0.65">
+  <properties/>
+  <testcase name="testDrawApples" classname="gui.ArenaViewTest" time="0.635"/>
+  <testcase name="testDrawArena" classname="gui.ArenaViewTest" time="0.008"/>
+  <testcase name="testDrawSnake" classname="gui.ArenaViewTest" time="0.004"/>
+  <testcase name="testDrawWalls" classname="gui.ArenaViewTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

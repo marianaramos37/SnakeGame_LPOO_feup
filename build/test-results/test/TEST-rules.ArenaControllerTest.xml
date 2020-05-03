@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="rules.ArenaControllerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-05-03T22:18:05" hostname="LAPTOP-GER1ALIG" time="0.457">
+  <properties/>
+  <testcase name="checkCollisionsTest" classname="rules.ArenaControllerTest" time="0.339"/>
+  <testcase name="getColidingApplesTest" classname="rules.ArenaControllerTest" time="0.029"/>
+  <testcase name="movementTest" classname="rules.ArenaControllerTest" time="0.02"/>
+  <testcase name="getColidingElemsTest" classname="rules.ArenaControllerTest" time="0.021"/>
+  <testcase name="eatAppleTest" classname="rules.ArenaControllerTest" time="0.026"/>
+  <testcase name="getCollidingBodyTest" classname="rules.ArenaControllerTest" time="0.021"/>
+  <system-out><![CDATA[thats ok
+thats ok
+SPECIAL
+thats ok
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

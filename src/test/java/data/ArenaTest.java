@@ -1,23 +1,14 @@
 package data;
 
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class ArenaTest {
-    Snake snakeMock;
-    ArenaModel arenaMock;
-
-    @Before
-    public void setUp(){
-        snakeMock= Mockito.mock(Snake.class);
-        arenaMock= Mockito.mock(ArenaModel.class);
-    }
 
     @Test
     public void getWidthTest() throws IOException {
@@ -31,11 +22,27 @@ public class ArenaTest {
         int val = arena.getHeight();
         assertEquals(9, val);
     }
+
     @Test
-    public void getSnakeTest(){
-        /*ArenaModel arena = new ArenaModel(5, 9);
-        arena.setSnake
-        assertEquals(9, val);*/
+    public void testConstructor() throws IOException {
+        ArenaModel arena = new ArenaModel(5, 5);
+        Snake snake = new Snake(new Position(5 / 2, 5 / 2));
+        assertEquals(snake.getPosition(),arena.getSnake().getPosition());
+    }
+
+    @Test
+    public void testBuildWalls() throws IOException {
+        ArenaModel arena = new ArenaModel(5, 5);
+        arena.buildWalls();
+        List<Wall> walls = new ArrayList<>();
+        for(int i=0; i<5; i++){
+            walls.add(new Wall(i,0));
+            walls.add(new Wall(i,5-1));
+        }
+        for(int i=0; i<5; i++){
+            walls.add(new Wall(0,i));
+            walls.add(new Wall(5-1,i));
+        }
     }
 
 

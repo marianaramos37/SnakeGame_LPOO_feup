@@ -21,9 +21,9 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 
 ## Funcionalidades Planeadas
 
-**Menu**: para selecionar o modo de jogo e o nível de dificuldade do modo de jogo Single Player
+**Menus**: para selecionar o modo de jogo e o nível de dificuldade do modo de jogo Single Player.
 
-**Dois modos de jogo:** Single Player e Multi Player, selecionáveis a partir de um menu
+**Três modos de jogo:** Single Player, Multi Player e Construção de Mapas, selecionáveis a partir de um menu
 
 **Single Player**
 - **Níveis**: Existem três níveis distintos: Fácil, Médio e Difícil;

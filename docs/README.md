@@ -1,12 +1,12 @@
-# LPOO_T4G4 - SNAKE
+# LPOO_T4G4 - SNAKE #
 
-## Descrição
-O jogo irá seguir a ideia base do jogo conhecido como "Snake", em que o jogador controla uma cobra posicionada numa arena que contém maçãs. Á medida que a cobra come as maçãs cresce em tamanho. O jogador perde se a cobra tocar numa parede ou no seu próprio corpo. O objetivo é aguentar na arena o máximo de tempo possível sem tocar em nada.
+## Descrição ##
+O programa irá seguir a ideia base do jogo conhecido como "Snake", em que o jogador controla uma cobra posicionada numa arena que contém maçãs. Á medida que a cobra come as maçãs cresce em tamanho. O jogador perde se a cobra tocar numa parede ou no seu próprio corpo. O objetivo é aguentar na arena o máximo de tempo possível sem tocar em nada.
 Na nossa versão do jogo vamos ter uma versão single player descrita acima com algumas funcionalidades extra, bem como uma versão multiplayer onde poderam existir mais cobras no mesmo ecrã.
 
 Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) e Mariana Ramos (up201806869@fe.up.pt) no âmbito da cadeira Laboratório de Programação Orientada por Objectos no ano letivo 19/20.
 
-## Funcionalidades Implementadas
+## Funcionalidades Implementadas ##
 **Single Player**
 - **Virar**: A cobra está sempre em movimento, o jogador usa as teclas para mudar a direção em que a cobra vai;
 - **Score**: A score é calculada pelo número de maçãs comidas;
@@ -19,7 +19,7 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 ![screenshot of game](/docs/images/screenshot.png)
 
 
-## Funcionalidades Planeadas
+## Funcionalidades Planeadas ##
 
 **Menus**: para selecionar o modo de jogo e o nível de dificuldade do modo de jogo Single Player.
 
@@ -39,7 +39,7 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 **Construção de mapas**
 - No menu principal irá existir uma funcionalidade que permitirá aos jogadores construir os seus próprios mapas. Estes poderão ter uma serie de obstáculos previamente selecionados e poderão ser usados nas versões multiplayer.
 
-## Architetural Pattern
+## Architetural Pattern ##
 O nosso programa tem o padrão arquitetural MVC (Model-View-Controller). 
 Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
 - Model (package **data**): Contém todos os elementos do jogo.
@@ -55,9 +55,9 @@ Para além dos packages já mencionados decidimos adicionar:
 - **files**: Este package contém todos os ficheiros necessários para o funcionamento do jogo. Entre eles 3 mapas para 3 níveis diferentes (fácil, médio e díficil) e um ficheiro que guarda a atual top score do jogo.
 - **fileReaders**: Este package para já contém uma classe mapReader que tal como o nome indica lê os ficheiros dos mapas e encarrega-se de colocar as paredes da arena nas posições indicadas no ficheiro.
 
-## Design
+## Design ##
 
- ###### Métodos iguais em classes diferentes ######
+ ### Métodos iguais em classes diferentes ###
  - **Contexto do problema**
  Tanto a classe [Snake](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/7194fca72d4975f532b82e50f981bdc8e7ece2c9/src/main/java/data/Snake.java#L6) como a classe [Wall](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/Wall.java#L3) funcionam à base de getters e setters de posições (apesar da classe Snake ter uma lista de posições, é necessário saber a posição da cabeça da Snake a todo o momento). Como era necessário fazer comparações de posições e usar métodos muito comuns às duas classes, decidimos que as duas classes deviam extender a mesma classe Element.
  
@@ -73,7 +73,7 @@ Para além dos packages já mencionados decidimos adicionar:
  Os Elements concretos são definidos e usados pela classe ArenaModel. As colisões e a verificação da posição dos vários elementos é facilitada.
  
  
- ###### Maçãs diferentes ######
+ ### Maçãs diferentes ###
  - **Contexto do problema**
  No nosso jogo é necessário criar maçãs consumíveis que adoptam posições aleatórias depois de consumidas e têm poderes especificos associados, além de terem TextCharacter diferentes atribuídos a cada tipo de maçã. Isso torna imperativo uma interface comum às diferentes classes de maçãs com os métodos comuns às classes de maçãs que a implementam.
  
@@ -104,7 +104,7 @@ Para além dos packages já mencionados decidimos adicionar:
 
 
 ## Testing Results
-![diagrama command](/docs/images/testing.png)
+![testing](/docs/images/testing.PNG)
 
 ## Self Evaluation
 Mariana Ramos: 50%

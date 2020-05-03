@@ -35,12 +35,12 @@ public class Snake extends Element{
         this.length=l;
     }
 
-    public Position getHeadPosition() {
+    /*public Position getHeadPosition() {
         return headPosition;
     }
     public void setHeadPosition(Position position) {
         this.headPosition = position;
-    }
+    }*/
 
     public boolean getShrink(){return isShrink;}
 

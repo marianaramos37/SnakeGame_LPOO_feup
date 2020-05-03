@@ -1,6 +1,6 @@
 package data;
 
-import filereaders.CharacterReader;
+import filereaders.MapReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class ArenaModel {
         this.apples.add(appleS);
 
         try {
-            CharacterReader c=new CharacterReader(filename);
+            MapReader c=new MapReader(filename);
             walls=c.getWallsRead();
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,7 +65,7 @@ public class ArenaModel {
     }
 
     public Position getSnakeHeadPosition() {
-        return snake.getHeadPosition();
+        return snake.getPosition();
     }
 
     public Snake getSnake(){return snake;}
@@ -87,7 +87,7 @@ public class ArenaModel {
     public void setScore(SinglePlayerScore s){this.score=s;}
 
     public void setSnakeHeadPosition(Position position) {
-        snake.setHeadPosition(position);
+        snake.setPosition(position);
     }
 
     public boolean getGameOver(){
@@ -96,9 +96,6 @@ public class ArenaModel {
 
     public void endGame() throws IOException {
         this.game_over=true;
-
-       // topScore.controller.fileWriter(topScore.getFilename(),topScore);
-
     }
 
     public void buildWalls(){

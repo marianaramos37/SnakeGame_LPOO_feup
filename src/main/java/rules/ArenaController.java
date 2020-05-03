@@ -165,7 +165,7 @@ public class ArenaController {
                     }
                     if(!arena.getGameOver()){
                         try {
-                            c.checkCollisions(arena.getSnake().getHeadPosition(),arena);
+                            c.checkCollisions(arena.getSnake().getPosition(),arena);
                             if(snake.getVelocidade() != 150){
                                 counter++;
                                 if(counter == 100){

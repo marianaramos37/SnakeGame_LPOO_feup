@@ -55,6 +55,7 @@ public class ScoreControllerTest {
 
     @Test
     public void testFileReader(){
+        //Perguntar ao prof
         /*
         ScoreController scoreController= new ScoreController();
         SinglePlayerTopScore sptopscore = Mockito.mock(SinglePlayerTopScore.class);
@@ -71,6 +72,7 @@ public class ScoreControllerTest {
 
     @Test
     public void testFileWriter(){
+        //Perguntar ao prof
         /*
         //arrange
         doReturnThrow(new IOException("UnitTest")).when(fileWriterFactory).create(any(File.class));

@@ -22,6 +22,9 @@ public class ArenaController {
         this.scoreController=new ScoreController();
     }
 
+    public SnakeController getSnakeController(){
+        return snake;
+    }
     public void eatenApple(AppleInterface a, ArenaModel arena){
         int index=0;
         for(AppleInterface apple: arena.getApples()){

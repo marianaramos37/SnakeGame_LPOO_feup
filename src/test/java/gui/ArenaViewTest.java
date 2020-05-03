@@ -116,6 +116,8 @@ public class ArenaViewTest {
     @Test
     public void testDrawArena() throws IOException {
         ArenaModel arena=Mockito.mock(ArenaModel.class);
+        Mockito.when(arena.getScore()).thenReturn((new SinglePlayerScore()));
+        Mockito.when(arena.getTopScore()).thenReturn((new SinglePlayerTopScore()));
         Mockito.when(arena.getSnake()).thenReturn((snake));
         Mockito.when(arena.getWalls()).thenReturn((walls));
         Mockito.when(arena.getApples()).thenReturn((apples));

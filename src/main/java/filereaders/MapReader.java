@@ -7,12 +7,12 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharacterReader {
+public class MapReader {
 
     private String filename;
     private List<Wall> wallsRead = new ArrayList<>();
 
-    public CharacterReader(String filename) throws IOException {
+    public MapReader(String filename) throws IOException {
         this.filename=filename;
         Charset encoding = Charset.defaultCharset();
         File file = new File(filename);

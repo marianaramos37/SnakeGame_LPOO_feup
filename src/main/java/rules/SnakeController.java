@@ -43,6 +43,8 @@ public class SnakeController {
             }
         }
 
+
+
         snake.setSnakeBody(snakebody);
         snake.setPos(pos);
         arena.setSnake(snake);
@@ -93,5 +95,31 @@ public class SnakeController {
         Snake snake=this.arena.getSnake();
         snake.isShrink = false;
         arena.setSnake(snake);
+    }
+
+    public void poison(){                                           //BUG: depois de comer uma poisoned, se comermos uma special e durante o efeito da special comermos uma normal, dá exceção; se comermos poisoned, special e durante o efeito da special comermos uma poisoned, não da erro :(((((
+        setVelocidade(150); //resets to initial velocidade
+
+        Snake snake=this.arena.getSnake();
+
+        if(snake.getLength() >= 6){
+            snake.setLength(snake.getLength()-5);
+            snake.setPos(snake.getPos().subList(0,snake.getLength()+1));
+            snake.setSnakeBody(snake.getSnakeBody().subList(0,snake.getLength()+1));
+        }else{
+            snake.setLength(1);
+            snake.setPos(snake.getPos().subList(0,2));
+            snake.setSnakeBody(snake.getSnakeBody().subList(0,2));
+        }
+
+        arena.setSnake(snake);
+    }
+
+    public void updateVelocidade(){
+
+        if(arena.getScore().getScore() % 5 == 0 && arena.getScore().getScore() != 0 && getVelocidade() > 90){
+            setVelocidade(getVelocidade()-5);
+        }
+
     }
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="rules.ArenaControllerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-05-03T22:18:05" hostname="LAPTOP-GER1ALIG" time="0.457">
+<testsuite name="rules.ArenaControllerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-05-11T17:36:06" hostname="LAPTOP-DDA1VVIE" time="1.226">
   <properties/>
-  <testcase name="checkCollisionsTest" classname="rules.ArenaControllerTest" time="0.339"/>
-  <testcase name="getColidingApplesTest" classname="rules.ArenaControllerTest" time="0.029"/>
-  <testcase name="movementTest" classname="rules.ArenaControllerTest" time="0.02"/>
-  <testcase name="getColidingElemsTest" classname="rules.ArenaControllerTest" time="0.021"/>
-  <testcase name="eatAppleTest" classname="rules.ArenaControllerTest" time="0.026"/>
-  <testcase name="getCollidingBodyTest" classname="rules.ArenaControllerTest" time="0.021"/>
+  <testcase name="checkCollisionsTest" classname="rules.ArenaControllerTest" time="0.815"/>
+  <testcase name="getColidingApplesTest" classname="rules.ArenaControllerTest" time="0.06"/>
+  <testcase name="movementTest" classname="rules.ArenaControllerTest" time="0.132"/>
+  <testcase name="getColidingElemsTest" classname="rules.ArenaControllerTest" time="0.075"/>
+  <testcase name="eatAppleTest" classname="rules.ArenaControllerTest" time="0.071"/>
+  <testcase name="getCollidingBodyTest" classname="rules.ArenaControllerTest" time="0.071"/>
   <system-out><![CDATA[thats ok
 thats ok
 SPECIAL

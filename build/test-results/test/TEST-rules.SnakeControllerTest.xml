@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="rules.SnakeControllerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-05-03T22:18:05" hostname="LAPTOP-GER1ALIG" time="0.008">
+<testsuite name="rules.SnakeControllerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-05-11T17:36:07" hostname="LAPTOP-DDA1VVIE" time="0.023">
   <properties/>
-  <testcase name="unshrinkSnakeTest" classname="rules.SnakeControllerTest" time="0.002"/>
-  <testcase name="growSnakeTest" classname="rules.SnakeControllerTest" time="0.003"/>
-  <testcase name="shrinkSnakeTest" classname="rules.SnakeControllerTest" time="0.002"/>
-  <testcase name="walkSnakeTest" classname="rules.SnakeControllerTest" time="0.001"/>
+  <testcase name="unshrinkSnakeTest" classname="rules.SnakeControllerTest" time="0.005"/>
+  <testcase name="growSnakeTest" classname="rules.SnakeControllerTest" time="0.008"/>
+  <testcase name="shrinkSnakeTest" classname="rules.SnakeControllerTest" time="0.003"/>
+  <testcase name="walkSnakeTest" classname="rules.SnakeControllerTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

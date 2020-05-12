@@ -25,6 +25,7 @@ public class ArenaController {
     public SnakeController getSnakeController(){
         return snake;
     }
+
     public void eatenApple(AppleInterface a, ArenaModel arena){
         int index=0;
         for(AppleInterface apple: arena.getApples()){
@@ -45,23 +46,38 @@ public class ArenaController {
             this.snake.setVelocidade(this.snake.getVelocidade()/2);
             this.snake.shrink();
         }
-        else if (a instanceof Apple){
-
+        else if(a instanceof PoisonedApple){
+            this.snake.poison();
+            if(arena.getScore().getScore() <= 5){
+                arena.setScore(new SinglePlayerScore());
+            }else{
+                arena.getScore().setScore(arena.getScore().getScore()-5);
+            }
+            scoreController.updatePrintable(arena.getScore());
+            return;
         }
+
+        scoreController.incrementScore(arena.getScore());
+        if (arena.getScore().getScore() > arena.getTopScore().getScore()) {
+            scoreController.incrementScore(arena.getTopScore());
+        }
+        if(!arena.getSnake().getShrink()){
+            snake.updateVelocidade();
+        }
+
     }
 
-    public void checkCollisions(Position position,ArenaModel a) throws IOException {
+    public void checkCollisions(Position position, ArenaModel a) throws IOException {
         AppleInterface eaten = getCollidingApples(position, a.getApples());
         Wall hit = (Wall) getCollidingElement(position, a.getWalls());
         Boolean ownBody= getCollidingBody(position,a.getSnake().getPos());
 
-        if (eaten != null) {
+        if (eaten != null && !(eaten instanceof PoisonedApple)) {
             snake.growSnake();
             eatenApple(eaten,a);
-            scoreController.incrementScore(a.getScore());
-            if(a.getScore().getScore() > a.getTopScore().getScore()){
-               scoreController.incrementScore(a.getTopScore());
-            }
+        }
+        if (eaten != null && eaten instanceof PoisonedApple){
+            eatenApple(eaten,a);
         }
         if(hit != null){
             a.endGame();
@@ -170,18 +186,22 @@ public class ArenaController {
                     if(!arena.getGameOver()){
                         try {
                             c.checkCollisions(arena.getSnake().getPosition(),arena);
-                            if(snake.getVelocidade() != 150){
+
+                            if(arena.getSnake().getShrink()){
                                 counter++;
                                 if(counter == 100){
-                                    snake.setVelocidade(150);
+                                    snake.setVelocidade(snake.getVelocidade()*2);
                                     snake.unshrink();
                                     counter=0;
                                 }
                             }
+
                             c.movement(command, prevcommand, arena, snake);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
                         gui.drawArena(arena);
                     }
                     else{

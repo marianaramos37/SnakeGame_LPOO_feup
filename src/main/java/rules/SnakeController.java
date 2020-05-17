@@ -25,12 +25,14 @@ public class SnakeController {
 
         if(snakebody.get(snake.getLength() - 1) == '-'){
             snakebody.add(snake.getLength() ,'-');
-            if(pos.get(snake.getLength() -2).getX()+1 == pos.get(snake.getLength() -1).getX()){
-                pos.add(snake.getLength() ,new Position(pos.get(snake.getLength() -1).getX()+1,pos.get(snake.getLength() -1).getY()));
+
+            if (pos.get(snake.getLength() - 2).getX() + 1 == pos.get(snake.getLength() - 1).getX()) {
+                pos.add(snake.getLength(), new Position(pos.get(snake.getLength() - 1).getX() + 1, pos.get(snake.getLength() - 1).getY()));
             }
-            if(pos.get(snake.getLength() -2).getX()-1 == pos.get(snake.getLength() -1).getX()){
-                pos.add(snake.getLength() ,new Position(pos.get(snake.getLength() -1).getX()-1,pos.get(snake.getLength() -1).getY()));
+            if (pos.get(snake.getLength() - 2).getX() - 1 == pos.get(snake.getLength() - 1).getX()) {
+                pos.add(snake.getLength(), new Position(pos.get(snake.getLength() - 1).getX() - 1, pos.get(snake.getLength() - 1).getY()));
             }
+
 
         }else{
             snakebody.add(snake.getLength() ,'|');

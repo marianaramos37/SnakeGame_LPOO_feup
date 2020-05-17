@@ -26,16 +26,29 @@ public class ArenaController {
         return snake;
     }
 
+
+    public void randomWalls(){
+        Wall w;
+        if(arena.getScore().getScore() % 10 == 0 && arena.getScore().getScore() != 0){
+            w = new Wall (ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1));
+            while(getCollidingElement(w.getPosition(),arena.getWalls()) != null || getCollidingBody(w.getPosition(),arena.getSnake().getPos()) || getCollidingApples(w.getPosition(),arena.getApples()) != null) {
+                w = new Wall (ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1));
+            }
+
+            List<Wall> newWalls = arena.getWalls();
+            newWalls.add(w);
+            arena.setWalls(newWalls);
+        }
+
+    }
+
     public void eatenApple(AppleInterface a, ArenaModel arena){
         int index=0;
         for(AppleInterface apple: arena.getApples()){
             if(apple.getPosition().equals(a.getPosition())) {
                 arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1)));
-                if(getCollidingElement(arena.getApples().get(index).getPosition(),arena.getWalls()) != null && getCollidingBody(arena.getApples().get(index).getPosition(),arena.getSnake().getPos())) {
+                while(getCollidingElement(arena.getApples().get(index).getPosition(),arena.getWalls()) != null || getCollidingBody(arena.getApples().get(index).getPosition(),arena.getSnake().getPos())) {
                     arena.getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1)));
-                }
-                else{
-                    System.out.println("thats ok");
                 }
                 break;
             }
@@ -158,6 +171,7 @@ public class ArenaController {
             ArenaView.COMMAND prevcommand = null;
             ArenaView.COMMAND command = null;
             int counter;
+            int wallSpawn;
             @Override
             public void run() {
                 //lê score logo de inicio
@@ -186,6 +200,14 @@ public class ArenaController {
                     if(!arena.getGameOver()){
                         try {
                             c.checkCollisions(arena.getSnake().getPosition(),arena);
+
+                            //spawn de paredes dependendo do nível de dificuldade (if statement + estado da máquina de estados do menu)
+                            //the way it is makes it so that only one wall spawns when score is multiple of 10
+                            if(arena.getScore().getScore() % 10 == 0 && wallSpawn == 0) {
+                                c.randomWalls();
+                                wallSpawn++;
+                            }
+                            if(arena.getScore().getScore() % 10 != 0) wallSpawn=0;
 
                             if(arena.getSnake().getShrink()){
                                 counter++;

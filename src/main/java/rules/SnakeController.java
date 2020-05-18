@@ -99,8 +99,8 @@ public class SnakeController {
         arena.setSnake(snake);
     }
 
-    public void poison(){                                           //BUG: depois de comer uma poisoned, se comermos uma special e durante o efeito da special comermos uma normal, dá exceção; se comermos poisoned, special e durante o efeito da special comermos uma poisoned, não da erro :(((((
-        setVelocidade(150); //resets to initial velocidade
+    public void poison(){
+        setVelocidade(150); //resets to initial velocity
 
         Snake snake=this.arena.getSnake();
 

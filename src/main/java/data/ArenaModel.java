@@ -26,8 +26,10 @@ public class ArenaModel {
         this.snake = new Snake(new Position(width / 2, height / 2));
         Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
+        PoisonedApple appleP= new PoisonedApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         this.apples.add(apple);
         this.apples.add(appleS);
+        this.apples.add(appleP);
         //buildWalls();
         this.game_over=false;
     }
@@ -39,9 +41,10 @@ public class ArenaModel {
         this.snake = new Snake(new Position(width / 2, height / 2));
         Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
+        PoisonedApple appleP= new PoisonedApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         this.apples.add(apple);
         this.apples.add(appleS);
-
+        this.apples.add(appleP);
         try {
             MapReader c=new MapReader(filename);
             walls=c.getWallsRead();

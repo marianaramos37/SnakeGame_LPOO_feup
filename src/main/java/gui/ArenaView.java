@@ -19,7 +19,7 @@ import java.util.List;
 public class ArenaView {
     public Screen screen;
 
-    public enum COMMAND {UP, RIGHT, DOWN, LEFT, ESC}
+    public enum COMMAND {UP, RIGHT, DOWN, LEFT, ESC,ENTER}
 
     public ArenaView(int width, int height) throws IOException {
         Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
@@ -100,6 +100,81 @@ public class ArenaView {
         }
     }
 
+    public void drawMenu(MainMenuModel menuModel) {
+        try {
+            screen.clear();
+
+            int x = 27;
+            for(Character c: menuModel.getTitle().toCharArray()){
+                TextCharacter c1 = new TextCharacter(c);
+                screen.setCharacter(x,10, c1);
+                x++;
+            }
+            int k=32;
+            for(Character c: menuModel.getEsqTitle().toCharArray()){
+                TextCharacter c1 = new TextCharacter(c);
+                screen.setCharacter(k,32, c1);
+                k++;
+            }
+            int x1=10, x2=5;
+            for(int i=0; i<17; i++){
+                Character c = menuModel.getSingleTitle().toCharArray()[i];
+                if(i<4){
+                    TextCharacter c1 = new TextCharacter(c);
+                    screen.setCharacter(x1,20, c1);
+                    x1++;
+                }
+                else{
+                    TextCharacter c1 = new TextCharacter(c);
+                    screen.setCharacter(x2,21, c1);
+                    x2++;
+                }
+            }
+            int x3=27, x4=22;
+            for(int i=0; i<16; i++){
+                Character c = menuModel.getMultyTitle().toCharArray()[i];
+                if(i<4){
+                    TextCharacter c1 = new TextCharacter(c);
+                    screen.setCharacter(x3,20, c1);
+                    x3++;
+                }
+                else{
+                    TextCharacter c1 = new TextCharacter(c);
+                    screen.setCharacter(x4,21, c1);
+                    x4++;
+                }
+            }
+            int x5=40, x6=39;
+            for(int i=0; i<10; i++){
+                Character c = menuModel.getContrucaoTitle().toCharArray()[i];
+                if(i<5){
+                    TextCharacter c1 = new TextCharacter(c);
+                    screen.setCharacter(x5,20, c1);
+                    x5++;
+                }
+                else{
+                    TextCharacter c1 = new TextCharacter(c);
+                    screen.setCharacter(x6,21, c1);
+                    x6++;
+                }
+            }
+            screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void drawSelecting(MainMenuModel menuModel,int x, int y) {
+        try {
+            TextCharacter c1 = new TextCharacter(menuModel.getSelection());
+            screen.setCharacter(x,y, c1);
+            screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void drawGameOver(ArenaModel arena) {
         try {
             screen.clear();
@@ -117,10 +192,12 @@ public class ArenaView {
     }
 
 
+
     public COMMAND getCommand() throws IOException {
         KeyStroke key = screen.pollInput();
         if(key!=null){
             if (key.getKeyType() == KeyType.ArrowUp) {
+                System.out.println("cliquei");
                 return COMMAND.UP;
             }
             if (key.getKeyType() == KeyType.ArrowRight) {
@@ -134,6 +211,9 @@ public class ArenaView {
             }
             if (key.getKeyType() == KeyType.Escape ){
                 return COMMAND.ESC;
+            }
+            if (key.getKeyType() == KeyType.Enter ){
+                return COMMAND.ENTER;
             }
             else return null;
         }

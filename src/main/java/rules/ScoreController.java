@@ -45,6 +45,8 @@ public class ScoreController {
             n.add(numberConversion.get(i));
         }
 
+        s.setPrintableScore(n);
+
         return n;
     }
 

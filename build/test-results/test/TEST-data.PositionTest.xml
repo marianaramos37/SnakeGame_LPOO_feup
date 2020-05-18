@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="data.PositionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-05-11T17:36:04" hostname="LAPTOP-DDA1VVIE" time="0.002">
+<testsuite name="data.PositionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-05-11T17:54:04" hostname="LAPTOP-GER1ALIG" time="0.004">
   <properties/>
   <testcase name="downPositionTest" classname="data.PositionTest" time="0.0"/>
-  <testcase name="upPositionTest" classname="data.PositionTest" time="0.0"/>
+  <testcase name="upPositionTest" classname="data.PositionTest" time="0.001"/>
   <testcase name="leftPositionTest" classname="data.PositionTest" time="0.0"/>
   <testcase name="getTest" classname="data.PositionTest" time="0.0"/>
   <testcase name="equalsTest" classname="data.PositionTest" time="0.0"/>

@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static java.lang.Thread.sleep;
-
 public class ArenaController {
     private ArenaView gui;
     private ArenaModel arena;
@@ -24,6 +22,28 @@ public class ArenaController {
 
     public SnakeController getSnakeController(){
         return snake;
+    }
+    public ArenaView getArenaView(){
+        return gui;
+    }
+    public ArenaModel getArenaModel(){
+        return arena;
+    }
+    public ScoreController getScoreController(){
+        return scoreController;
+    }
+
+    public void setSnakeController(SnakeController s){
+        this.snake=s;
+    }
+    public void setArenaView(ArenaView v){
+        this.gui=v;
+    }
+    public void setArenaModel(ArenaModel m){
+        this.arena=m;
+    }
+    public void setScoreController(ScoreController s){
+        this.scoreController=s;
     }
 
 
@@ -166,114 +186,4 @@ public class ArenaController {
         }
     }
 
-    public void starting(ArenaController c) throws NullPointerException{
-        new Thread(new Runnable(){
-            ArenaView.COMMAND prevcommand = null;
-            ArenaView.COMMAND command = null;
-            int counter;
-            int wallSpawn;
-            @Override
-            public void run() {
-                //lê score logo de inicio
-                try {
-                    arena.buildWalls();
-                    scoreController.fileReader(arena.getTopScore().getFilename(),arena.getTopScore());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                //comeca jogo
-                while(true){
-                    //System.out.println("OLAAAA");
-                    try {
-                        sleep(snake.getVelocidade());
-                        command=gui.getCommand();
-                        if(command!=null){
-                            if(command==ArenaView.COMMAND.UP && prevcommand ==ArenaView.COMMAND.DOWN){command=ArenaView.COMMAND.DOWN;}
-                            if(command==ArenaView.COMMAND.DOWN && prevcommand ==ArenaView.COMMAND.UP){command=ArenaView.COMMAND.UP;}
-                            if(command==ArenaView.COMMAND.RIGHT && prevcommand ==ArenaView.COMMAND.LEFT){command=ArenaView.COMMAND.LEFT;}
-                            if(command==ArenaView.COMMAND.LEFT && prevcommand ==ArenaView.COMMAND.RIGHT){command=ArenaView.COMMAND.RIGHT;}
-                            prevcommand =command;
-                        }
-                    } catch (InterruptedException | IOException e) {
-                        e.printStackTrace();
-                    }
-                    if(!arena.getGameOver()){
-                        try {
-                            c.checkCollisions(arena.getSnake().getPosition(),arena);
-
-                            //spawn de paredes dependendo do nível de dificuldade (if statement + estado da máquina de estados do menu)
-                            //the way it is makes it so that only one wall spawns when score is multiple of 10
-                            if(arena.getScore().getScore() % 10 == 0 && wallSpawn == 0) {
-                                c.randomWalls();
-                                wallSpawn++;
-                            }
-                            if(arena.getScore().getScore() % 10 != 0) wallSpawn=0;
-
-                            if(arena.getSnake().getShrink()){
-                                counter++;
-                                if(counter == 100){
-                                    snake.setVelocidade(snake.getVelocidade()*2);
-                                    snake.unshrink();
-                                    counter=0;
-                                }
-                            }
-
-                            c.movement(command, prevcommand, arena, snake);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        gui.drawArena(arena);
-                    }
-                    else{
-                        gui.drawGameOver(arena);
-                        try {
-                            //jogo acabou , atualiza topScore
-                            scoreController.fileWriter(arena.getTopScore().getFilename(),arena.getTopScore());
-                            sleep(1000);
-                            gui.screen.stopScreen();
-                            break;
-                        } catch (InterruptedException | IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }).start();
-    }
-
-
-   /* Timer timer1 = new Timer();
-    public void start() throws IOException {
-        int delay = 1000;   // delay de 2 seg.
-        int interval = 100;  // intervalo de 1 seg.
-        timer1.scheduleAtFixedRate(new TimerTask() {
-            ArenaView.COMMAND prevcommand = null;
-            ArenaView.COMMAND command = null;
-            public void run() {
-                try {
-                    command=gui.getCommand();
-                    if(command!=null){
-                        if(command==ArenaView.COMMAND.UP && prevcommand==ArenaView.COMMAND.DOWN){command=ArenaView.COMMAND.DOWN;}
-                        if(command==ArenaView.COMMAND.DOWN && prevcommand==ArenaView.COMMAND.UP){command=ArenaView.COMMAND.UP;}
-                        if(command==ArenaView.COMMAND.RIGHT && prevcommand==ArenaView.COMMAND.LEFT){command=ArenaView.COMMAND.LEFT;}
-                        if(command==ArenaView.COMMAND.LEFT && prevcommand==ArenaView.COMMAND.RIGHT){command=ArenaView.COMMAND.RIGHT;}
-                        prevcommand=command;
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if(!arena.getGameOver()){
-                    ArenaController c=new ArenaController(gui,arena);
-                    c.movement(command,prevcommand);
-                    arena.checkCollisions(arena.getSnake().getHeadPosition());
-                    gui.drawArena(arena);
-                }
-                else{
-                    gui.drawGameOver(arena);
-                }
-            }
-        }, delay, interval);
-    }*/
 }

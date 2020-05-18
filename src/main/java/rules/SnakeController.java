@@ -10,7 +10,6 @@ public class SnakeController {
     private ArenaModel arena;
     private int velocidade;
 
-
     public SnakeController(ArenaModel arena,int vel){
         this.arena=arena; this.velocidade=vel;
     }

@@ -103,70 +103,40 @@ public class ArenaView {
     public void drawMenu(MainMenuModel menuModel) {
         try {
             screen.clear();
-
-            int x = 27;
-            for(Character c: menuModel.getTitle().toCharArray()){
-                TextCharacter c1 = new TextCharacter(c);
-                screen.setCharacter(x,10, c1);
-                x++;
-            }
-            int k=32;
-            for(Character c: menuModel.getEsqTitle().toCharArray()){
-                TextCharacter c1 = new TextCharacter(c);
-                screen.setCharacter(k,32, c1);
-                k++;
-            }
-            int x1=10, x2=5;
-            for(int i=0; i<17; i++){
-                Character c = menuModel.getSingleTitle().toCharArray()[i];
-                if(i<4){
-                    TextCharacter c1 = new TextCharacter(c);
-                    screen.setCharacter(x1,20, c1);
-                    x1++;
-                }
-                else{
-                    TextCharacter c1 = new TextCharacter(c);
-                    screen.setCharacter(x2,21, c1);
-                    x2++;
-                }
-            }
-            int x3=27, x4=22;
-            for(int i=0; i<16; i++){
-                Character c = menuModel.getMultyTitle().toCharArray()[i];
-                if(i<4){
-                    TextCharacter c1 = new TextCharacter(c);
-                    screen.setCharacter(x3,20, c1);
-                    x3++;
-                }
-                else{
-                    TextCharacter c1 = new TextCharacter(c);
-                    screen.setCharacter(x4,21, c1);
-                    x4++;
-                }
-            }
-            int x5=40, x6=39;
-            for(int i=0; i<10; i++){
-                Character c = menuModel.getContrucaoTitle().toCharArray()[i];
-                if(i<5){
-                    TextCharacter c1 = new TextCharacter(c);
-                    screen.setCharacter(x5,20, c1);
-                    x5++;
-                }
-                else{
-                    TextCharacter c1 = new TextCharacter(c);
-                    screen.setCharacter(x6,21, c1);
-                    x6++;
-                }
-            }
+            TextGraphics graphics = screen.newTextGraphics();
+            graphics.putString(27,10,menuModel.getTitle());
+            graphics.putString(32,32,menuModel.getEsqTitle());
+            graphics.putString(10,20,menuModel.getSingleTitle().substring(0,4));
+            graphics.putString(5,21,menuModel.getSingleTitle().substring(4,17));
+            graphics.putString(27,20,menuModel.getMultyTitle().substring(0,4));
+            graphics.putString(22,21,menuModel.getMultyTitle().substring(4,16));
+            graphics.putString(40,20,menuModel.getContrucaoTitle().substring(0,5));
+            graphics.putString(39,21,menuModel.getContrucaoTitle().substring(5,10));
             screen.refresh();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void drawSelecting(MainMenuModel menuModel,int x, int y) {
+    public void drawMenuLevels(){
         try {
-            TextCharacter c1 = new TextCharacter(menuModel.getSelection());
+            screen.clear();
+            TextGraphics graphics = screen.newTextGraphics();
+            graphics.putString(10,20,"EASY");
+            graphics.putString(10,21,"LEVEL");
+            graphics.putString(25,20,"MEDIUM");
+            graphics.putString(25,21,"LEVEL");
+            graphics.putString(40,20,"HARD");
+            graphics.putString(40,21,"LEVEL");
+
+            screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void drawSelecting(int x, int y) {
+        try {
+            TextCharacter c1 = new TextCharacter('o');
             screen.setCharacter(x,y, c1);
             screen.refresh();
         } catch (IOException e) {
@@ -174,17 +144,19 @@ public class ArenaView {
         }
     }
 
-
-    public void drawGameOver(ArenaModel arena) {
+    public void drawGameOver() {
         try {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
-            graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+            graphics.setBackgroundColor(TextColor.Factory.fromString("#790000"));
             graphics.fillRectangle(
                     new TerminalPosition(0, 0),
-                    new TerminalSize(arena.getWidth(), arena.getHeight()),
+                    new TerminalSize(60, 30),
                     ' '
             );
+            graphics.putString(25,10,"GAME OVER");
+            graphics.putString(10,20,"EXIT");
+            graphics.putString(40,20,"REPLAY");
             screen.refresh();
         } catch (IOException e) {
             e.printStackTrace();

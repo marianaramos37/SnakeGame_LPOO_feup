@@ -53,7 +53,6 @@ public class SnakeController {
     }
 
     public void walkSnake(Position nextPosition, Character headOrientation, Snake snake){
-        //Snake snake=this.arena.getSnake();
         List<Character> snakebody = snake.getSnakeBody();
         List<Position> pos = snake.getPos();
 

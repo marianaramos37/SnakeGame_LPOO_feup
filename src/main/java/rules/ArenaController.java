@@ -27,20 +27,7 @@ public class ArenaController {
     }
 
 
-    public void randomWalls(){
-        Wall w;
-        if(arena.getScore().getScore() % 10 == 0 && arena.getScore().getScore() != 0){
-            w = new Wall (ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1));
-            while(getCollidingElement(w.getPosition(),arena.getWalls()) != null || getCollidingBody(w.getPosition(),arena.getSnake().getPos()) || getCollidingApples(w.getPosition(),arena.getApples()) != null) {
-                w = new Wall (ThreadLocalRandom.current().nextInt(1, arena.getWidth() - 1), ThreadLocalRandom.current().nextInt(1, arena.getHeight() - 1));
-            }
 
-            List<Wall> newWalls = arena.getWalls();
-            newWalls.add(w);
-            arena.setWalls(newWalls);
-        }
-
-    }
 
     public void eatenApple(AppleInterface a, ArenaModel arena){
         int index=0;
@@ -203,8 +190,8 @@ public class ArenaController {
 
                             //spawn de paredes dependendo do nível de dificuldade (if statement + estado da máquina de estados do menu)
                             //the way it is makes it so that only one wall spawns when score is multiple of 10
-                            if(arena.getScore().getScore() % 10 == 0 && wallSpawn == 0) {
-                                c.randomWalls();
+                            if(arena.getScore().getScore() % 10 == 0 && arena.getScore().getScore() != 0 && wallSpawn == 0) {
+                                arena.randomWalls();
                                 wallSpawn++;
                             }
                             if(arena.getScore().getScore() % 10 != 0) wallSpawn=0;

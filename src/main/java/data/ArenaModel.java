@@ -113,4 +113,19 @@ public class ArenaModel {
     }
 
 
+    public void randomWalls(){
+        Wall w;
+
+        w = new Wall (ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
+        while(getCollidingElement(w.getPosition(),getWalls()) != null || getCollidingBody(w.getPosition(),getSnake().getPos()) || getCollidingApples(w.getPosition(),getApples()) != null) {
+            w = new Wall (ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
+        }
+
+        List<Wall> newWalls = getWalls();
+        newWalls.add(w);
+        setWalls(newWalls);
+
+
+    }
+
 }

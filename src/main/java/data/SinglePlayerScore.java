@@ -22,6 +22,17 @@ public class SinglePlayerScore implements Score{
         text.add(new TextCharacter(' '));
     }
 
+    public SinglePlayerScore(int x){
+        this.score=x;
+        text.add(new TextCharacter('S'));
+        text.add(new TextCharacter('C'));
+        text.add(new TextCharacter('O'));
+        text.add(new TextCharacter('R'));
+        text.add(new TextCharacter('E'));
+        text.add(new TextCharacter(':'));
+        text.add(new TextCharacter(' '));
+    }
+
     @Override
     public int getScore() {
         return score;

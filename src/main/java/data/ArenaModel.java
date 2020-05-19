@@ -1,6 +1,8 @@
 package data;
 
 import filereaders.MapReader;
+import rules.ScoreController;
+import rules.SnakeController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +22,9 @@ public class ArenaModel {
 
     private boolean game_over;
 
+    private SnakeController snakeController;
+    private ScoreController scoreController;
+
     public ArenaModel(int width, int height) throws IOException {
         this.width = width;
         this.height = height;
@@ -32,6 +37,9 @@ public class ArenaModel {
         this.apples.add(appleP);
         //buildWalls();
         this.game_over=false;
+
+        this.snakeController=new SnakeController(this,150);
+        this.scoreController=new ScoreController();
     }
 
 
@@ -81,6 +89,16 @@ public class ArenaModel {
 
     public SinglePlayerTopScore getTopScore(){return this.topScore;}
 
+    public ScoreController getScoreController() {
+        return scoreController;
+    }
+
+    public SnakeController getSnakeController() {
+        return snakeController;
+    }
+
+
+
     public void setSnake(Snake s){this.snake=s;}
 
     public void setWalls(List<Wall> l){this.walls=l;}
@@ -127,5 +145,88 @@ public class ArenaModel {
 
 
     }
+
+    public AppleInterface getCollidingApples(Position position, List<AppleInterface> apples) {
+        for (AppleInterface apple : apples)
+            if (apple.getPosition().equals(position))
+                return apple;
+        return null;
+    }
+
+    public Element getCollidingElement(Position position, List<? extends Element> elements) {
+        for (Element element : elements)
+            if (element.getPosition().equals(position))
+                return element;
+        return null;
+    }
+
+    public boolean getCollidingBody(Position position, List<Position> body){
+        if(!getSnake().isShrink) {
+            for (int i = 1; i < body.size(); i++)
+                if (body.get(i).equals(position))
+                    return true;
+        }
+        return false;
+    }
+
+
+    public void eatenApple(AppleInterface a){
+        int index=0;
+        for(AppleInterface apple: getApples()){
+            if(apple.getPosition().equals(a.getPosition())) {
+                getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1)));
+                while(getCollidingElement(getApples().get(index).getPosition(),getWalls()) != null || getCollidingBody(getApples().get(index).getPosition(),getSnake().getPos())) {
+                    getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1)));
+                }
+                break;
+            }
+            index++;
+        }
+        if(a instanceof SpecialApple){
+            System.out.println("SPECIAL");
+            this.snakeController.setVelocidade(this.snakeController.getVelocidade()/2);
+            this.snakeController.shrink();
+        }
+        else if(a instanceof PoisonedApple){
+            this.snakeController.poison();
+            if(getScore().getScore() <= 5){
+                setScore(new SinglePlayerScore());
+            }else{
+                setScore(new SinglePlayerScore(getScore().getScore()-5));
+            }
+            scoreController.updatePrintable(score);
+            return;
+        }
+
+        scoreController.incrementScore(score);
+        if (score.getScore() > topScore.getScore()) {
+            scoreController.incrementScore(topScore);
+        }
+        if(!snake.getShrink()){
+            snakeController.updateVelocidade();
+        }
+
+    }
+
+    public void checkCollisions(Position position, ArenaModel a) throws IOException {
+        AppleInterface eaten = getCollidingApples(position, a.getApples());
+        Wall hit = (Wall) getCollidingElement(position, a.getWalls());
+        Boolean ownBody= getCollidingBody(position,a.getSnake().getPos());
+
+        if (eaten != null && !(eaten instanceof PoisonedApple)) {
+            snakeController.growSnake();
+            eatenApple(eaten);
+        }
+        if (eaten != null && eaten instanceof PoisonedApple){
+            eatenApple(eaten);
+        }
+        if(hit != null){
+            a.endGame();
+        }
+        if(ownBody){
+            a.endGame();
+        }
+    }
+
 
 }

@@ -1,17 +1,14 @@
 package menus;
 
-import data.MainMenuModel;
 import gui.ArenaView;
 
 import java.io.IOException;
 
 import static java.lang.Thread.sleep;
 
-public class MenuState extends State{
-    MainMenuModel menuModel;
-    MenuState(GameController g, MainMenuModel m) {
+public class MenuLevelsState extends State{
+    MenuLevelsState(GameController g) {
         super(g);
-        menuModel=new MainMenuModel();
     }
 
     @Override
@@ -22,10 +19,11 @@ public class MenuState extends State{
     @Override
     public void doStep() throws IOException, InterruptedException {
         ArenaView.COMMAND command = null;
-        int x=11, y=23; //single , x=45 -> buildMaps
+        int x=11, y=23;
+        int level;
         while(true){
             sleep(150);
-            super.gameController.gui.drawMenu(menuModel);
+            super.gameController.gui.drawMenuLevels();
             command=super.gameController.gui.getCommand();
             super.gameController.gui.drawSelecting(x,y);
             if(command == ArenaView.COMMAND.LEFT){
@@ -41,9 +39,16 @@ public class MenuState extends State{
             }
             if(command == ArenaView.COMMAND.ENTER){
                 if(x==11){
-                    super.gameController.changeToChooseLevelState();
-                    break;
+                    level=1;
                 }
+                else if(x==28){
+                    level=2;
+                }
+                else{
+                    level=3;
+                }
+                super.gameController.changeToSPGameState(level);
+                break;
             }
             if(command == ArenaView.COMMAND.ESC){
                 super.gameController.gui.screen.stopScreen();
@@ -52,5 +57,4 @@ public class MenuState extends State{
         }
 
     }
-
 }

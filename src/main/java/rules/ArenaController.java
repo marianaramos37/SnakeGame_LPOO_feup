@@ -4,10 +4,6 @@ import data.*;
 import gui.ArenaView;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-
-import static java.lang.Thread.sleep;
 
 public class ArenaController {
     private ArenaView gui;

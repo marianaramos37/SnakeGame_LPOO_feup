@@ -6,11 +6,12 @@ import data.Snake;
 
 import java.util.List;
 
-public class SnakeController {
+public class SnakeModel {
+
     private ArenaModel arena;
     private int velocidade;
 
-    public SnakeController(ArenaModel arena,int vel){
+    public SnakeModel(ArenaModel arena,int vel){
         this.arena=arena; this.velocidade=vel;
     }
 

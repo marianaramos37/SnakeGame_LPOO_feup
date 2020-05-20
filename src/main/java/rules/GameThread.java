@@ -9,13 +9,13 @@ public class GameThread extends Thread{
     private ArenaController arenaController;
     private ArenaView gui;
     private ArenaModel arena;
-    private SnakeController snake;
+    private SnakeModel snake;
     private ScoreController scoreController;
     public GameThread(ArenaController cntr){
         arenaController=cntr;
         gui=cntr.getArenaView();
         arena=cntr.getArenaModel();
-        snake=cntr.getArenaModel().getSnakeController();
+        snake=cntr.getArenaModel().getSnakeModel();
         scoreController=cntr.getArenaModel().getScoreController();
     }
 

@@ -26,17 +26,9 @@ public class ArenaController {
         return arena;
     }
 
-    public void setArenaView(ArenaView v){
-        this.gui=v;
-    }
-    public void setArenaModel(ArenaModel m){
-        this.arena=m;
-    }
 
 
-
-
-    public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand, ArenaModel arena, SnakeController snake) throws IOException {
+    public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand, ArenaModel arena, SnakeModel snake) throws IOException {
         if (command == ArenaView.COMMAND.UP) {
             arena.setSnakeHeadPosition(arena.getSnakeHeadPosition().up());
             snake.walkSnake(arena.getSnakeHeadPosition(),'|',arena.getSnake());

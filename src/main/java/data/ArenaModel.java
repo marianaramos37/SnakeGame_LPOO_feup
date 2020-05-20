@@ -2,7 +2,7 @@ package data;
 
 import filereaders.MapReader;
 import rules.ScoreController;
-import rules.SnakeController;
+import rules.SnakeModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class ArenaModel {
 
     private boolean game_over;
 
-    private SnakeController snakeController;
+    private SnakeModel snakeModel;
     private ScoreController scoreController;
 
     public ArenaModel(int width, int height) throws IOException {
@@ -38,7 +38,7 @@ public class ArenaModel {
         //buildWalls();
         this.game_over=false;
 
-        this.snakeController=new SnakeController(this,150);
+        this.snakeModel=new SnakeModel(this,150);
         this.scoreController=new ScoreController();
     }
 
@@ -93,8 +93,8 @@ public class ArenaModel {
         return scoreController;
     }
 
-    public SnakeController getSnakeController() {
-        return snakeController;
+    public SnakeModel getSnakeModel() {
+        return snakeModel;
     }
 
 
@@ -184,11 +184,11 @@ public class ArenaModel {
         }
         if(a instanceof SpecialApple){
             System.out.println("SPECIAL");
-            this.snakeController.setVelocidade(this.snakeController.getVelocidade()/2);
-            this.snakeController.shrink();
+            this.snakeModel.setVelocidade(this.snakeModel.getVelocidade()/2);
+            this.snakeModel.shrink();
         }
         else if(a instanceof PoisonedApple){
-            this.snakeController.poison();
+            this.snakeModel.poison();
             if(getScore().getScore() <= 5){
                 setScore(new SinglePlayerScore());
             }else{
@@ -203,7 +203,7 @@ public class ArenaModel {
             scoreController.incrementScore(topScore);
         }
         if(!snake.getShrink()){
-            snakeController.updateVelocidade();
+            snakeModel.updateVelocidade();
         }
 
     }
@@ -214,7 +214,7 @@ public class ArenaModel {
         Boolean ownBody= getCollidingBody(position,a.getSnake().getPos());
 
         if (eaten != null && !(eaten instanceof PoisonedApple)) {
-            snakeController.growSnake();
+            snakeModel.growSnake();
             eatenApple(eaten);
         }
         if (eaten != null && eaten instanceof PoisonedApple){

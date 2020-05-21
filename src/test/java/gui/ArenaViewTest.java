@@ -2,10 +2,11 @@ package gui;
 
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.screen.TerminalScreen;
-import data.*;
+import model.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import view.ArenaView;
 
 import java.io.IOException;
 import java.util.ArrayList;

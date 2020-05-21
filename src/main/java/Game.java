@@ -1,4 +1,4 @@
-import menus.GameController;
+import controller.GameController;
 
 import java.io.IOException;
 

@@ -12,12 +12,7 @@ public class GameOverState  extends State{
     }
 
     @Override
-    public void init() throws IOException {
-
-    }
-
-    @Override
-    public void doStep() throws IOException, InterruptedException {
+    public void init() throws IOException, InterruptedException {
         super.gameController.gui.drawGameOver();
         ArenaView.COMMAND command = null;
         int x=11, y=23; //single , x=45 -> buildMaps
@@ -40,14 +35,19 @@ public class GameOverState  extends State{
             if(command == ArenaView.COMMAND.ENTER){
                 if(x==11){
                     super.gameController.gui.screen.stopScreen();
-                    super.gameController.changeToMenuState();
                     break;
                 }
                 else{
-                    super.gameController.changeToMenuState();
+                    doStep();
                     break;
                 }
             }
         }
+
+    }
+
+    @Override
+    public void doStep() throws IOException, InterruptedException {
+        super.gameController.changeToMenuState();
     }
 }

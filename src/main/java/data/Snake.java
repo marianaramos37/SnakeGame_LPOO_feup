@@ -9,6 +9,7 @@ public class Snake extends Element{
     private List<Position> pos = new ArrayList<>();
     private int length=0;
     public boolean isShrink = false;
+    private int velocidade;
 
     public Snake(Position position) {
         super(position.getX(),position.getY());
@@ -18,6 +19,7 @@ public class Snake extends Element{
         length++;
         snakebody.add(length, '-');
         pos.add(length,new Position(position.getX()-1,position.getY()));
+        velocidade=150;
     }
 
     public List<Character> getSnakeBody(){ return snakebody; }
@@ -35,13 +37,39 @@ public class Snake extends Element{
         this.length=l;
     }
 
-    /*public Position getHeadPosition() {
-        return headPosition;
-    }
-    public void setHeadPosition(Position position) {
-        this.headPosition = position;
-    }*/
-
     public boolean getShrink(){return isShrink;}
+
+    public int getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(int velocidade) {
+        this.velocidade = velocidade;
+    }
+
+    public void shrink(){
+        this.isShrink = true;
+    }
+
+    public void unshrink(){
+        this.isShrink = false;
+    }
+
+
+    public void poison(){
+        setVelocidade(150); //resets to initial velocity
+
+        if(this.length >= 6){
+            this.length-=5;
+            this.pos=this.pos.subList(0,this.length+1);
+            this.snakebody=this.snakebody.subList(0,this.length+1);
+        }else{
+            this.length=1;
+            this.pos=this.pos.subList(0,2);
+            this.snakebody=this.snakebody.subList(0,2);
+        }
+    }
+
+
 
 }

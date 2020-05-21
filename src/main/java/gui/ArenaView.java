@@ -100,6 +100,7 @@ public class ArenaView {
         }
     }
 
+
     public void drawMenu(MainMenuModel menuModel) {
         try {
             screen.clear();
@@ -134,6 +135,7 @@ public class ArenaView {
             e.printStackTrace();
         }
     }
+
     public void drawSelecting(int x, int y) {
         try {
             TextCharacter c1 = new TextCharacter('o');
@@ -162,7 +164,6 @@ public class ArenaView {
             e.printStackTrace();
         }
     }
-
 
 
     public COMMAND getCommand() throws IOException {

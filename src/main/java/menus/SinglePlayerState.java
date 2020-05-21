@@ -25,15 +25,15 @@ public class SinglePlayerState extends State{
     }
 
     @Override
-    public void init() {
-
+    public void init() throws IOException, InterruptedException {
+        GameThread mov=new GameThread(arenaController);
+        mov.run();
+        mov.join();
+        this.doStep();
     }
 
     @Override
     public void doStep() throws IOException, InterruptedException {
-        GameThread mov=new GameThread(arenaController);
-        mov.run();
-        mov.join();
         super.gameController.changeToGameOverState();
     }
 }

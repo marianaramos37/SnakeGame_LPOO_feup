@@ -5,7 +5,7 @@ import com.googlecode.lanterna.TextCharacter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SinglePlayerScore implements Score{
+public class SinglePlayerScore extends Score {
 
     private int score;
     private List<TextCharacter> text=new ArrayList<>();
@@ -13,6 +13,17 @@ public class SinglePlayerScore implements Score{
 
     public SinglePlayerScore(){
         this.score=0;
+        text.add(new TextCharacter('S'));
+        text.add(new TextCharacter('C'));
+        text.add(new TextCharacter('O'));
+        text.add(new TextCharacter('R'));
+        text.add(new TextCharacter('E'));
+        text.add(new TextCharacter(':'));
+        text.add(new TextCharacter(' '));
+    }
+
+    public SinglePlayerScore(int x){
+        this.score=x;
         text.add(new TextCharacter('S'));
         text.add(new TextCharacter('C'));
         text.add(new TextCharacter('O'));

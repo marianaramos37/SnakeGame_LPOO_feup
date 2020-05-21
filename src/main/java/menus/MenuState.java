@@ -15,12 +15,7 @@ public class MenuState extends State{
     }
 
     @Override
-    public void init() throws IOException {
-        //arenaController=new ArenaController(super.gameController.gui,super.gameController.arenaModel);
-    }
-
-    @Override
-    public void doStep() throws IOException, InterruptedException {
+    public void init() throws IOException, InterruptedException {
         ArenaView.COMMAND command = null;
         int x=11, y=23; //single , x=45 -> buildMaps
         while(true){
@@ -41,7 +36,7 @@ public class MenuState extends State{
             }
             if(command == ArenaView.COMMAND.ENTER){
                 if(x==11){
-                    super.gameController.changeToChooseLevelState();
+                    this.doStep();
                     break;
                 }
             }
@@ -50,7 +45,11 @@ public class MenuState extends State{
                 break;
             }
         }
+    }
 
+    @Override
+    public void doStep() throws IOException, InterruptedException {
+        super.gameController.changeToChooseLevelState();
     }
 
 }

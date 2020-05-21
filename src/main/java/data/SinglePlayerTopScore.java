@@ -5,7 +5,7 @@ import com.googlecode.lanterna.TextCharacter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SinglePlayerTopScore implements Score{
+public class SinglePlayerTopScore extends Score {
 
     private int topScore;
     private List<TextCharacter> text=new ArrayList<>();

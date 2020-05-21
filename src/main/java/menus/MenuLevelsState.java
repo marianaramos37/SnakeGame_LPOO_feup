@@ -10,17 +10,11 @@ public class MenuLevelsState extends State{
     MenuLevelsState(GameController g) {
         super(g);
     }
-
+    private int level;
     @Override
-    public void init() throws IOException {
-        //arenaController=new ArenaController(super.gameController.gui,super.gameController.arenaModel);
-    }
-
-    @Override
-    public void doStep() throws IOException, InterruptedException {
+    public void init() throws IOException, InterruptedException {
         ArenaView.COMMAND command = null;
         int x=11, y=23;
-        int level;
         while(true){
             sleep(150);
             super.gameController.gui.drawMenuLevels();
@@ -47,7 +41,7 @@ public class MenuLevelsState extends State{
                 else{
                     level=3;
                 }
-                super.gameController.changeToSPGameState(level);
+                doStep();
                 break;
             }
             if(command == ArenaView.COMMAND.ESC){
@@ -55,6 +49,11 @@ public class MenuLevelsState extends State{
                 break;
             }
         }
+    }
+
+    @Override
+    public void doStep() throws IOException, InterruptedException {
+        super.gameController.changeToSPGameState(level);
 
     }
 }

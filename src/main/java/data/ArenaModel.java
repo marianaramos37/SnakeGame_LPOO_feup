@@ -20,6 +20,7 @@ public class ArenaModel {
 
     private boolean game_over;
 
+
     public ArenaModel(int width, int height) throws IOException {
         this.width = width;
         this.height = height;
@@ -30,8 +31,8 @@ public class ArenaModel {
         this.apples.add(apple);
         this.apples.add(appleS);
         this.apples.add(appleP);
-        //buildWalls();
         this.game_over=false;
+
     }
 
 
@@ -81,6 +82,8 @@ public class ArenaModel {
 
     public SinglePlayerTopScore getTopScore(){return this.topScore;}
 
+
+
     public void setSnake(Snake s){this.snake=s;}
 
     public void setWalls(List<Wall> l){this.walls=l;}
@@ -92,6 +95,8 @@ public class ArenaModel {
     public void setSnakeHeadPosition(Position position) {
         snake.setPosition(position);
     }
+
+
 
     public boolean getGameOver(){
         return game_over;
@@ -112,5 +117,166 @@ public class ArenaModel {
         }
     }
 
+
+    public void randomWalls(){
+        Wall w;
+
+        w = new Wall (ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
+        while(getCollidingElement(w.getPosition(),getWalls()) != null || getCollidingBody(w.getPosition(),getSnake().getPos()) || getCollidingApples(w.getPosition(),getApples()) != null) {
+            w = new Wall (ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
+        }
+
+        List<Wall> newWalls = getWalls();
+        newWalls.add(w);
+        setWalls(newWalls);
+
+
+    }
+
+    public AppleInterface getCollidingApples(Position position, List<AppleInterface> apples) {
+        for (AppleInterface apple : apples)
+            if (apple.getPosition().equals(position))
+                return apple;
+        return null;
+    }
+
+    public Element getCollidingElement(Position position, List<? extends Element> elements) {
+        for (Element element : elements)
+            if (element.getPosition().equals(position))
+                return element;
+        return null;
+    }
+
+    public boolean getCollidingBody(Position position, List<Position> body){
+        if(!getSnake().isShrink) {
+            for (int i = 1; i < body.size(); i++)
+                if (body.get(i).equals(position))
+                    return true;
+        }
+        return false;
+    }
+
+
+    public void eatenApple(AppleInterface a){
+        int index=0;
+        for(AppleInterface apple: getApples()){
+            if(apple.getPosition().equals(a.getPosition())) {
+                getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1)));
+                while(getCollidingElement(getApples().get(index).getPosition(),getWalls()) != null || getCollidingBody(getApples().get(index).getPosition(),getSnake().getPos())) {
+                    getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1)));
+                }
+                break;
+            }
+            index++;
+        }
+        if(a instanceof SpecialApple){
+            System.out.println("SPECIAL");
+            this.snake.setVelocidade(this.snake.getVelocidade()/2);
+            this.snake.shrink();
+        }
+        else if(a instanceof PoisonedApple){
+            this.snake.poison();
+            if(getScore().getScore() <= 5){
+                setScore(new SinglePlayerScore());
+            }else{
+                setScore(new SinglePlayerScore(getScore().getScore()-5));
+            }
+            score.updatePrintable(score);
+            return;
+        }
+
+        score.incrementScore(score);
+        if (score.getScore() > topScore.getScore()) {
+            topScore.incrementScore(topScore);
+        }
+        if(!snake.getShrink()){
+            this.updateVelocidadeSnake();
+        }
+
+    }
+
+    public void checkCollisions(Position position, ArenaModel a) throws IOException {
+        AppleInterface eaten = getCollidingApples(position, a.getApples());
+        Wall hit = (Wall) getCollidingElement(position, a.getWalls());
+        Boolean ownBody= getCollidingBody(position,a.getSnake().getPos());
+
+        if (eaten != null && !(eaten instanceof PoisonedApple)) {
+            this.growSnake();
+            eatenApple(eaten);
+        }
+        if (eaten != null && eaten instanceof PoisonedApple){
+            eatenApple(eaten);
+        }
+        if(hit != null){
+            a.endGame();
+        }
+        if(ownBody){
+            a.endGame();
+        }
+    }
+
+    public void updateVelocidadeSnake(){
+        if(this.getScore().getScore() % 5 == 0 && this.getScore().getScore() != 0 && this.snake.getVelocidade() > 90){
+            this.snake.setVelocidade(this.snake.getVelocidade()-5);
+        }
+    }
+
+    public void growSnake(){
+        List<Character> snakebody = this.snake.getSnakeBody();
+        List<Position> pos = this.snake.getPos();
+        int length=this.snake.getLength();
+
+        snake.setLength(length+1);
+
+        if(snakebody.get(snake.getLength() - 1) == '-'){
+            snakebody.add(snake.getLength() ,'-');
+
+            if (pos.get(snake.getLength() - 2).getX() + 1 == pos.get(snake.getLength() - 1).getX()) {
+                pos.add(snake.getLength(), new Position(pos.get(snake.getLength() - 1).getX() + 1, pos.get(snake.getLength() - 1).getY()));
+            }
+            if (pos.get(snake.getLength() - 2).getX() - 1 == pos.get(snake.getLength() - 1).getX()) {
+                pos.add(snake.getLength(), new Position(pos.get(snake.getLength() - 1).getX() - 1, pos.get(snake.getLength() - 1).getY()));
+            }
+
+
+        }else{
+            snakebody.add(snake.getLength() ,'|');
+
+            if(pos.get(snake.getLength() -2).getY()+1 == pos.get(snake.getLength() -1).getY()){
+                pos.add(snake.getLength() ,new Position(pos.get(snake.getLength() -1).getX(),pos.get(snake.getLength() -1).getY()+1));
+            }
+            if(pos.get(snake.getLength() -2).getY()-1 == pos.get(snake.getLength() -1).getY()){
+                pos.add(snake.getLength() ,new Position(pos.get(snake.getLength() -1).getX(),pos.get(snake.getLength() -1).getY()-1));
+            }
+        }
+
+        snake.setSnakeBody(snakebody);
+        snake.setPos(pos);
+    }
+
+    public void walkSnake(Position nextPosition, Character headOrientation, Snake snake){
+        List<Character> snakebody = this.snake.getSnakeBody();
+        List<Position> pos = this.snake.getPos();
+
+        Position previous;
+        int index=0;
+        for(Position p:pos){
+            previous=p;
+            pos.set(index,nextPosition);
+            nextPosition=previous;
+            index++;
+        }
+        index=0;
+        Character previousOrientation;
+        for(Character c:snakebody){
+            previousOrientation=c;
+            snakebody.set(index,headOrientation);
+            headOrientation=previousOrientation;
+            index++;
+        }
+
+        this.snake.setSnakeBody(snakebody);
+        this.snake.setPos(pos);
+    }
 
 }

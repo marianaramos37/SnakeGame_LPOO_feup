@@ -1,6 +1,7 @@
 package data;
 
 import com.googlecode.lanterna.TextCharacter;
+import model.SinglePlayerTopScore;
 import org.junit.Test;
 
 import java.io.IOException;

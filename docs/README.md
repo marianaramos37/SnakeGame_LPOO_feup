@@ -14,6 +14,12 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 - **Maçãs**: As maçãs são colocadas em posições aleatórias na arena à medida que a cobra as vai comendo;
 - **Maças Especiais**: Maçãs especiais dão poderes há cobra: ficar mais curta e rápida durante um intervalo de tempo;
 - **TopScore**: Top score é sempre guardado;
+- **Níveis**: Existem três níveis distintos: Fácil, Médio e Difícil;
+- **Obstáculos**: Existem obstáculos no meio da arena que vão aparecendo ao longo do tempo;
+- **Maçãs envenenadas**: Maçãs envenenadas fazem a cobra diminuir de tamanho;
+- **Velocidade** e **tamanho dos obstáculos** mudam ao longo do nível e de nível para nível
+
+**Menus**: para selecionar o modo de jogo e o nível de dificuldade do modo de jogo Single Player.
 
 
 ![screenshot of game](/docs/images/screenshot.png)
@@ -21,15 +27,7 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 
 ## Funcionalidades Planeadas ##
 
-**Menus**: para selecionar o modo de jogo e o nível de dificuldade do modo de jogo Single Player.
-
 **Três modos de jogo:** Single Player, Multi Player e Construção de Mapas, selecionáveis a partir de um menu
-
-**Single Player**
-- **Níveis**: Existem três níveis distintos: Fácil, Médio e Difícil;
-- **Obstáculos**: Existem obstáculos no meio da arena que vão aparecendo ao longo do tempo;
-- **Maçãs envenenadas**: Maçãs envenenadas fazem a cobra diminuir de tamanho;
-- **Velocidade** e **tamanho dos obstáculos** mudam ao longo do nível e de nível para nível
 
 **Multi Player**
 - Estão duas cobras na mesma arena, a ser controladas por partes do teclado diferentes;
@@ -42,10 +40,10 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 ## Architetural Pattern ##
 O nosso programa tem o padrão arquitetural MVC (Model-View-Controller). 
 Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
-- Model (package **data**): Contém todos os elementos do jogo.
-- View (package **gui**): Representa a visualização de todos os dados contidos no model.
-- Controller (package **rules**): Existe entre a *view* e o *model*. O controller responde aos eventos enviados 
-por *view* e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação irá mudar o *model* e será
+- Model (package **model**): Contém todos os elementos do jogo.
+- View (package **view**): Representa a visualização de todos os dados contidos no model.
+- Controller (package **controller**): Existe entre a *view* e o *model*. O controller responde aos eventos enviados 
+por *view* e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação irá mudar o *model* que será
 visualizado por view.
 
 
@@ -89,12 +87,14 @@ Para além dos packages já mencionados decidimos adicionar:
   Nas Classes Apple, todas as maçãs implementam os mesmos métodos. Acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface AppleInterface. ArenaModel pode ter uma lista de objetos AppleInterface em vez que ter uma lista diferente para cada classe que implementa a interface. Podemos usar o método getChar, ou outro método qualquer instanciado na interface, num elemento da interface Apple que o mesmo vai devolver o valor correto da classe concreta da Apple que o chama.
  Ao implementar este padrão respeitamos o Open-Close Principle.
  
- 
+## Menus
+- **Contexto do problema**
+- **Command Pattern**
+- **Implementação**
+- **Consequências**
  
 ## Code Smells and Refactoring Technics
  - A velocidade default da snake é 150 (de momento, mais tarde este valor será variável). É o que se chama um **Magic Number** e deve ser substituído através da utilizacão de uma **Symbolic Constant** para uma melhor organização e compreeensão do código.
-
- - A classe Snake tem um public field boolean isShrink que devia ser encapsulado através da criação de métodos get e set para esta variável (Encapsulate Field), uma vez que não é boa prática ter campos públicos numa classe.
 
  - O método movement() da ArenaController pode ser simplificado removendo o código duplicado para um método diferente (**Extract Method**). Tornando o método movement muito mais legível e pequeno, uma vez que as if-statements do mesmo são longas e complexas.
 

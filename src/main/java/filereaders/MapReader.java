@@ -1,6 +1,6 @@
 package filereaders;
 
-import data.Wall;
+import model.Wall;
 
 import java.io.*;
 import java.nio.charset.Charset;

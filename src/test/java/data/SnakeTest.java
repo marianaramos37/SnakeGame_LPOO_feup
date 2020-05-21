@@ -1,11 +1,15 @@
 package data;
 
+import model.Position;
+import model.Snake;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 public class SnakeTest {
@@ -71,6 +75,22 @@ public class SnakeTest {
         snake.setSnakeBody(newbody);
 
         assertEquals(newbody, snake.getSnakeBody());
+    }
+
+    @Test
+    public void shrinkSnakeTest() {
+        Snake snake = new Snake(headPosition);
+        snake.setSnakeBody(snakebody);
+        snake.shrink();
+        assertTrue(snake.getShrink());
+    }
+
+    @Test
+    public void unshrinkSnakeTest() {
+        Snake snake = new Snake(headPosition);
+        snake.setSnakeBody(snakebody);
+        snake.unshrink();
+        assertFalse(snake.getShrink());
     }
 
 }

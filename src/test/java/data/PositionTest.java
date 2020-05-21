@@ -1,4 +1,5 @@
 package data;
+import model.Position;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

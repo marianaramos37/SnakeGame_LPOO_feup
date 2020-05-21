@@ -12,6 +12,7 @@ public class ArenaModel {
     private int height;
 
     private Snake snake;
+    private Snake snake2;
     private List<Wall> walls= new ArrayList<>();
     private List<AppleInterface> apples=new ArrayList<>();
 
@@ -25,6 +26,7 @@ public class ArenaModel {
         this.width = width;
         this.height = height;
         this.snake = new Snake(new Position(width / 2, height / 2));
+        this.snake2=new Snake(new Position(3,3));
         Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         PoisonedApple appleP= new PoisonedApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
@@ -35,11 +37,11 @@ public class ArenaModel {
 
     }
 
-
     public ArenaModel(int width, int height,String filename) throws IOException {
         this.width = width;
         this.height = height;
         this.snake = new Snake(new Position(width / 2, height / 2));
+        this.snake2=new Snake(new Position(3,3));
         Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         PoisonedApple appleP= new PoisonedApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
@@ -68,10 +70,6 @@ public class ArenaModel {
         return score;
     }
 
-    public Position getSnakeHeadPosition() {
-        return snake.getPosition();
-    }
-
     public Snake getSnake(){return snake;}
 
     public List<Wall> getWalls(){
@@ -82,6 +80,13 @@ public class ArenaModel {
 
     public SinglePlayerTopScore getTopScore(){return this.topScore;}
 
+    public Snake getSnake2() {
+        return snake2;
+    }
+
+    public void setSnake2(Snake snake2) {
+        this.snake2 = snake2;
+    }
 
 
     public void setSnake(Snake s){this.snake=s;}
@@ -91,10 +96,6 @@ public class ArenaModel {
     public void setApples(List<AppleInterface> l){this.apples=l;}
 
     public void setScore(SinglePlayerScore s){this.score=s;}
-
-    public void setSnakeHeadPosition(Position position) {
-        snake.setPosition(position);
-    }
 
 
 
@@ -170,7 +171,6 @@ public class ArenaModel {
             index++;
         }
         if(a instanceof SpecialApple){
-            System.out.println("SPECIAL");
             this.getSnake().setVelocidade(this.snake.getVelocidade()/2);
             this.getSnake().shrink();
         }
@@ -201,10 +201,10 @@ public class ArenaModel {
         Boolean ownBody= getCollidingBody(position);
 
         if (eaten != null && !(eaten instanceof PoisonedApple)) {
-            this.growSnake();
+            this.growSnake(this.snake);
             eatenApple(eaten);
         }
-        if (eaten != null && eaten instanceof PoisonedApple){
+        if (eaten instanceof PoisonedApple){
             eatenApple(eaten);
         }
         if(hit != null){
@@ -221,42 +221,42 @@ public class ArenaModel {
         }
     }
 
-    public void growSnake(){
-        List<Character> snakebody = this.snake.getSnakeBody();
-        List<Position> pos = this.snake.getPos();
-        int length=this.snake.getLength();
+    public void growSnake(Snake s){
+        List<Character> snakebody = s.getSnakeBody();
+        List<Position> pos = s.getPos();
+        int length=s.getLength();
 
-        snake.setLength(length+1);
+        s.setLength(length+1);
 
-        if(snakebody.get(snake.getLength() - 1) == '-'){
-            snakebody.add(snake.getLength() ,'-');
+        if(snakebody.get(s.getLength() - 1) == '-'){
+            snakebody.add(s.getLength() ,'-');
 
-            if (pos.get(snake.getLength() - 2).getX() + 1 == pos.get(snake.getLength() - 1).getX()) {
-                pos.add(snake.getLength(), new Position(pos.get(snake.getLength() - 1).getX() + 1, pos.get(snake.getLength() - 1).getY()));
+            if (pos.get(s.getLength() - 2).getX() + 1 == pos.get(s.getLength() - 1).getX()) {
+                pos.add(s.getLength(), new Position(pos.get(s.getLength() - 1).getX() + 1, pos.get(s.getLength() - 1).getY()));
             }
-            if (pos.get(snake.getLength() - 2).getX() - 1 == pos.get(snake.getLength() - 1).getX()) {
-                pos.add(snake.getLength(), new Position(pos.get(snake.getLength() - 1).getX() - 1, pos.get(snake.getLength() - 1).getY()));
+            if (pos.get(s.getLength() - 2).getX() - 1 == pos.get(s.getLength() - 1).getX()) {
+                pos.add(s.getLength(), new Position(pos.get(s.getLength() - 1).getX() - 1, pos.get(s.getLength() - 1).getY()));
             }
 
 
         }else{
-            snakebody.add(snake.getLength() ,'|');
+            snakebody.add(s.getLength() ,'|');
 
-            if(pos.get(snake.getLength() -2).getY()+1 == pos.get(snake.getLength() -1).getY()){
-                pos.add(snake.getLength() ,new Position(pos.get(snake.getLength() -1).getX(),pos.get(snake.getLength() -1).getY()+1));
+            if(pos.get(s.getLength() -2).getY()+1 == pos.get(s.getLength() -1).getY()){
+                pos.add(s.getLength() ,new Position(pos.get(s.getLength() -1).getX(),pos.get(s.getLength() -1).getY()+1));
             }
-            if(pos.get(snake.getLength() -2).getY()-1 == pos.get(snake.getLength() -1).getY()){
-                pos.add(snake.getLength() ,new Position(pos.get(snake.getLength() -1).getX(),pos.get(snake.getLength() -1).getY()-1));
+            if(pos.get(s.getLength() -2).getY()-1 == pos.get(s.getLength() -1).getY()){
+                pos.add(s.getLength() ,new Position(pos.get(s.getLength() -1).getX(),pos.get(s.getLength() -1).getY()-1));
             }
         }
 
-        snake.setSnakeBody(snakebody);
-        snake.setPos(pos);
+        s.setSnakeBody(snakebody);
+        s.setPos(pos);
     }
 
-    public void walkSnake(Position nextPosition, Character headOrientation, Snake snake){
-        List<Character> snakebody = this.snake.getSnakeBody();
-        List<Position> pos = this.snake.getPos();
+    public void walkSnake(Position nextPosition, Character headOrientation, Snake s){
+        List<Character> snakebody = s.getSnakeBody();
+        List<Position> pos = s.getPos();
 
         Position previous;
         int index=0;
@@ -275,8 +275,8 @@ public class ArenaModel {
             index++;
         }
 
-        this.snake.setSnakeBody(snakebody);
-        this.snake.setPos(pos);
+        s.setSnakeBody(snakebody);
+        s.setPos(pos);
     }
 
 }

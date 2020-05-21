@@ -4,6 +4,7 @@ import model.MainMenuModel;
 import view.ArenaView;
 import controller.GameController;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static java.lang.Thread.sleep;
@@ -16,16 +17,16 @@ public class MenuState extends State{
     }
 
     @Override
-    public void init() throws IOException, InterruptedException {
+    public void init() throws IOException, InterruptedException, FontFormatException {
         ArenaView.COMMAND command = null;
         int x=11, y=23; //single , x=45 -> buildMaps
         while(true){
             sleep(150);
-            super.gameController.gui.drawMenu(menuModel);
-            command=super.gameController.gui.getCommand();
-            super.gameController.gui.drawSelecting(x,y);
+            super.gameController.menuViews.drawMenu(menuModel);
+            command=super.gameController.arenaView.getCommand();
+            super.gameController.menuViews.drawSelecting(x,y);
             if(command == ArenaView.COMMAND.LEFT){
-                super.gameController.gui.screen.clear();
+                super.gameController.arenaView.screen.clear();
                 if(x!=11){
                     x-=17;
                 }
@@ -40,17 +41,22 @@ public class MenuState extends State{
                     this.doStep();
                     break;
                 }
+                if(x==28){
+                    this.doStep2();
+                }
             }
             if(command == ArenaView.COMMAND.ESC){
-                super.gameController.gui.screen.stopScreen();
+                super.gameController.arenaView.screen.stopScreen();
                 break;
             }
         }
     }
 
     @Override
-    public void doStep() throws IOException, InterruptedException {
+    public void doStep() throws IOException, InterruptedException, FontFormatException {
         super.gameController.changeToChooseLevelState();
     }
-
+    public void doStep2() throws IOException, InterruptedException, FontFormatException {
+        super.gameController.changeToMultyPlayerState();
+    }
 }

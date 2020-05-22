@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Snake extends Element{
+public class Snake{
     private Position headPosition;
     private List<Character> snakebody = new ArrayList<>();
     private List<Position> pos = new ArrayList<>();
@@ -12,7 +12,6 @@ public class Snake extends Element{
     private int velocidade;
 
     public Snake(Position position) {
-        super(position.getX(),position.getY());
         this.headPosition = position;
         snakebody.add(length, '-');
         pos.add(length,position);
@@ -22,6 +21,7 @@ public class Snake extends Element{
         velocidade=150;
     }
 
+
     public List<Character> getSnakeBody(){ return snakebody; }
     public void setSnakeBody(List<Character> sb){this.snakebody=sb;}
 
@@ -29,6 +29,13 @@ public class Snake extends Element{
         return pos;
     }
     public void setPos(List<Position> pos){this.pos=pos;}
+
+    public Position getPosition() {
+        return headPosition;
+    }
+    public void setPosition(Position headPosition) {
+        this.headPosition = headPosition;
+    }
 
     public int getLength(){
         return length;
@@ -42,7 +49,6 @@ public class Snake extends Element{
     public int getVelocidade() {
         return velocidade;
     }
-
     public void setVelocidade(int velocidade) {
         this.velocidade = velocidade;
     }
@@ -50,11 +56,9 @@ public class Snake extends Element{
     public void shrink(){
         this.isShrink = true;
     }
-
     public void unshrink(){
         this.isShrink = false;
     }
-
 
     public void poison(){
         setVelocidade(150); //resets to initial velocity
@@ -69,7 +73,5 @@ public class Snake extends Element{
             this.snakebody=this.snakebody.subList(0,2);
         }
     }
-
-
 
 }

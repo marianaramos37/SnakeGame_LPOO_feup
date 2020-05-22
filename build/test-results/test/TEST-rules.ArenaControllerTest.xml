@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="rules.ArenaControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-21T23:16:03" hostname="LAPTOP-DDA1VVIE" time="0.48">
-  <properties/>
-  <testcase name="movementTest" classname="rules.ArenaControllerTest" time="0.48"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

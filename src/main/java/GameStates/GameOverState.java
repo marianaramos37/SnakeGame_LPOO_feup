@@ -3,6 +3,7 @@ package GameStates;
 import view.ArenaView;
 import controller.GameController;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static java.lang.Thread.sleep;
@@ -13,17 +14,17 @@ public class GameOverState  extends State{
     }
 
     @Override
-    public void init() throws IOException, InterruptedException {
-        super.gameController.gui.drawGameOver();
+    public void init() throws IOException, InterruptedException, FontFormatException {
+        super.gameController.menuViews.drawGameOver();
         ArenaView.COMMAND command = null;
         int x=11, y=23; //single , x=45 -> buildMaps
         while(true){
             sleep(150);
-            super.gameController.gui.drawGameOver();
-            command=super.gameController.gui.getCommand();
-            super.gameController.gui.drawSelecting(x,y);
+            super.gameController.menuViews.drawGameOver();
+            command=super.gameController.arenaView.getCommand();
+            super.gameController.menuViews.drawSelecting(x,y);
             if(command == ArenaView.COMMAND.LEFT){
-                super.gameController.gui.screen.clear();
+                super.gameController.arenaView.screen.clear();
                 if(x!=11){
                     x-=32;
                 }
@@ -35,7 +36,7 @@ public class GameOverState  extends State{
             }
             if(command == ArenaView.COMMAND.ENTER){
                 if(x==11){
-                    super.gameController.gui.screen.stopScreen();
+                    super.gameController.arenaView.screen.stopScreen();
                     break;
                 }
                 else{
@@ -48,7 +49,7 @@ public class GameOverState  extends State{
     }
 
     @Override
-    public void doStep() throws IOException, InterruptedException {
+    public void doStep() throws IOException, InterruptedException, FontFormatException {
         super.gameController.changeToMenuState();
     }
 }

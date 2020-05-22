@@ -1,36 +1,28 @@
 package GameStates;
 
-import model.ArenaModel;
 import controller.ArenaController;
 import controller.GameController;
-import controller.GameThread;
+import controller.GameThread2;
+import model.ArenaModel;
 
 import java.awt.*;
 import java.io.IOException;
 
-public class SinglePlayerState extends State{
+public class MultyPlayerState extends State{
     public ArenaController arenaController;
     public ArenaModel arenaModel;
 
-    public SinglePlayerState(GameController g, int level) throws IOException {
+    public MultyPlayerState(GameController g) throws IOException {
         super(g);
-        if(level==1){
-            arenaModel=new ArenaModel(60, 30);
-        }
-        else if(level==2){
-            arenaModel= new ArenaModel(60, 30,"src/main/java/files/mapMedium.txt");
-        }
-        else if(level==3){
-            arenaModel= new ArenaModel(60, 30,"src/main/java/files/mapHard.txt");
-        }
+        arenaModel=new ArenaModel(60, 30);
         arenaController=new ArenaController(g.arenaView,arenaModel);
     }
 
     @Override
     public void init() throws IOException, InterruptedException, FontFormatException {
-        GameThread mov=new GameThread(arenaController);
-        mov.start();
-        mov.join();
+        GameThread2 mov2= new GameThread2(arenaController);
+        mov2.start();
+        mov2.join();
         this.doStep();
     }
 

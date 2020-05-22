@@ -31,6 +31,7 @@ public class GameThread extends Thread{
             //comeca jogo
             while (true) {
                 sleep(arena.getSnake().getVelocidade());
+
                 command = gui.getCommand();
                 if (command != null) {
                     if (command == ArenaView.COMMAND.UP && prevcommand == ArenaView.COMMAND.DOWN) {
@@ -66,10 +67,10 @@ public class GameThread extends Thread{
                             counter = 0;
                         }
                     }
-
                     arenaController.movement(command, prevcommand, arena);
 
-                    gui.drawArena(arena);
+                    gui.drawArena(arena,1);
+
                 } else {
                     //jogo acabou , atualiza topScore
                     arena.getTopScore().fileWriter(arena.getTopScore().getFilename(), arena.getTopScore());

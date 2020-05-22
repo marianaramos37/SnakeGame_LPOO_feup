@@ -1,8 +1,6 @@
 package GameStates;
 
-import controller.ArenaController;
-import controller.GameController;
-import controller.GameThread2;
+import controller.*;
 import model.ArenaModel;
 
 import java.awt.*;
@@ -21,8 +19,11 @@ public class MultyPlayerState extends State{
     @Override
     public void init() throws IOException, InterruptedException, FontFormatException {
         GameThread2 mov2= new GameThread2(arenaController);
+        GameThread1 mov = new GameThread1(arenaController);
         mov2.start();
+        mov.start();
         mov2.join();
+        mov.join();
         this.doStep();
     }
 

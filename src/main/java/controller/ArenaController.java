@@ -88,7 +88,7 @@ public class ArenaController {
 
     public void movement2(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand, ArenaModel arena) throws IOException {
         Snake snake2 = arena.getSnake2();
-        if (command == ArenaView.COMMAND.DOWN2) {
+        if (command == ArenaView.COMMAND.UP2) {
             snake2.setPosition(arena.getSnake2().getPosition().up());
             arena.setSnake2(snake2);
             arena.walkSnake(arena.getSnake2().getPosition(),'|',arena.getSnake2());

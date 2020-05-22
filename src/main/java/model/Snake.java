@@ -18,7 +18,7 @@ public class Snake{
         length++;
         snakebody.add(length, '-');
         pos.add(length,new Position(position.getX()-1,position.getY()));
-        velocidade=300;
+        velocidade=250;
     }
 
 
@@ -61,7 +61,7 @@ public class Snake{
     }
 
     public void poison(){
-        setVelocidade(300); //resets to initial velocity
+        setVelocidade(250); //resets to initial velocity
 
         if(this.length >= 6){
             this.length-=5;

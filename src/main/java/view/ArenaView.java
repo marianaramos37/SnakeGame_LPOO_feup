@@ -71,7 +71,6 @@ public class ArenaView extends View{
 
             if(n==1) drawSnake(arena.getSnake());
             else{
-                drawSnake(arena.getSnake());
                 drawSnake(arena.getSnake2());
             }
             screen.refresh();

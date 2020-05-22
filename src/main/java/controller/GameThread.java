@@ -50,9 +50,7 @@ public class GameThread extends Thread{
                 }
                 if (!arena.getGameOver()) {
                     arena.checkCollisions(arena.getSnake().getPosition());
-
-                    //spawn de paredes dependendo do nível de dificuldade (if statement + estado da máquina de estados do menu)
-                    //the way it is makes it so that only one wall spawns when score is multiple of 10
+                    //spawn de acordo com nivel de dificuldade
                     if (arena.getScore().getScore() % 10 == 0 && arena.getScore().getScore() != 0 && wallSpawn == 0) {
                         arena.randomWalls();
                         wallSpawn++;

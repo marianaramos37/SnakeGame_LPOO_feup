@@ -54,7 +54,7 @@ public abstract class View {
             if (key.getCharacter() == 'w') {
                 return ArenaView.COMMAND.UP2;
             }
-            if (key.getCharacter()=='d') {
+            if (key.getCharacter() =='d') {
                 return ArenaView.COMMAND.RIGHT2;
             }
             if (key.getCharacter()=='s'){

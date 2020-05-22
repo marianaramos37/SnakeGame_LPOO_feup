@@ -1,7 +1,9 @@
 package controller;
 
+import model.Snake;
 import view.ArenaView;
 import model.ArenaModel;
+import view.View;
 
 import java.io.IOException;
 
@@ -23,81 +25,117 @@ public class ArenaController {
 
 
     public void movement(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand, ArenaModel arena) throws IOException {
+        Snake snake = arena.getSnake();
         if (command == ArenaView.COMMAND.UP) {
-            arena.getSnake().setPosition(arena.getSnake().getPosition().up());
+            snake.setPosition(arena.getSnake().getPosition().up());
+            arena.setSnake(snake);
             arena.walkSnake(arena.getSnake().getPosition(),'|',arena.getSnake());
+            return;
         }
-        if (command == ArenaView.COMMAND.RIGHT) {
-            arena.getSnake().setPosition(arena.getSnake().getPosition().right());
+        else if (command == ArenaView.COMMAND.RIGHT) {
+            snake.setPosition(arena.getSnake().getPosition().right());
+            arena.setSnake(snake);
             arena.walkSnake(arena.getSnake().getPosition(),'-',arena.getSnake());
+            return;
         }
-        if (command == ArenaView.COMMAND.DOWN) {
-            arena.getSnake().setPosition(arena.getSnake().getPosition().down());
+        else if (command == ArenaView.COMMAND.DOWN) {
+            snake.setPosition(arena.getSnake().getPosition().down());
+            arena.setSnake(snake);
             arena.walkSnake(arena.getSnake().getPosition(),'|',arena.getSnake());
+            return;
         }
-        if (command == ArenaView.COMMAND.LEFT) {
-            arena.getSnake().setPosition(arena.getSnake().getPosition().left());
+        else if (command == ArenaView.COMMAND.LEFT) {
+            snake.setPosition(arena.getSnake().getPosition().left());
+            arena.setSnake(snake);
             arena.walkSnake(arena.getSnake().getPosition(),'-',arena.getSnake());
+            return;
         }
-        if(command==ArenaView.COMMAND.ESC){
+        else if(command==ArenaView.COMMAND.ESC){
             arena.endGame();
+            return;
         }
         else{
             if (prevcommand == ArenaView.COMMAND.UP) {
-                arena.getSnake().setPosition(arena.getSnake().getPosition().up());
+                snake.setPosition(arena.getSnake().getPosition().up());
+                arena.setSnake(snake);
                 arena.walkSnake(arena.getSnake().getPosition(),'|',arena.getSnake());
+                return;
             }
             if (prevcommand == ArenaView.COMMAND.RIGHT) {
-                arena.getSnake().setPosition(arena.getSnake().getPosition().right());
+                snake.setPosition(arena.getSnake().getPosition().right());
+                arena.setSnake(snake);
                 arena.walkSnake(arena.getSnake().getPosition(),'-',arena.getSnake());
+                return;
             }
             if (prevcommand == ArenaView.COMMAND.DOWN) {
-                arena.getSnake().setPosition(arena.getSnake().getPosition().down());
+                snake.setPosition(arena.getSnake().getPosition().down());
+                arena.setSnake(snake);
                 arena.walkSnake(arena.getSnake().getPosition(),'|',arena.getSnake());
+                return;
             }
             if (prevcommand == ArenaView.COMMAND.LEFT) {
-                arena.getSnake().setPosition(arena.getSnake().getPosition().left());
+                snake.setPosition(arena.getSnake().getPosition().left());
+                arena.setSnake(snake);
                 arena.walkSnake(arena.getSnake().getPosition(),'-',arena.getSnake());
+                return;
             }
             if(prevcommand==ArenaView.COMMAND.ESC){
                 arena.endGame();
+                return;
             }
         }
     }
 
     public void movement2(ArenaView.COMMAND command,ArenaView.COMMAND prevcommand, ArenaModel arena) throws IOException {
-        if (command == ArenaView.COMMAND.UP2) {
-            arena.getSnake2().setPosition(arena.getSnake2().getPosition().up());
+        Snake snake2 = arena.getSnake2();
+        if (command == ArenaView.COMMAND.DOWN2) {
+            snake2.setPosition(arena.getSnake2().getPosition().up());
+            arena.setSnake2(snake2);
             arena.walkSnake(arena.getSnake2().getPosition(),'|',arena.getSnake2());
+            return;
         }
         if (command == ArenaView.COMMAND.RIGHT2) {
-            arena.getSnake2().setPosition(arena.getSnake2().getPosition().right());
+            snake2.setPosition(arena.getSnake2().getPosition().right());
+            arena.setSnake2(snake2);
             arena.walkSnake(arena.getSnake2().getPosition(),'-',arena.getSnake2());
+            return;
         }
         if (command == ArenaView.COMMAND.DOWN2) {
-            arena.getSnake2().setPosition(arena.getSnake2().getPosition().down());
+            snake2.setPosition(arena.getSnake2().getPosition().down());
+            arena.setSnake2(snake2);
             arena.walkSnake(arena.getSnake2().getPosition(),'|',arena.getSnake2());
+            return;
         }
         if (command == ArenaView.COMMAND.LEFT2) {
-            arena.getSnake2().setPosition(arena.getSnake2().getPosition().left());
+            snake2.setPosition(arena.getSnake2().getPosition().left());
+            arena.setSnake2(snake2);
             arena.walkSnake(arena.getSnake2().getPosition(),'-',arena.getSnake2());
+            return;
         }
         else{
             if (prevcommand == ArenaView.COMMAND.UP2) {
-                arena.getSnake2().setPosition(arena.getSnake2().getPosition().up());
+                snake2.setPosition(arena.getSnake2().getPosition().up());
+                arena.setSnake2(snake2);
                 arena.walkSnake(arena.getSnake2().getPosition(),'|',arena.getSnake2());
+                return;
             }
             if (prevcommand == ArenaView.COMMAND.RIGHT2) {
-                arena.getSnake2().setPosition(arena.getSnake2().getPosition().right());
+                snake2.setPosition(arena.getSnake2().getPosition().right());
+                arena.setSnake2(snake2);
                 arena.walkSnake(arena.getSnake2().getPosition(),'-',arena.getSnake2());
+                return;
             }
             if (prevcommand == ArenaView.COMMAND.DOWN2) {
-                arena.getSnake2().setPosition(arena.getSnake2().getPosition().down());
+                snake2.setPosition(arena.getSnake2().getPosition().down());
+                arena.setSnake2(snake2);
                 arena.walkSnake(arena.getSnake2().getPosition(),'|',arena.getSnake2());
+                return;
             }
             if (prevcommand == ArenaView.COMMAND.LEFT2) {
-                arena.getSnake2().setPosition(arena.getSnake2().getPosition().left());
+                snake2.setPosition(arena.getSnake2().getPosition().left());
+                arena.setSnake2(snake2);
                 arena.walkSnake(arena.getSnake2().getPosition(),'-',arena.getSnake2());
+                return;
             }
         }
     }

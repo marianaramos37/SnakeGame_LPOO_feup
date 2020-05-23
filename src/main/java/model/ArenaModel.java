@@ -119,6 +119,7 @@ public class ArenaModel {
     }
 
 
+
     public void randomWalls(){
         Wall w;
 
@@ -278,5 +279,4 @@ public class ArenaModel {
         s.setSnakeBody(snakebody);
         s.setPos(pos);
     }
-
 }

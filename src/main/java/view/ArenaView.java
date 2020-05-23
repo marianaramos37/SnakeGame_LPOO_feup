@@ -36,7 +36,6 @@ public class ArenaView extends View{
         }
     }
 
-
     public void drawWalls(ArenaModel arena) {
         List<Wall> walls=arena.getWalls();
         for(Wall wall:walls)

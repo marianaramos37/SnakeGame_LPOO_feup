@@ -19,7 +19,7 @@ public class MenuState extends State{
     @Override
     public void init() throws IOException, InterruptedException, FontFormatException {
         ArenaView.COMMAND command = null;
-        int x=11, y=23; //single , x=45 -> buildMaps
+        int x=13, y=23; //single
         while(true){
             sleep(150);
             super.gameController.menuViews.drawMenu(menuModel);
@@ -27,23 +27,27 @@ public class MenuState extends State{
             super.gameController.menuViews.drawSelecting(x,y);
             if(command == ArenaView.COMMAND.LEFT){
                 super.gameController.arenaView.screen.clear();
-                if(x!=11){
-                    x-=17;
+                if(x!=13){
+                    x-=30;
                 }
             }
             if(command == ArenaView.COMMAND.RIGHT){
-                if(x!=45){
-                    x+=17;
+                if(x!=43){
+                    x+=30;
                 }
             }
             if(command == ArenaView.COMMAND.ENTER){
-                if(x==11){
+                if(x==13){
                     this.doStep();
                     break;
                 }
-                if(x==28){
+                if(x==43){
                     this.doStep2();
                 }
+            }
+            if(command == ArenaView.COMMAND.I){
+                this.doStep3();
+                break;
             }
             if(command == ArenaView.COMMAND.ESC){
                 super.gameController.arenaView.screen.stopScreen();
@@ -58,5 +62,8 @@ public class MenuState extends State{
     }
     public void doStep2() throws IOException, InterruptedException, FontFormatException {
         super.gameController.changeToMultyPlayerState();
+    }
+    public void doStep3() throws IOException, InterruptedException, FontFormatException {
+        super.gameController.changeToInstructionsState();
     }
 }

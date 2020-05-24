@@ -12,7 +12,7 @@ public class MultyPlayerState extends State{
 
     public MultyPlayerState(GameController g) throws IOException {
         super(g);
-        arenaModel=new ArenaModel(60, 30);
+        arenaModel=new ArenaModel(60, 30,"src/main/java/files/mapHard.txt");
         arenaController=new ArenaController(g.arenaView,g.menuViews,arenaModel);
     }
 

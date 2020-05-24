@@ -26,7 +26,7 @@ public class GameThread2 extends Thread {
             int result_snake1=0;
             int result_snake2=0;
 
-            while (result_snake1!=3||result_snake2!=3) {
+            while (result_snake1!=3&&result_snake2!=3) {
                 Thread.sleep(arena.getSnake2().getVelocidade());
                 command=arenaController.getArenaView().getCommand();
 

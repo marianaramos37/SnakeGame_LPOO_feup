@@ -55,7 +55,7 @@ Para além dos packages já mencionados decidimos adicionar:
 
 ## Design ##
 
- ### Métodos iguais em classes diferentes ###
+ ### Métodos iguais em classes diferentes ### ---> já nao estamos a usar
  - **Contexto do problema**
  Tanto a classe [Snake](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/7194fca72d4975f532b82e50f981bdc8e7ece2c9/src/main/java/data/Snake.java#L6) como a classe [Wall](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/Wall.java#L3) funcionam à base de getters e setters de posições (apesar da classe Snake ter uma lista de posições, é necessário saber a posição da cabeça da Snake a todo o momento). Como era necessário fazer comparações de posições e usar métodos muito comuns às duas classes, decidimos que as duas classes deviam extender a mesma classe Element.
  
@@ -90,6 +90,12 @@ Para além dos packages já mencionados decidimos adicionar:
 ## Menus
 - **Contexto do problema**
 - **Command Pattern**
+- **Implementação**
+- **Consequências**
+
+## Criação de obstáculos
+- **Contexto do problema**
+- **Composite Pattern**
 - **Implementação**
 - **Consequências**
  

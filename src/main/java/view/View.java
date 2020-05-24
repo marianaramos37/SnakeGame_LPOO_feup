@@ -28,7 +28,7 @@ public abstract class View {
         screen.doResizeIfNecessary();     // resize screen if necessary
     }
 
-    public enum COMMAND {UP, RIGHT, DOWN, LEFT, ESC,ENTER,UP2,RIGHT2,DOWN2,LEFT2}
+    public enum COMMAND {UP,RIGHT,DOWN,LEFT,ESC,ENTER,UP2,RIGHT2,DOWN2,LEFT2,I}
 
     public ArenaView.COMMAND getCommand() throws IOException {
         KeyStroke key = screen.pollInput();
@@ -62,6 +62,10 @@ public abstract class View {
             }
             if (key.getCharacter()=='a'){
                 return ArenaView.COMMAND.LEFT2;
+            }
+            if (key.getCharacter()=='i'){
+                System.out.println("carreguei");
+                return ArenaView.COMMAND.I;
             }
             else return null;
         }

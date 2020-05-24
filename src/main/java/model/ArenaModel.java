@@ -14,6 +14,7 @@ public class ArenaModel {
     private Snake snake;
     private Snake snake2;
     private List<Wall> walls= new ArrayList<>();
+    private List<Obstaculo> obstaculos= new ArrayList<>();
     private List<AppleInterface> apples=new ArrayList<>();
 
     private SinglePlayerScore score = new SinglePlayerScore();
@@ -33,6 +34,8 @@ public class ArenaModel {
         this.apples.add(apple);
         this.apples.add(appleS);
         this.apples.add(appleP);
+        Obstaculo obstaculo= new Obstaculo(new Position(20,20));
+        obstaculos.add(obstaculo);
         this.game_over=false;
 
     }
@@ -40,8 +43,8 @@ public class ArenaModel {
     public ArenaModel(int width, int height,String filename) throws IOException {
         this.width = width;
         this.height = height;
-        this.snake = new Snake(new Position(width / 2, height / 2));
-        this.snake2=new Snake(new Position(3,3));
+        this.snake = new Snake(new Position(50, 17));
+        this.snake2=new Snake(new Position(7,17));
         Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         PoisonedApple appleP= new PoisonedApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
@@ -54,7 +57,6 @@ public class ArenaModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         this.game_over=false;
     }
 
@@ -74,6 +76,10 @@ public class ArenaModel {
 
     public List<Wall> getWalls(){
         return this.walls;
+    }
+
+    public List<Obstaculo> getObstaculos(){
+        return this.obstaculos;
     }
 
     public List<AppleInterface> getApples(){return this.apples;}

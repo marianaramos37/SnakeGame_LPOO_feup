@@ -23,7 +23,7 @@ public class SinglePlayerState extends State{
         else if(level==3){
             arenaModel= new ArenaModel(60, 30,"src/main/java/files/mapHard.txt");
         }
-        arenaController=new ArenaController(g.arenaView,arenaModel);
+        arenaController=new ArenaController(g.arenaView,g.menuViews,arenaModel);
     }
 
     @Override

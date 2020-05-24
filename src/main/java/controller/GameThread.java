@@ -49,7 +49,7 @@ public class GameThread extends Thread{
                     prevcommand = command;
                 }
                 if (!arena.getGameOver()) {
-                    arena.checkCollisions(arena.getSnake().getPosition());
+                    arena.checkCollisions(arena.getSnake().getPosition(),arena.getSnake());
                     //spawn de acordo com nivel de dificuldade
                     if (arena.getScore().getScore() % 10 == 0 && arena.getScore().getScore() != 0 && wallSpawn == 0) {
                         arena.randomWalls();

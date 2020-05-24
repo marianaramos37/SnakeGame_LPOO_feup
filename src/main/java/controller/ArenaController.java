@@ -2,20 +2,26 @@ package controller;
 
 import model.ArenaModel;
 import view.ArenaView;
+import view.MenuViews;
 
 import java.io.IOException;
 
 public class ArenaController {
-    private ArenaView gui;
+    private ArenaView arenaView;
+    private MenuViews menuViews;
     private ArenaModel arena;
 
-    public ArenaController(ArenaView gui, ArenaModel arena) {
-        this.gui = gui;
+    public ArenaController(ArenaView gui,MenuViews m, ArenaModel arena) {
+        this.arenaView = gui;
+        this.menuViews=m;
         this.arena = arena;
     }
 
     public ArenaView getArenaView(){
-        return gui;
+        return arenaView;
+    }
+    public MenuViews getMenusViews(){
+        return menuViews;
     }
     public ArenaModel getArenaModel(){
         return arena;

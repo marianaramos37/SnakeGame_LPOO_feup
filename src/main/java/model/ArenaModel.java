@@ -119,6 +119,12 @@ public class ArenaModel {
         return game_over;
     }
 
+    public void restartGame(){
+        this.game_over=false;
+        this.snake.setPosition(new Position(width / 2, height / 2));
+        this.snake2.setPosition(new Position(3,3));
+    }
+
     public void endGame() throws IOException {
         this.game_over=true;
     }
@@ -175,6 +181,7 @@ public class ArenaModel {
     }
 
 
+
     public void eatenApple(AppleInterface a){
         int index=0;
         for(AppleInterface apple: getApples()){
@@ -212,19 +219,21 @@ public class ArenaModel {
 
     }
 
-    public void checkCollisions(Position position) throws IOException {
+    public void checkCollisions(Position position,Snake s) throws IOException {
         AppleInterface eaten = getCollidingApples(position);
         Wall hit = (Wall) getCollidingElement(position);
         Boolean ownBody= getCollidingBody(position);
 
         if (eaten != null && !(eaten instanceof PoisonedApple)) {
-            this.growSnake(this.snake);
+            this.growSnake(s);
             eatenApple(eaten);
         }
         if (eaten instanceof PoisonedApple){
             eatenApple(eaten);
         }
         if(hit != null){
+            if(s==this.getSnake()) this.getSnake().setLoser(true);
+            else if(s==this.getSnake2()) this.getSnake2().setLoser(true);
             this.endGame();
         }
         if(ownBody){

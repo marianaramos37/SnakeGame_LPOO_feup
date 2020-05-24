@@ -7,12 +7,10 @@ import java.io.IOException;
 
 public class GameThread2 extends Thread {
     private ArenaController arenaController;
-    private ArenaView gui;
     private ArenaModel arena;
 
     public GameThread2(ArenaController cntr){
         arenaController=cntr;
-        gui=cntr.getArenaView();
         arena=cntr.getArenaModel();
     }
 
@@ -25,10 +23,13 @@ public class GameThread2 extends Thread {
             ArenaView.COMMAND prevcommand2=null;
             ArenaView.COMMAND command = null;
 
-            while (true) {
-                Thread.sleep(arena.getSnake2().getVelocidade());
+            int rondas=3;
+            int result_snake1=0;
+            int result_snake2=0;
 
-                command=gui.getCommand();
+            while (rondas!=0) {
+                Thread.sleep(arena.getSnake2().getVelocidade());
+                command=arenaController.getArenaView().getCommand();
 
                 if (command != null) {
                     if (command == ArenaView.COMMAND.UP && prevcommand1 == ArenaView.COMMAND.DOWN) {
@@ -61,18 +62,24 @@ public class GameThread2 extends Thread {
                         prevcommand2=command;
                 }
                 if (!arena.getGameOver()) {
-                    arena.checkCollisions(arena.getSnake().getPosition());
-                    arena.checkCollisions(arena.getSnake2().getPosition());
+                    arena.checkCollisions(arena.getSnake().getPosition(),arena.getSnake());
+                    arena.checkCollisions(arena.getSnake2().getPosition(),arena.getSnake2());
 
                     arenaController.movement(command,prevcommand1,arena);
                     arenaController.movement2(command, prevcommand2, arena);
 
-                    gui.drawArena(arena,2);
+                    arenaController.getArenaView().drawArena(arena,2);
 
-                } else {
-                    arena.getTopScore().fileWriter(arena.getTopScore().getFilename(), arena.getTopScore());
-                    break;
-
+                }
+                else{
+                    rondas-=1;
+                    if(arena.getSnake().getLoser()) result_snake2++;
+                    else result_snake1++;
+                    arenaController.getMenusViews().drawResults(result_snake1,result_snake2);
+                    arena.restartGame();
+                    arena.getSnake().setLoser(false);
+                    arena.getSnake2().setLoser(false);
+                    sleep(3000);
                 }
             }
         }catch (IOException | InterruptedException e) {

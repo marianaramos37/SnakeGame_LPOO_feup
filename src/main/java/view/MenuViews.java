@@ -18,8 +18,6 @@ public class MenuViews extends View{
     }
 
     public void drawMenu(MainMenuModel menuModel) throws IOException, FontFormatException {
-        //File file = new File("files/square.tff");
-        //Font font=Font.createFont(Font.TRUETYPE_FONT,file);
         try {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
@@ -81,6 +79,30 @@ public class MenuViews extends View{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void drawResults(int a, int b) throws IOException {
+        TextCharacter c1,c2;
+        switch (a) {
+            case (1): c1 = new TextCharacter('1');
+            case(2): c1= new TextCharacter('2');
+            case(3): c1= new TextCharacter('3');
+                break;
+            default:
+                c1=new TextCharacter('0');
+        }
+        switch (b) {
+            case (1): c2 = new TextCharacter('1');
+            case(2): c2= new TextCharacter('2');
+            case(3): c2= new TextCharacter('3');
+                break;
+            default:
+                c2= new TextCharacter('0');
+        }
+        screen.clear();
+        screen.setCharacter(10,10, c1);
+        screen.setCharacter(20,10, c2);
+        screen.refresh();
     }
 
 }

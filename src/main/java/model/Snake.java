@@ -10,6 +10,7 @@ public class Snake{
     private int length=0;
     private boolean isShrink = false;
     private int velocidade;
+    private boolean loser;
 
     public Snake(Position position) {
         this.headPosition = position;
@@ -19,6 +20,7 @@ public class Snake{
         snakebody.add(length, '-');
         pos.add(length,new Position(position.getX()-1,position.getY()));
         velocidade=150;
+        loser=false;
     }
 
 
@@ -58,6 +60,13 @@ public class Snake{
     }
     public void unshrink(){
         this.isShrink = false;
+    }
+
+    public boolean getLoser(){
+        return loser;
+    }
+    public void setLoser(boolean l){
+        this.loser=l;
     }
 
     public void poison(){

@@ -1,8 +1,6 @@
 package GameStates;
 
-import controller.ArenaController;
-import controller.GameController;
-import controller.GameThread2;
+import controller.*;
 import model.ArenaModel;
 
 import java.awt.*;

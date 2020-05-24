@@ -5,12 +5,12 @@ import view.ArenaView;
 
 import java.io.IOException;
 
-public class GameThread extends Thread{
+public class GameThread1 extends Thread{
     private ArenaController arenaController;
     private ArenaView gui;
     private ArenaModel arena;
 
-    public GameThread(ArenaController cntr){
+    public GameThread1(ArenaController cntr){
         arenaController=cntr;
         gui=cntr.getArenaView();
         arena=cntr.getArenaModel();
@@ -21,7 +21,6 @@ public class GameThread extends Thread{
         //lê score logo de inicio
         try {
             arena.buildWalls();
-            arena.getTopScore().fileReader(arena.getTopScore().getFilename(), arena.getTopScore());
 
             ArenaView.COMMAND prevcommand = null;
             ArenaView.COMMAND command = null;
@@ -30,7 +29,7 @@ public class GameThread extends Thread{
 
             //comeca jogo
             while (true) {
-                Thread.sleep(arena.getSnake().getVelocidade());
+                sleep(arena.getSnake().getVelocidade());
 
                 command = gui.getCommand();
                 if (command != null) {
@@ -81,3 +80,4 @@ public class GameThread extends Thread{
         }
     }
 }
+

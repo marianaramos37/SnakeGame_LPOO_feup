@@ -84,10 +84,18 @@ public class ArenaModel {
         return snake2;
     }
 
+    public Position getSnakeHeadPosition() {
+        return snake.getPosition();
+    }
+    public Position getSnakeHead2Position() {
+        return snake2.getPosition();
+    }
+
+
+
     public void setSnake2(Snake snake2) {
         this.snake2 = snake2;
     }
-
 
     public void setSnake(Snake s){this.snake=s;}
 
@@ -96,6 +104,14 @@ public class ArenaModel {
     public void setApples(List<AppleInterface> l){this.apples=l;}
 
     public void setScore(SinglePlayerScore s){this.score=s;}
+
+    public void setSnakeHeadPosition(Position position) {
+        snake.setPosition(position);
+    }
+    public void setSnakeHead2Position(Position position) {
+        snake2.setPosition(position);
+    }
+
 
 
 

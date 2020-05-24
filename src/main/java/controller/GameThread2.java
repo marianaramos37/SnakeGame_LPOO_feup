@@ -23,11 +23,10 @@ public class GameThread2 extends Thread {
             ArenaView.COMMAND prevcommand2=null;
             ArenaView.COMMAND command = null;
 
-            int rondas=3;
             int result_snake1=0;
             int result_snake2=0;
 
-            while (rondas!=0) {
+            while (result_snake1!=3||result_snake2!=3) {
                 Thread.sleep(arena.getSnake2().getVelocidade());
                 command=arenaController.getArenaView().getCommand();
 
@@ -72,7 +71,6 @@ public class GameThread2 extends Thread {
 
                 }
                 else{
-                    rondas-=1;
                     if(arena.getSnake().getLoser()) result_snake2++;
                     else result_snake1++;
                     arenaController.getMenusViews().drawResults(result_snake1,result_snake2);

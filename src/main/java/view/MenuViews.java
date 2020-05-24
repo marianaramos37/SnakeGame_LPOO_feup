@@ -83,26 +83,22 @@ public class MenuViews extends View{
 
     public void drawResults(int a, int b) throws IOException {
         TextCharacter c1,c2;
-        switch (a) {
-            case (1): c1 = new TextCharacter('1');
-            case(2): c1= new TextCharacter('2');
-            case(3): c1= new TextCharacter('3');
-                break;
-            default:
-                c1=new TextCharacter('0');
-        }
-        switch (b) {
-            case (1): c2 = new TextCharacter('1');
-            case(2): c2= new TextCharacter('2');
-            case(3): c2= new TextCharacter('3');
-                break;
-            default:
-                c2= new TextCharacter('0');
-        }
+        c1 = getTextCharacter(a);
+        c2 = getTextCharacter(b);
         screen.clear();
-        screen.setCharacter(10,10, c1);
-        screen.setCharacter(20,10, c2);
+        screen.setCharacter(15,20, c1);
+        screen.setCharacter(35,20, c2);
         screen.refresh();
+    }
+
+    private TextCharacter getTextCharacter(int a) {
+        System.out.println(a);
+        TextCharacter c1 = null;
+        if(a==1){ c1 = new TextCharacter('1');}
+        if(a==2){ c1= new TextCharacter('2');}
+        if(a==3){ c1= new TextCharacter('3');}
+        if(a==0){ c1=new TextCharacter('0');}
+        return c1;
     }
 
 }

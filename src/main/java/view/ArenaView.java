@@ -1,5 +1,6 @@
 package view;
 
+import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -19,12 +20,15 @@ public class ArenaView extends View{
 
     public void drawSnake(Snake snake) {
         int index=0;
+        TextGraphics graphics = screen.newTextGraphics();
         if(!snake.getShrink()) {
             for (Character c : snake.getSnakeBody()) {
                 if (index >= snake.getPos().size()) {
                     snake.getPos().add(snake.getLength(), new Position(snake.getPos().get(snake.getLength() - 1).getX() + 1, snake.getPos().get(snake.getLength() - 1).getY()));
                 }
-                screen.setCharacter(snake.getPos().get(index).getX(), snake.getPos().get(index).getY(), new TextCharacter(snake.getSnakeBody().get(index)));
+                if(!snake.isGhost())
+                    graphics.setCharacter(snake.getPos().get(index).getX(), snake.getPos().get(index).getY(), new TextCharacter(snake.getSnakeBody().get(index)));
+                else graphics.putString(snake.getPos().get(index).getX(), snake.getPos().get(index).getY(), String.valueOf(snake.getSnakeBody().get(index)), SGR.BLINK);
                 index++;
             }
         }else{
@@ -32,7 +36,9 @@ public class ArenaView extends View{
                 if (index >= snake.getPos().size()) {
                     snake.getPos().add(snake.getLength(), new Position(snake.getPos().get(snake.getLength() - 1).getX() + 1, snake.getPos().get(snake.getLength() - 1).getY()));
                 }
-                screen.setCharacter(snake.getPos().get(index).getX(), snake.getPos().get(index).getY(), new TextCharacter(snake.getSnakeBody().get(index)));
+                if(!snake.isGhost())
+                    graphics.setCharacter(snake.getPos().get(index).getX(), snake.getPos().get(index).getY(), new TextCharacter(snake.getSnakeBody().get(index)));
+                else graphics.putString(snake.getPos().get(index).getX(), snake.getPos().get(index).getY(), String.valueOf(snake.getSnakeBody().get(index)), SGR.BLINK);
                 index++;
             }
         }

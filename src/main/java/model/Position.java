@@ -34,11 +34,11 @@ public class Position {
     }
 
     public Position down() {
-        return new Position(this.x, this.y + 1);
+            return new Position(this.x, this.y + 1);
     }
 
     public Position left() {
-        return new Position(this.x - 1, this.y);
+            return new Position(this.x - 1, this.y);
     }
 
 

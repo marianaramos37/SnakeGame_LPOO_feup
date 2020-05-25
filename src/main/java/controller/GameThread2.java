@@ -1,9 +1,11 @@
 package controller;
 
-import model.ArenaModel;
+import model.*;
 import view.ArenaView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameThread2 extends Thread {
     private ArenaController arenaController;
@@ -18,6 +20,13 @@ public class GameThread2 extends Thread {
     public void run() {
         try {
             arena.buildWalls();
+            List<AppleInterface> newapples = new ArrayList<>();
+            newapples.add(new Apple(8,6));
+            newapples.add(new Apple(30,15));
+            newapples.add(new Apple(50,23));
+            newapples.add(new SpecialApple(30,28));
+            newapples.add(new PoisonedApple(12,17));
+            arena.setApples(newapples);
 
             ArenaView.COMMAND prevcommand1 = null;
             ArenaView.COMMAND prevcommand2=null;
@@ -25,6 +34,8 @@ public class GameThread2 extends Thread {
 
             int result_snake1=0;
             int result_snake2=0;
+
+
 
             while (result_snake1!=3&&result_snake2!=3) {
                 Thread.sleep(arena.getSnake2().getVelocidade());
@@ -61,8 +72,8 @@ public class GameThread2 extends Thread {
                         prevcommand2=command;
                 }
                 if (!arena.getGameOver()) {
-                    arena.checkCollisions(arena.getSnake().getPosition(),arena.getSnake());
-                    arena.checkCollisions(arena.getSnake2().getPosition(),arena.getSnake2());
+                    arena.checkCollisions(arena.getSnakeHeadPosition(),arena.getSnake());
+                    arena.checkCollisions(arena.getSnakeHead2Position(),arena.getSnake2());
 
                     arena.checkAttack();
 

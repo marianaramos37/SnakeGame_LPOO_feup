@@ -24,7 +24,6 @@ public class GameThread2 extends Thread {
             newapples.add(new Apple(8,6));
             newapples.add(new Apple(30,15));
             newapples.add(new Apple(50,23));
-            newapples.add(new SpecialApple(30,28));
             newapples.add(new PoisonedApple(12,17));
             arena.setApples(newapples);
 

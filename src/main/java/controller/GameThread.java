@@ -50,12 +50,11 @@ public class GameThread extends Thread{
                 if (!arena.getGameOver()) {
                     arena.checkCollisions(arena.getSnake().getPosition(),arena.getSnake());
                     //spawn de acordo com nivel de dificuldade
-                    arenaController.getArenaView().drawObstaculos(arena);
-                    if (arena.getScore().getScore() % 10 == 0 && arena.getScore().getScore() != 0 && wallSpawn == 0) {
+                    if (arena.getScore().getScore() % 2 == 0 && arena.getScore().getScore() != 0 && wallSpawn == 0) {
                         arena.randomWalls();
                         wallSpawn++;
                     }
-                    if (arena.getScore().getScore() % 10 != 0) wallSpawn = 0;
+                    if (arena.getScore().getScore() % 2 != 0) wallSpawn = 0;
 
                     if (arena.getSnake().getShrink()) {
                         counter++;

@@ -34,8 +34,10 @@ public class ArenaModel {
         this.apples.add(apple);
         this.apples.add(appleS);
         this.apples.add(appleP);
-        Obstaculo obstaculo= new Obstaculo(new Position(20,20));
-        obstaculos.add(obstaculo);
+        Obstaculo obstaculo1= new Obstaculo(new Position(20,20),1);
+        Obstaculo obstaculo2= new Obstaculo(new Position(20,20),2);
+        obstaculos.add(obstaculo1);
+        obstaculos.add(obstaculo2);
         this.game_over=false;
 
     }
@@ -63,63 +65,43 @@ public class ArenaModel {
     public int getWidth(){
         return width;
     }
-
     public int getHeight(){
         return height;
     }
-
     public SinglePlayerScore getScore() {
         return score;
     }
-
     public Snake getSnake(){return snake;}
-
     public List<Wall> getWalls(){
         return this.walls;
     }
-
     public List<Obstaculo> getObstaculos(){
         return this.obstaculos;
     }
-
     public List<AppleInterface> getApples(){return this.apples;}
-
     public SinglePlayerTopScore getTopScore(){return this.topScore;}
-
     public Snake getSnake2() {
         return snake2;
     }
-
     public Position getSnakeHeadPosition() {
         return snake.getPosition();
     }
     public Position getSnakeHead2Position() {
         return snake2.getPosition();
     }
-
-
-
     public void setSnake2(Snake snake2) {
         this.snake2 = snake2;
     }
-
     public void setSnake(Snake s){this.snake=s;}
-
     public void setWalls(List<Wall> l){this.walls=l;}
-
     public void setApples(List<AppleInterface> l){this.apples=l;}
-
     public void setScore(SinglePlayerScore s){this.score=s;}
-
     public void setSnakeHeadPosition(Position position) {
         snake.setPosition(position);
     }
     public void setSnakeHead2Position(Position position) {
         snake2.setPosition(position);
     }
-
-
-
 
     public boolean getGameOver(){
         return game_over;
@@ -149,17 +131,16 @@ public class ArenaModel {
 
 
     public void randomWalls(){
-        Wall w;
 
-        w = new Wall (ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
-        while(getCollidingElement(w.getPosition()) != null || getCollidingBody(w.getPosition()) || getCollidingApples(w.getPosition()) != null) {
-            w = new Wall (ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
+        Obstaculo obstaculo;
+        obstaculo=new Obstaculo(new Position(0,0),ThreadLocalRandom.current().nextInt(1, 3));
+        Position randomPosition = new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
+        while(getCollidingElement(randomPosition) != null || getCollidingBody(randomPosition) || getCollidingApples(randomPosition) != null) {
+            randomPosition = new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
         }
+        obstaculo.setPosition(randomPosition);
 
-        List<Wall> newWalls = getWalls();
-        newWalls.add(w);
-        setWalls(newWalls);
-
+        obstaculos.add(obstaculo);
 
     }
 
@@ -174,6 +155,10 @@ public class ArenaModel {
         for (Element element : this.getWalls())
             if (element.getPosition().equals(position))
                 return element;
+        for (Obstaculo obstaculo : this.getObstaculos())
+            for (Element element : obstaculo.getObstaculo())
+                if (element.getPosition().equals(position))
+                    return element;
         return null;
     }
 
@@ -251,14 +236,12 @@ public class ArenaModel {
         if(!getSnake().getShrink()){
             this.updateVelocidadeSnake();
         }
-
     }
 
     public void checkCollisions(Position position,Snake s) throws IOException {
         AppleInterface eaten = getCollidingApples(position);
         Wall hit = (Wall) getCollidingElement(position);
         Boolean ownBody= getCollidingBody(position);
-
 
         if (eaten != null && !(eaten instanceof PoisonedApple)) {
             this.growSnake(s);

@@ -53,11 +53,8 @@ public class ArenaView extends View{
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#790000"));
         for(Obstaculo obstaculo:obstaculos) {
-            int i=0;
             for(Element elem: obstaculo.getObstaculo()){
-                System.out.println(i);
-                i++;
-                screen.setCharacter(elem.getPosition().getX(), elem.getPosition().getY(), new TextCharacter('X'));
+                screen.setCharacter(elem.getPosition().getX(), elem.getPosition().getY(), new TextCharacter('#'));
             }
         }
     }
@@ -70,9 +67,8 @@ public class ArenaView extends View{
 
     public void drawArena(ArenaModel arena, int n) {
         try {
+            TextGraphics graphics = screen.newTextGraphics();
             screen.clear();
-
-
 
             drawApples(arena);
 
@@ -82,19 +78,25 @@ public class ArenaView extends View{
                 x++;
             }
 
-            x=40;
-            for(TextCharacter c:arena.getTopScore().getPrintableScore()){
-                screen.setCharacter(x,32, c);
-                x++;
+            if(n==1){
+                drawSnake(arena.getSnake());
+                x=40;
+                for(TextCharacter c:arena.getTopScore().getPrintableScore()){
+                    screen.setCharacter(x,32, c);
+                    x++;
+                }
             }
-
-            if(n==1) drawSnake(arena.getSnake());
             else{
+                graphics.putString(5,32,"Snake 2");
+                graphics.putString(45,32,"Snake 1");
                 drawSnake(arena.getSnake());
                 drawSnake(arena.getSnake2());
             }
 
             drawWalls(arena);
+
+
+            drawObstaculos(arena);
 
             screen.refresh();
 

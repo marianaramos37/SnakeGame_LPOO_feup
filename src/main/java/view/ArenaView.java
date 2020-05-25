@@ -76,16 +76,20 @@ public class ArenaView extends View{
             TextGraphics graphics = screen.newTextGraphics();
             screen.clear();
 
+            int x;
+
             if(n==1){
                 drawApples(arena);
-                int x = 5;
-                for(TextCharacter c:arena.getScore().getPrintableScore()){
-                    screen.setCharacter(x,32, c);
-                    x++;
-                }
+
                 drawSnake(arena.getSnake());
                 x=40;
                 for(TextCharacter c:arena.getTopScore().getPrintableScore()){
+                    screen.setCharacter(x,32, c);
+                    x++;
+                }
+
+                x = 5;
+                for(TextCharacter c:arena.getScore().getPrintableScore()){
                     screen.setCharacter(x,32, c);
                     x++;
                 }

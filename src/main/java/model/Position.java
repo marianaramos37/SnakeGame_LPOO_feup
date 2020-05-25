@@ -26,11 +26,11 @@ public class Position {
     }
 
     public Position up() {
-            return new Position(this.x, this.y - 1);
+        return new Position(this.x, this.y - 1);
     }
 
     public Position right() {
-            return new Position(this.x + 1, this.y);
+        return new Position(this.x + 1, this.y);
     }
 
     public Position down() {

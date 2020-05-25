@@ -61,8 +61,8 @@ public class GameThread2 extends Thread {
                         prevcommand2=command;
                 }
                 if (!arena.getGameOver()) {
-                    arena.checkCollisions(arena.getSnake().getPosition(),arena.getSnake());
-                    arena.checkCollisions(arena.getSnake2().getPosition(),arena.getSnake2());
+                    arena.checkCollisions(arena.getSnakeHeadPosition(),arena.getSnake());
+                    arena.checkCollisions(arena.getSnakeHead2Position(),arena.getSnake2());
 
                     arena.checkAttack();
 

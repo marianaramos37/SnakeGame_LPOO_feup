@@ -26,42 +26,35 @@ public class Snake{
 
     public List<Character> getSnakeBody(){ return snakebody; }
     public void setSnakeBody(List<Character> sb){this.snakebody=sb;}
-
     public List<Position> getPos(){
         return pos;
     }
     public void setPos(List<Position> pos){this.pos=pos;}
-
     public Position getPosition() {
         return headPosition;
     }
     public void setPosition(Position headPosition) {
         this.headPosition = headPosition;
     }
-
     public int getLength(){
         return length;
     }
     public void setLength(int l){
         this.length=l;
     }
-
     public boolean getShrink(){return isShrink;}
-
     public int getVelocidade() {
         return velocidade;
     }
     public void setVelocidade(int velocidade) {
         this.velocidade = velocidade;
     }
-
     public void shrink(){
         this.isShrink = true;
     }
     public void unshrink(){
         this.isShrink = false;
     }
-
     public boolean getLoser(){
         return loser;
     }
@@ -70,7 +63,7 @@ public class Snake{
     }
 
     public void poison(){
-        setVelocidade(250); //resets to initial velocity
+        setVelocidade(150); //resets to initial velocity
 
         if(this.length >= 6){
             this.length-=5;

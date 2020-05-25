@@ -65,64 +65,43 @@ public class ArenaModel {
     public int getWidth(){
         return width;
     }
-
     public int getHeight(){
         return height;
     }
-
     public SinglePlayerScore getScore() {
         return score;
     }
-
     public Snake getSnake(){return snake;}
-
     public List<Wall> getWalls(){
         return this.walls;
     }
-
     public List<Obstaculo> getObstaculos(){
         return this.obstaculos;
     }
-
     public List<AppleInterface> getApples(){return this.apples;}
-
     public SinglePlayerTopScore getTopScore(){return this.topScore;}
-
     public Snake getSnake2() {
         return snake2;
     }
-
     public Position getSnakeHeadPosition() {
         return snake.getPosition();
     }
-
     public Position getSnakeHead2Position() {
         return snake2.getPosition();
     }
-
-
-
     public void setSnake2(Snake snake2) {
         this.snake2 = snake2;
     }
-
     public void setSnake(Snake s){this.snake=s;}
-
     public void setWalls(List<Wall> l){this.walls=l;}
-
     public void setApples(List<AppleInterface> l){this.apples=l;}
-
     public void setScore(SinglePlayerScore s){this.score=s;}
-
     public void setSnakeHeadPosition(Position position) {
         snake.setPosition(position);
     }
     public void setSnakeHead2Position(Position position) {
         snake2.setPosition(position);
     }
-
-
-
 
     public boolean getGameOver(){
         return game_over;
@@ -257,14 +236,12 @@ public class ArenaModel {
         if(!getSnake().getShrink()){
             this.updateVelocidadeSnake();
         }
-
     }
 
     public void checkCollisions(Position position,Snake s) throws IOException {
         AppleInterface eaten = getCollidingApples(position);
         Wall hit = (Wall) getCollidingElement(position);
         Boolean ownBody= getCollidingBody(position);
-
 
         if (eaten != null && !(eaten instanceof PoisonedApple)) {
             this.growSnake(s);

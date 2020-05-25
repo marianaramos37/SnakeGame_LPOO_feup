@@ -91,6 +91,7 @@ public class ArenaView extends View{
 
             drawWalls(arena);
 
+
             drawObstaculos(arena);
 
             screen.refresh();

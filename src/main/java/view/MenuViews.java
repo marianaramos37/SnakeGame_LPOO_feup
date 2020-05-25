@@ -99,20 +99,20 @@ public class MenuViews extends View{
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(60, 35), ' ');
         graphics.putString(1,2,"Single Player",SGR.BOLD);
         graphics.putString(2,4,"Use the keys UP/RIGHT/LEFT/DOWN to move the snake around");
-        graphics.putString(2,6,"the arena, but be careful, never touch the walls!");
+        graphics.putString(2,6,"the arena, but be careful, never touch the wallsss!");
         graphics.putString(2,8,"You can eat the apples to gain points and grow your body: ");
         graphics.putString(4,10,"-> o are the regular apples ");
-        graphics.putString(4,12,"-> S are the SSSSSpecial ones, your body shrinks, you");
-        graphics.putString(4,14,"get faster and can pass trought the walls");
+        graphics.putString(4,12,"-> S are the SSSSSpecial ones, your body shrinkssss ");
+        graphics.putString(4,14,"and you get fasssster");
         graphics.putString(4,16,"-> ~ are the rotten ones, you lose points but they can ");
-        graphics.putString(4,18,"be realy useful once you want to slow down!");
+        graphics.putString(4,18,"be really useful once you want to sssslow down!");
         graphics.putString(2,20,"Final tip: the walls move");
 
         graphics.putString(1,22,"Multi Player",SGR.BOLD);
-        graphics.putString(2,24,"Grab a friend and come fight them in a 3 round snake game,");
-        graphics.putString(2,26,"he can use the keys W/A/D/S to play.");
-        graphics.putString(2,28,"Try to kill his snake putting your own body in front of them");
-        graphics.putString(2,30,"The winner wins 1 point. The first to get to 3 wins the game");
+        graphics.putString(2,24,"Grab a friend and come fight them in a multiple round ");
+        graphics.putString(2,26,"snake game, they can use the keys W/A/D/S to play. Try to");
+        graphics.putString(2,28,"kill their snake by putting your body in front of them!");
+        graphics.putString(2,30,"Win 1 point per round! First to get to 3 wins the game!");
         graphics.putString(12,32,"GOOD LUCK, Press ENTER to go back",SGR.BOLD);
         screen.refresh();
     }

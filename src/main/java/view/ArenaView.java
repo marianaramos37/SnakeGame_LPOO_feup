@@ -72,7 +72,7 @@ public class ArenaView extends View{
         try {
             screen.clear();
 
-            drawWalls(arena);
+
 
             drawApples(arena);
 
@@ -93,6 +93,9 @@ public class ArenaView extends View{
                 drawSnake(arena.getSnake());
                 drawSnake(arena.getSnake2());
             }
+
+            drawWalls(arena);
+
             screen.refresh();
 
         } catch (IOException e) {

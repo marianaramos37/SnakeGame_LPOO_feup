@@ -64,6 +64,8 @@ public class GameThread2 extends Thread {
                     arena.checkCollisions(arena.getSnake().getPosition(),arena.getSnake());
                     arena.checkCollisions(arena.getSnake2().getPosition(),arena.getSnake2());
 
+                    arena.checkAttack();
+
                     arenaController.movement(command,prevcommand1,arena);
                     arenaController.movement2(command, prevcommand2, arena);
 
@@ -71,8 +73,9 @@ public class GameThread2 extends Thread {
 
                 }
                 else{
-                    if(arena.getSnake().getLoser()) result_snake2++;
-                    else result_snake1++;
+
+                    if(arena.getSnake().getLoser() && !arena.getSnake2().getLoser()) result_snake2++;
+                    else if(arena.getSnake2().getLoser() && !arena.getSnake().getLoser()) result_snake1++;
                     arenaController.getMenusViews().drawResults(result_snake1,result_snake2);
                     arena.restartGame();
                     arena.getSnake().setLoser(false);

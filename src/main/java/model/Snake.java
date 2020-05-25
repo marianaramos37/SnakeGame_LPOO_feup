@@ -11,6 +11,7 @@ public class Snake{
     private boolean isShrink = false;
     private int velocidade;
     private boolean loser;
+    private boolean ghost;
 
     public Snake(Position position) {
         this.headPosition = position;
@@ -76,4 +77,12 @@ public class Snake{
         }
     }
 
+
+    public boolean isGhost() {
+        return ghost;
+    }
+
+    public void setGhost(boolean ghost) {
+        this.ghost = ghost;
+    }
 }

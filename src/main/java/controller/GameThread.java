@@ -25,6 +25,7 @@ public class GameThread extends Thread{
             ArenaView.COMMAND prevcommand = null;
             ArenaView.COMMAND command = null;
             int counter = 0;
+            int counterGhost=0;
             int wallSpawn = 0;
 
             //comeca jogo
@@ -62,6 +63,14 @@ public class GameThread extends Thread{
                             arena.getSnake().setVelocidade(arena.getSnake().getVelocidade() * 2);
                             arena.getSnake().unshrink();
                             counter = 0;
+                        }
+                    }
+
+                    if(arena.getSnake().isGhost()){
+                        counterGhost++;
+                        if(counterGhost==100){
+                            counter=0;
+                            arena.getSnake().setGhost(false);
                         }
                     }
                     arenaController.movement(command, prevcommand, arena);

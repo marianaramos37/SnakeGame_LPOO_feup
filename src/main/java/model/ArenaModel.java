@@ -22,7 +22,6 @@ public class ArenaModel {
 
     private boolean game_over;
 
-
     public ArenaModel(int width, int height) throws IOException {
         this.width = width;
         this.height = height;
@@ -31,9 +30,11 @@ public class ArenaModel {
         Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         PoisonedApple appleP= new PoisonedApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
+        GhostApple appleG= new GhostApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         this.apples.add(apple);
         this.apples.add(appleS);
         this.apples.add(appleP);
+        this.apples.add(appleG);
         Obstaculo obstaculo1= new Obstaculo(new Position(20,20),1);
         Obstaculo obstaculo2= new Obstaculo(new Position(20,20),2);
         obstaculos.add(obstaculo1);
@@ -228,6 +229,9 @@ public class ArenaModel {
             score.updatePrintable(score);
             return;
         }
+        else if(a instanceof GhostApple){
+            this.getSnake().setGhost(true);
+        }
 
         score.incrementScore(score);
         if (score.getScore() > topScore.getScore()) {
@@ -243,20 +247,22 @@ public class ArenaModel {
         Wall hit = (Wall) getCollidingElement(position);
         Boolean ownBody= getCollidingBody(position);
 
-        if (eaten != null && !(eaten instanceof PoisonedApple)) {
-            this.growSnake(s);
-            eatenApple(eaten);
-        }
-        if (eaten instanceof PoisonedApple){
-            eatenApple(eaten);
-        }
-        if(hit != null){
-            if(s==this.getSnake()) this.getSnake().setLoser(true);
-            else if(s==this.getSnake2()) this.getSnake2().setLoser(true);
-            this.endGame();
-        }
-        if(ownBody){
-            this.endGame();
+        if(!s.isGhost()){
+            if (eaten != null && !(eaten instanceof PoisonedApple)) {
+                this.growSnake(s);
+                eatenApple(eaten);
+            }
+            if (eaten instanceof PoisonedApple){
+                eatenApple(eaten);
+            }
+            if(hit != null){
+                if(s==this.getSnake()) this.getSnake().setLoser(true);
+                else if(s==this.getSnake2()) this.getSnake2().setLoser(true);
+                this.endGame();
+            }
+            if(ownBody){
+                this.endGame();
+            }
         }
     }
 

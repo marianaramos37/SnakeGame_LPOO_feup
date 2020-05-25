@@ -26,19 +26,31 @@ public class Position {
     }
 
     public Position up() {
-        return new Position(this.x, this.y - 1);
+        if(this.x>=59||x<=1||y>=34||y<=1)
+            return  new Position(this.x, this.y+1);
+        else
+            return new Position(this.x, this.y - 1);
     }
 
     public Position right() {
-        return new Position(this.x + 1, this.y);
+        if(this.x>=59||x<=1||y>=34||y<=1)
+            return  new Position(this.x-1, this.y);
+        else
+            return new Position(this.x + 1, this.y);
     }
 
     public Position down() {
-        return new Position(this.x, this.y + 1);
+        if(this.x>=59||x<=1||y>=34||y<=1)
+            return  new Position(this.x, this.y-1);
+        else
+            return new Position(this.x, this.y + 1);
     }
 
     public Position left() {
-        return new Position(this.x - 1, this.y);
+        if(this.x>=59||x<=1||y>=34||y<=1)
+            return  new Position(this.x+1, this.y);
+        else
+            return new Position(this.x - 1, this.y);
     }
 
 

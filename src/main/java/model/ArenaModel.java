@@ -34,8 +34,10 @@ public class ArenaModel {
         this.apples.add(apple);
         this.apples.add(appleS);
         this.apples.add(appleP);
-        Obstaculo obstaculo= new Obstaculo(new Position(20,20));
-        obstaculos.add(obstaculo);
+        Obstaculo obstaculo1= new Obstaculo(new Position(20,20),1);
+        Obstaculo obstaculo2= new Obstaculo(new Position(20,20),2);
+        obstaculos.add(obstaculo1);
+        obstaculos.add(obstaculo2);
         this.game_over=false;
 
     }
@@ -93,6 +95,7 @@ public class ArenaModel {
     public Position getSnakeHeadPosition() {
         return snake.getPosition();
     }
+
     public Position getSnakeHead2Position() {
         return snake2.getPosition();
     }
@@ -127,8 +130,8 @@ public class ArenaModel {
 
     public void restartGame(){
         this.game_over=false;
-        this.snake.setPosition(new Position(width / 2, height / 2));
-        this.snake2.setPosition(new Position(3,3));
+        this.snake.setPosition(new Position(50,17));
+        this.snake2.setPosition(new Position(7,17));
     }
 
     public void endGame() throws IOException {
@@ -149,17 +152,16 @@ public class ArenaModel {
 
 
     public void randomWalls(){
-        Wall w;
 
-        w = new Wall (ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
-        while(getCollidingElement(w.getPosition()) != null || getCollidingBody(w.getPosition()) || getCollidingApples(w.getPosition()) != null) {
-            w = new Wall (ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
+        Obstaculo obstaculo;
+        obstaculo=new Obstaculo(new Position(0,0),ThreadLocalRandom.current().nextInt(1, 3));
+        Position randomPosition = new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
+        while(getCollidingElement(randomPosition) != null || getCollidingBody(randomPosition) || getCollidingApples(randomPosition) != null) {
+            randomPosition = new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
         }
+        obstaculo.setPosition(randomPosition);
 
-        List<Wall> newWalls = getWalls();
-        newWalls.add(w);
-        setWalls(newWalls);
-
+        obstaculos.add(obstaculo);
 
     }
 
@@ -174,6 +176,10 @@ public class ArenaModel {
         for (Element element : this.getWalls())
             if (element.getPosition().equals(position))
                 return element;
+        for (Obstaculo obstaculo : this.getObstaculos())
+            for (Element element : obstaculo.getObstaculo())
+                if (element.getPosition().equals(position))
+                    return element;
         return null;
     }
 
@@ -185,8 +191,6 @@ public class ArenaModel {
         }
         return false;
     }
-
-
 
     public void eatenApple(AppleInterface a){
         int index=0;

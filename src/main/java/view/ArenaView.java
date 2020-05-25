@@ -53,11 +53,8 @@ public class ArenaView extends View{
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#790000"));
         for(Obstaculo obstaculo:obstaculos) {
-            int i=0;
             for(Element elem: obstaculo.getObstaculo()){
-                System.out.println(i);
-                i++;
-                screen.setCharacter(elem.getPosition().getX(), elem.getPosition().getY(), new TextCharacter('X'));
+                screen.setCharacter(elem.getPosition().getX(), elem.getPosition().getY(), new TextCharacter('#'));
             }
         }
     }
@@ -71,8 +68,6 @@ public class ArenaView extends View{
     public void drawArena(ArenaModel arena, int n) {
         try {
             screen.clear();
-
-            drawWalls(arena);
 
             drawApples(arena);
 
@@ -93,6 +88,11 @@ public class ArenaView extends View{
                 drawSnake(arena.getSnake());
                 drawSnake(arena.getSnake2());
             }
+
+            drawWalls(arena);
+
+            drawObstaculos(arena);
+
             screen.refresh();
 
         } catch (IOException e) {

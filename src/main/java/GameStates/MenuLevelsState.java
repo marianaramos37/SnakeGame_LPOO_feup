@@ -16,7 +16,7 @@ public class MenuLevelsState extends State{
     @Override
     public void init() throws IOException, InterruptedException, FontFormatException {
         ArenaView.COMMAND command = null;
-        int x=11, y=23;
+        int x=6, y=23;
         while(true){
             sleep(150);
             super.gameController.menuViews.drawMenuLevels();
@@ -24,24 +24,27 @@ public class MenuLevelsState extends State{
             super.gameController.menuViews.drawSelecting(x,y);
             if(command == ArenaView.COMMAND.LEFT){
                 super.gameController.arenaView.screen.clear();
-                if(x!=11){
-                    x-=17;
+                if(x!=6){
+                    x-=15;
                 }
             }
             if(command == ArenaView.COMMAND.RIGHT){
-                if(x!=45){
-                    x+=17;
+                if(x!=51){
+                    x+=15;
                 }
             }
             if(command == ArenaView.COMMAND.ENTER){
-                if(x==11){
+                if(x==6){
                     level=1;
                 }
-                else if(x==28){
+                else if(x==21){
                     level=2;
                 }
-                else{
+                else if(x==36){
                     level=3;
+                }
+                else{
+                    level=4;
                 }
                 doStep();
                 break;

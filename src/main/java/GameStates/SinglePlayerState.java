@@ -23,6 +23,9 @@ public class SinglePlayerState extends State{
         else if(level==3){
             arenaModel= new ArenaModel(60, 30,"src/main/java/files/mapHard.txt");
         }
+        else if(level==4){
+            arenaModel= new ArenaModel(60, 30,"src/main/java/files/mapUltraHard.txt");
+        }
         arenaController=new ArenaController(g.arenaView,g.menuViews,arenaModel);
     }
 

@@ -19,7 +19,7 @@ public class MenuState extends State{
     @Override
     public void init() throws IOException, InterruptedException, FontFormatException {
         ArenaView.COMMAND command = null;
-        int x=13, y=23; //single
+        int x=13, y=23;
         while(true){
             sleep(150);
             super.gameController.menuViews.drawMenu(menuModel);

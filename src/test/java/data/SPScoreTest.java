@@ -1,7 +1,6 @@
 package data;
 
 import com.googlecode.lanterna.TextCharacter;
-import model.SinglePlayerScore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

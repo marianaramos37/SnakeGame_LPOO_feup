@@ -24,16 +24,16 @@ public class GameController {
     DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(60, 35));
 
     public void init() throws IOException, InterruptedException, FontFormatException {
+
         File fontFile = new File("src/main/java/files/square.ttf");
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
-
         Font loadedFont = font.deriveFont(Font.PLAIN, 10);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
-
         defaultTerminalFactory.setForceAWTOverSwing(true);
         defaultTerminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
+
         Terminal terminal = defaultTerminalFactory.createTerminal();
         screen = new TerminalScreen(terminal);
 

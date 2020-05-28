@@ -98,7 +98,7 @@ public class ArenaTest {
         snakeAfter.setSnakeBody(snakebodyAfter);
         snakeAfter.setPos(posAfter);
 
-        arena.growSnake();
+        arena.growSnake(snake);
 
         assertEquals(snakeAfter.getSnakeBody(),arena.getSnake().getSnakeBody());
         assertEquals(snakeAfter.getPos(),arena.getSnake().getPos());
@@ -165,8 +165,7 @@ public class ArenaTest {
         List<Wall> walls=new ArrayList<>();
         apples.add(apple);
         walls.add(wall);
-        SinglePlayerScore score = new SinglePlayerScore();
-        score.setScore(3);
+        int score=3;
 
         ArenaModel arena= new ArenaModel(30,30);
         arena.setSnake(snake);
@@ -175,15 +174,15 @@ public class ArenaTest {
         arena.setScore(score);
 
 
-        arena.checkCollisions(new Position(10,12)); //primeiro
+        arena.checkCollisions(new Position(10,12),snake); //primeiro
 
-        assertEquals(4,arena.getScore().getScore());
+        assertEquals(4,arena.getScore());
         assertEquals(2,arena.getSnake().getLength());
 
-        arena.checkCollisions(new Position(0,0)); //segundo
+        arena.checkCollisions(new Position(3,3),snake); //segundo
         assertFalse(arena.getGameOver());
 
-        arena.checkCollisions(new Position(10,11)); //terceiro
+        arena.checkCollisions(new Position(10,11),snake); //terceiro
         assertTrue(arena.getGameOver());
     }
 

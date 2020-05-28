@@ -20,13 +20,13 @@ public class MenuViews extends View{
             TextGraphics graphics = screen.newTextGraphics();
             graphics.setBackgroundColor(TextColor.Factory.fromString("#66012E"));
             graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(60, 35), ' ');
-            graphics.putString(27,10,menuModel.getTitle(),SGR.BOLD);
-            graphics.putString(28,30,menuModel.getEsqTitle(),SGR.ITALIC);
+            graphics.putString(27,10,"SNAKE",SGR.BOLD);
+            graphics.putString(28,30,"Press ESC to leave",SGR.ITALIC);
             graphics.putString(28,32,"Press I to see the instructions",SGR.ITALIC);
-            graphics.putString(12,19,menuModel.getSingleTitle().substring(0,4));
-            graphics.putString(7,21,menuModel.getSingleTitle().substring(4,17));
-            graphics.putString(42,19,menuModel.getMultyTitle().substring(0,4));
-            graphics.putString(37,21,menuModel.getMultyTitle().substring(4,16));
+            graphics.putString(12,19,"PLAY");
+            graphics.putString(8,21,"SINGLEPLAYER");
+            graphics.putString(42,19,"PLAY");
+            graphics.putString(38,21,"MULTIPLAYER");
             screen.refresh();
         } catch (IOException e) {
             e.printStackTrace();

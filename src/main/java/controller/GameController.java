@@ -39,8 +39,10 @@ public class GameController {
 
         arenaView=new ArenaView(60,35,screen);
         menuViews=new MenuViews(60,35,screen);
+
         state=new MenuState(this,menuModel);
         state.init();
+
     }
 
     public void doStep() throws IOException, InterruptedException, FontFormatException {

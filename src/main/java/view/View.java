@@ -64,7 +64,6 @@ public abstract class View {
                 return ArenaView.COMMAND.LEFT2;
             }
             if (key.getCharacter()=='i'){
-                System.out.println("carreguei");
                 return ArenaView.COMMAND.I;
             }
             else return null;

@@ -12,6 +12,7 @@ public class Snake{
     private int velocidade;
     private boolean loser;
     private boolean ghost;
+    private String direction;
 
     public Snake(Position position) {
         this.headPosition = position;
@@ -62,6 +63,19 @@ public class Snake{
     public void setLoser(boolean l){
         this.loser=l;
     }
+    public boolean isGhost() {
+        return ghost;
+    }
+    public void setGhost(boolean ghost) {
+        this.ghost = ghost;
+    }
+    public String getDirection() {
+        return direction;
+    }
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
 
     public void poison(){
         setVelocidade(150); //resets to initial velocity
@@ -77,12 +91,4 @@ public class Snake{
         }
     }
 
-
-    public boolean isGhost() {
-        return ghost;
-    }
-
-    public void setGhost(boolean ghost) {
-        this.ghost = ghost;
-    }
 }

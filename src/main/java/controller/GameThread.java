@@ -4,7 +4,7 @@ import model.ArenaModel;
 import view.ArenaView;
 
 import java.io.IOException;
-
+/*
 public class GameThread extends Thread{
     private ArenaController arenaController;
     private ArenaView gui;
@@ -88,4 +88,4 @@ public class GameThread extends Thread{
             e.printStackTrace();
         }
     }
-}
+}*/

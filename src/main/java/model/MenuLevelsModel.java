@@ -1,8 +1,8 @@
 package model;
 
-public class MainMenuModel extends MenuModel{
+public class MenuLevelsModel extends MenuModel {
 
-    public MainMenuModel(){
+    public MenuLevelsModel(){
         super();
         setInitialCursorPosition();
     }
@@ -12,13 +12,13 @@ public class MainMenuModel extends MenuModel{
         if(side=="left"){
             if(option!=1){
                 option-=1;
-                cursorPosition.setX(cursorPosition.getX()-30);
+                cursorPosition.setX(cursorPosition.getX()-15);
             }
         }
         else if(side=="right"){
-            if(option!=2){
+            if(option!=4){
                 option+=1;
-                cursorPosition.setX(cursorPosition.getX()+30);
+                cursorPosition.setX(cursorPosition.getX()+15);
             }
         }
 
@@ -26,6 +26,6 @@ public class MainMenuModel extends MenuModel{
 
     @Override
     public void setInitialCursorPosition() {
-        cursorPosition=new Position(13,23);
+        cursorPosition=new Position(6,23);
     }
 }

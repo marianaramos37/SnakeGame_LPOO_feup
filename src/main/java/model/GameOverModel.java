@@ -1,8 +1,8 @@
 package model;
 
-public class MainMenuModel extends MenuModel{
+public class GameOverModel extends MenuModel{
 
-    public MainMenuModel(){
+    public GameOverModel(){
         super();
         setInitialCursorPosition();
     }
@@ -12,20 +12,19 @@ public class MainMenuModel extends MenuModel{
         if(side=="left"){
             if(option!=1){
                 option-=1;
-                cursorPosition.setX(cursorPosition.getX()-30);
+                cursorPosition.setX(cursorPosition.getX()-32);
             }
         }
         else if(side=="right"){
             if(option!=2){
                 option+=1;
-                cursorPosition.setX(cursorPosition.getX()+30);
+                cursorPosition.setX(cursorPosition.getX()+32);
             }
         }
-
     }
 
     @Override
     public void setInitialCursorPosition() {
-        cursorPosition=new Position(13,23);
+        cursorPosition=new Position(11,23);
     }
 }

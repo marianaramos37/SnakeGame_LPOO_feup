@@ -1,12 +1,6 @@
 package controller;
 
-import model.*;
-import view.ArenaView;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
+/*
 public class GameThread2 extends Thread {
     private ArenaController arenaController;
     private ArenaModel arena;
@@ -97,4 +91,4 @@ public class GameThread2 extends Thread {
             e.printStackTrace();
         }
     }
-}
+}*/

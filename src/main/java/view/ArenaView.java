@@ -71,28 +71,23 @@ public class ArenaView extends View{
             screen.setCharacter(apple.getPosition().getX(),apple.getPosition().getY(), new TextCharacter(apple.getChar()));
     }
 
+    public void drawScores(ArenaModel arena){
+        TextGraphics graphics = screen.newTextGraphics();
+        graphics.putString(5,32,"SCORE: ");
+        graphics.putString(12,32,String.valueOf(arena.getScore()));
+        graphics.putString(40,32,"TOP SCORE: ");
+        graphics.putString(51,32,String.valueOf(arena.getTopScore().getScore()));
+    }
+
     public void drawArena(ArenaModel arena, int n) {
         try {
             TextGraphics graphics = screen.newTextGraphics();
             screen.clear();
 
-            int x;
-
             if(n==1){
                 drawApples(arena);
-
                 drawSnake(arena.getSnake());
-                x=40;
-                for(TextCharacter c:arena.getTopScore().getPrintableScore()){
-                    screen.setCharacter(x,32, c);
-                    x++;
-                }
-
-                x = 5;
-                for(TextCharacter c:arena.getScore().getPrintableScore()){
-                    screen.setCharacter(x,32, c);
-                    x++;
-                }
+                drawScores(arena);
             }
             else{
                 drawApples(arena);
@@ -103,8 +98,6 @@ public class ArenaView extends View{
             }
 
             drawWalls(arena);
-
-
             drawObstaculos(arena);
 
             screen.refresh();

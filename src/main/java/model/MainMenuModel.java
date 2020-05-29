@@ -1,68 +1,31 @@
 package model;
 
-public class MainMenuModel {
-    private String title;
-    private String singleTitle;
-    private String multyTitle;
-    private String contrucaoTitle;
-    private String esqTitle;
-
-    private char selection;
+public class MainMenuModel extends MenuModel{
 
     public MainMenuModel(){
-        title = "SNAKE";
-        singleTitle = "PLAY SINGLEPLAYER";
-        multyTitle = "PLAY MULTIPLAYER";
-        contrucaoTitle= "BUILD MAPS";
-        esqTitle="Press ESC to leave";
-        selection = 'o';
+        super();
+        setInitialCursorPosition();
     }
 
-    public String getTitle() {
-        return title;
+    @Override
+    public void changeOption(String side) {
+        if(side=="left"){
+            if(option!=1){
+                option-=1;
+                cursorPosition.setX(cursorPosition.getX()-30);
+            }
+        }
+        else if(side=="right"){
+            if(option!=2){
+                option+=1;
+                cursorPosition.setX(cursorPosition.getX()+30);
+            }
+        }
+
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSingleTitle() {
-        return singleTitle;
-    }
-
-    public void setSingleTitle(String singleTitle) {
-        this.singleTitle = singleTitle;
-    }
-
-    public String getMultyTitle() {
-        return multyTitle;
-    }
-
-    public void setMultyTitle(String multyTitle) {
-        this.multyTitle = multyTitle;
-    }
-
-    public String getContrucaoTitle() {
-        return contrucaoTitle;
-    }
-
-    public void setContrucaoTitle(String contrucaoTitle) {
-        this.contrucaoTitle = contrucaoTitle;
-    }
-
-    public char getSelection() {
-        return selection;
-    }
-
-    public void setSelection(char selection) {
-        this.selection = selection;
-    }
-
-    public String getEsqTitle() {
-        return esqTitle;
-    }
-
-    public void setEsqTitle(String esqTitle) {
-        this.esqTitle = esqTitle;
+    @Override
+    public void setInitialCursorPosition() {
+        cursorPosition=new Position(13,23);
     }
 }

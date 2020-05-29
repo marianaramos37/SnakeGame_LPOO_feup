@@ -10,16 +10,13 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ArenaModel {
     private int width;
     private int height;
-
     private Snake snake;
     private Snake snake2;
     private List<Wall> walls= new ArrayList<>();
     private List<Obstaculo> obstaculos= new ArrayList<>();
     private List<AppleInterface> apples=new ArrayList<>();
-
-    private SinglePlayerScore score = new SinglePlayerScore();
+    private int score;
     private SinglePlayerTopScore topScore = new SinglePlayerTopScore();
-
     private boolean game_over;
 
     public ArenaModel(int width, int height) throws IOException {
@@ -48,6 +45,7 @@ public class ArenaModel {
         this.height = height;
         this.snake = new Snake(new Position(50, 17));
         this.snake2=new Snake(new Position(7,17));
+
         Apple apple = new Apple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         SpecialApple appleS = new SpecialApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
         PoisonedApple appleP= new PoisonedApple(ThreadLocalRandom.current().nextInt(1, width-1), ThreadLocalRandom.current().nextInt(1, height-1));
@@ -56,12 +54,10 @@ public class ArenaModel {
         this.apples.add(appleS);
         this.apples.add(appleP);
         this.apples.add(appleG);
-        try {
-            MapReader c=new MapReader(filename);
-            walls=c.getWallsRead();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        MapReader c=new MapReader(filename);
+        walls=c.getWallsRead();
+
         this.game_over=false;
     }
 
@@ -71,7 +67,7 @@ public class ArenaModel {
     public int getHeight(){
         return height;
     }
-    public SinglePlayerScore getScore() {
+    public int getScore() {
         return score;
     }
     public Snake getSnake(){return snake;}
@@ -98,7 +94,7 @@ public class ArenaModel {
     public void setSnake(Snake s){this.snake=s;}
     public void setWalls(List<Wall> l){this.walls=l;}
     public void setApples(List<AppleInterface> l){this.apples=l;}
-    public void setScore(SinglePlayerScore s){this.score=s;}
+    public void setScore(int s){this.score=s;}
     public void setSnakeHeadPosition(Position position) {
         snake.setPosition(position);
     }
@@ -130,8 +126,6 @@ public class ArenaModel {
             this.walls.add(new Wall(this.width-1,i));
         }
     }
-
-
 
     public void randomWalls(){
 
@@ -224,21 +218,20 @@ public class ArenaModel {
         }
         else if(a instanceof PoisonedApple){
             this.getSnake().poison();
-            if(getScore().getScore() <= 5){
-                setScore(new SinglePlayerScore());
+            if(getScore() <= 5){
+                setScore(0);
             }else{
-                setScore(new SinglePlayerScore(getScore().getScore()-5));
+                setScore(score-5);
             }
-            score.updatePrintable(score);
             return;
         }
         else if(a instanceof GhostApple){
             this.getSnake().setGhost(true);
         }
 
-        score.incrementScore(score);
-        if (score.getScore() > topScore.getScore()) {
-            topScore.incrementScore(topScore);
+        score+=1;
+        if (score > topScore.getScore()) {
+            topScore.incrementScore();
         }
         if(!getSnake().getShrink()){
             this.updateVelocidadeSnake();
@@ -268,7 +261,7 @@ public class ArenaModel {
     }
 
     public void updateVelocidadeSnake(){
-        if(this.getScore().getScore() % 5 == 0 && this.getScore().getScore() != 0 && this.snake.getVelocidade() > 90){
+        if(this.getScore() % 5 == 0 && this.getScore() != 0 && this.snake.getVelocidade() > 90){
             this.snake.setVelocidade(this.snake.getVelocidade()-5);
         }
     }

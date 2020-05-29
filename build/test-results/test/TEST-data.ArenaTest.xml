@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="data.ArenaTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-05-28T00:40:56" hostname="LAPTOP-GER1ALIG" time="0.615">
+  <properties/>
+  <testcase name="checkCollisionsTest" classname="data.ArenaTest" time="0.456"/>
+  <testcase name="testBuildWalls" classname="data.ArenaTest" time="0.002"/>
+  <testcase name="getColidingTest" classname="data.ArenaTest" time="0.146"/>
+  <testcase name="growSnakeTest" classname="data.ArenaTest" time="0.002"/>
+  <testcase name="eatAppleTest" classname="data.ArenaTest" time="0.002"/>
+  <testcase name="walkSnakeTest" classname="data.ArenaTest" time="0.002"/>
+  <testcase name="testConstructor" classname="data.ArenaTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

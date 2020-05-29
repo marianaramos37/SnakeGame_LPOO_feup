@@ -90,9 +90,7 @@ public class ArenaViewTest {
     @Test
     public void testDrawSnake() throws IOException {
         ArenaModel arena=Mockito.mock(ArenaModel.class);
-        //ArenaModel arena2=Mockito.mock(ArenaModel.class);
         Mockito.when(arena.getSnake()).thenReturn((snake));
-        //Mockito.when(arena2.getSnake()).thenReturn((snake2));
         Mockito.when(arena.getWalls()).thenReturn((walls));
         Mockito.when(arena.getApples()).thenReturn((apples));
 
@@ -115,9 +113,9 @@ public class ArenaViewTest {
     }
 
     @Test
-    public void testDrawArenaSinglePlayer() throws IOException {
+    public void testDrawArenaSinglePlayer() throws IOException, NullPointerException {
         ArenaModel arena=Mockito.mock(ArenaModel.class);
-        Mockito.when(arena.getScore()).thenReturn((new SinglePlayerScore()));
+        Mockito.when(arena.getScore()).thenReturn(0);
         Mockito.when(arena.getTopScore()).thenReturn((new SinglePlayerTopScore()));
         Mockito.when(arena.getSnake()).thenReturn((snake));
         Mockito.when(arena.getWalls()).thenReturn((walls));

@@ -1,62 +1,46 @@
 package model;
 
-import com.googlecode.lanterna.TextCharacter;
+import java.io.*;
+import java.nio.charset.Charset;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class SinglePlayerTopScore extends Score {
+public class SinglePlayerTopScore{
 
     private int topScore;
-    private List<TextCharacter> text=new ArrayList<>();
-    private List<TextCharacter> printable=new ArrayList<>();
     private String filename;
 
     public SinglePlayerTopScore() {
-
         this.filename = "src/main/java/files/topScore.txt";
-
-        text.add(new TextCharacter('T'));
-        text.add(new TextCharacter('O'));
-        text.add(new TextCharacter('P'));
-        text.add(new TextCharacter(' '));
-        text.add(new TextCharacter('S'));
-        text.add(new TextCharacter('C'));
-        text.add(new TextCharacter('O'));
-        text.add(new TextCharacter('R'));
-        text.add(new TextCharacter('E'));
-        text.add(new TextCharacter(':'));
-        text.add(new TextCharacter(' '));
-
-        this.printable.addAll(text);
-
+        this.topScore=0;
     }
 
-    @Override
     public int getScore() {
         return topScore;
     }
 
-    @Override
-    public List<TextCharacter> getPrintableScore() {
-        return printable;
-    }
-
     public String getFilename() { return filename;}
 
-    @Override
     public void setScore(int s) {
         this.topScore=s;
     }
 
-    @Override
-    public List<TextCharacter> getText() {
-        return this.text;
+    public void incrementScore(){
+        this.topScore+=1;
     }
 
-    @Override
-    public void setPrintableScore(List<TextCharacter> p) {
-        this.printable = p;
+    public void fileReader() throws IOException {
+        Charset encoding = Charset.defaultCharset();
+        File file = new File(filename);
+        InputStream in = new FileInputStream(file);
+        Reader reader = new InputStreamReader(in, encoding);
+        BufferedReader buffer = new BufferedReader(reader);
+        String r = buffer.readLine();
+        topScore=Integer.parseInt(r);
+    }
+
+    public void fileWriter() throws IOException {
+        Writer file = new FileWriter(filename);
+        file.write(Integer.toString(topScore));
+        file.flush();
     }
 
 }

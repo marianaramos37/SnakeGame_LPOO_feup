@@ -4,7 +4,7 @@ import model.ArenaModel;
 import view.ArenaView;
 
 import java.io.IOException;
-
+/*
 public class GameThread extends Thread{
     private ArenaController arenaController;
     private ArenaView gui;
@@ -20,7 +20,7 @@ public class GameThread extends Thread{
     public void run() {
         try {
             arena.buildWalls();
-            arena.getTopScore().fileReader(arena.getTopScore().getFilename(), arena.getTopScore());
+            arena.getTopScore().fileReader();
 
             ArenaView.COMMAND prevcommand = null;
             ArenaView.COMMAND command = null;
@@ -51,11 +51,11 @@ public class GameThread extends Thread{
                 if (!arena.getGameOver()) {
                     arena.checkCollisions(arena.getSnake().getPosition(),arena.getSnake());
 
-                    if (arena.getScore().getScore() % 2 == 0 && arena.getScore().getScore() != 0 && wallSpawn == 0) {
+                    if (arena.getScore() % 2 == 0 && arena.getScore() != 0 && wallSpawn == 0) {
                         arena.randomWalls();
                         wallSpawn++;
                     }
-                    if (arena.getScore().getScore() % 2 != 0) wallSpawn = 0;
+                    if (arena.getScore() % 2 != 0) wallSpawn = 0;
 
                     if (arena.getSnake().getShrink()) {
                         counter++;
@@ -79,7 +79,7 @@ public class GameThread extends Thread{
 
                 } else {
                     //jogo acabou , atualiza topScore
-                    arena.getTopScore().fileWriter(arena.getTopScore().getFilename(), arena.getTopScore());
+                    arena.getTopScore().fileWriter();
                     break;
 
                 }
@@ -88,4 +88,4 @@ public class GameThread extends Thread{
             e.printStackTrace();
         }
     }
-}
+}*/

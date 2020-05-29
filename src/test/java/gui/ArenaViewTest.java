@@ -101,7 +101,7 @@ public class ArenaViewTest {
 
         // Execute
         ArenaView view = new ArenaView(30,30,screen);
-        view.drawSnake(arena);
+        view.drawSnake(arena.getSnake());
 
         // Verify
         Mockito.verify(screen, Mockito.times(1))
@@ -115,7 +115,7 @@ public class ArenaViewTest {
     }
 
     @Test
-    public void testDrawArena() throws IOException {
+    public void testDrawArenaSinglePlayer() throws IOException {
         ArenaModel arena=Mockito.mock(ArenaModel.class);
         Mockito.when(arena.getScore()).thenReturn((new SinglePlayerScore()));
         Mockito.when(arena.getTopScore()).thenReturn((new SinglePlayerTopScore()));
@@ -128,7 +128,7 @@ public class ArenaViewTest {
 
         // Execute
         ArenaView view = new ArenaView(30,30,screen);
-        view.drawArena(arena);
+        view.drawArena(arena,1);
 
         // Verify
         Mockito.verify(screen, Mockito.times(1))
@@ -142,4 +142,12 @@ public class ArenaViewTest {
         Mockito.verify(screen, Mockito.times(1))
                 .setCharacter(5, 7, new TextCharacter('-'));
     }
+
+    /*
+    @Test
+    public void testDrawArenaMultiPlayer(){
+
+    }
+    */
+
 }

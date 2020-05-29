@@ -1,5 +1,6 @@
 package data;
 
+import controller.ArenaController;
 import model.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,7 +99,7 @@ public class ArenaTest {
         snakeAfter.setSnakeBody(snakebodyAfter);
         snakeAfter.setPos(posAfter);
 
-        arena.growSnake();
+        arena.growSnake(arena.getSnake());
 
         assertEquals(snakeAfter.getSnakeBody(),arena.getSnake().getSnakeBody());
         assertEquals(snakeAfter.getPos(),arena.getSnake().getPos());
@@ -132,11 +133,15 @@ public class ArenaTest {
 
     @Test
     public void eatAppleTest() throws IOException {
-        /*SpecialApple appleS = new SpecialApple(7,7);
+        SpecialApple appleS = new SpecialApple(7,7);
         PoisonedApple appleP = new PoisonedApple(8,7);
+        GhostApple appleG = new GhostApple(4,9);
+        Apple apple = new Apple(3,3);
         List<AppleInterface> apples=new ArrayList<>();
         apples.add(appleS);
         apples.add(appleP);
+        apples.add(appleG);
+        apples.add(apple);
 
         Snake snake= new Snake(new Position(5,5));
 
@@ -146,13 +151,19 @@ public class ArenaTest {
         when(arenaModel.getSnake()).thenCallRealMethod();
 
         arenaModel.eatenApple(appleP);
-        assertEquals(75,arenaModel.getSnake().getVelocidade());
-        assertTrue(arenaModel.getSnake().isShrink);
+        assertEquals(150,arenaModel.getSnake().getVelocidade());
 
-        ArenaController arenaController2= new ArenaController(gui,arena2);
-        arenaController2.eatenApple(apple2,arena2);
-        assertEquals(150,arenaController2.getSnakeController().getVelocidade());
-        assertFalse(arena2.getSnake().isShrink);*/
+
+        arenaModel.eatenApple(appleS);
+        assertTrue(arenaModel.getSnake().getShrink());
+
+
+        arenaModel.eatenApple(appleG);
+        assertTrue(arenaModel.getSnake().isGhost());
+
+        int previousLength = arenaModel.getSnake().getLength();
+        arenaModel.eatenApple(apple);
+        assertEquals(previousLength+1,arenaModel.getSnake().getLength());
     }
 
     @Test
@@ -175,15 +186,15 @@ public class ArenaTest {
         arena.setScore(score);
 
 
-        arena.checkCollisions(new Position(10,12)); //primeiro
+        arena.checkCollisions(new Position(10,12), arena.getSnake()); //primeiro
 
         assertEquals(4,arena.getScore().getScore());
         assertEquals(2,arena.getSnake().getLength());
 
-        arena.checkCollisions(new Position(0,0)); //segundo
+        arena.checkCollisions(new Position(0,0),arena.getSnake()); //segundo
         assertFalse(arena.getGameOver());
 
-        arena.checkCollisions(new Position(10,11)); //terceiro
+        arena.checkCollisions(new Position(10,11),arena.getSnake()); //terceiro
         assertTrue(arena.getGameOver());
     }
 

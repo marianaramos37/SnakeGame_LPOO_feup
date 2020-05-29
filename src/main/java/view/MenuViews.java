@@ -39,12 +39,14 @@ public class MenuViews extends View{
             TextGraphics graphics = screen.newTextGraphics();
             graphics.setBackgroundColor(TextColor.Factory.fromString("#2d0115"));
             graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(60, 35), ' ');
-            graphics.putString(10,20,"EASY");
-            graphics.putString(10,21,"LEVEL");
-            graphics.putString(25,20,"MEDIUM");
-            graphics.putString(25,21,"LEVEL");
-            graphics.putString(40,20,"HARD");
-            graphics.putString(40,21,"LEVEL");
+            graphics.putString(5,20,"EASY");
+            graphics.putString(5,21,"LEVEL");
+            graphics.putString(19,20,"MEDIUM");
+            graphics.putString(19,21,"LEVEL");
+            graphics.putString(34,20,"HARD");
+            graphics.putString(34,21,"LEVEL");
+            graphics.putString(46,20,"ULTRA-HARD");
+            graphics.putString(49,21,"LEVEL");
 
             screen.refresh();
         } catch (IOException e) {

@@ -68,7 +68,7 @@ public class GameThread extends Thread{
 
                     if(arena.getSnake().isGhost()){
                         counterGhost++;
-                        if(counterGhost==100){
+                        if(counterGhost==85){
                             counter=0;
                             arena.getSnake().setGhost(false);
                         }

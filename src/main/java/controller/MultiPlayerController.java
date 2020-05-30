@@ -1,7 +1,10 @@
 package controller;
 
-import commands.CommandArena;
-import model.*;
+import commands.Command;
+import model.Apple;
+import model.AppleInterface;
+import model.ArenaModel;
+import model.PoisonedApple;
 import view.View;
 
 import java.io.IOException;
@@ -37,11 +40,11 @@ public class MultiPlayerController extends StateControllers {
             int result_snake2=0;
 
 
-            while (result_snake1!=3&&result_snake2!=3) {
+            while (result_snake1!=3 && result_snake2!=3) {
 
                 sleep(arena.getSnake2().getVelocidade());
 
-                CommandArena command = gui.getCommandArena();
+                Command command = gui.getCommand();
                 command.executeArena(arena);
 
                 arenaController.movement();
@@ -49,9 +52,7 @@ public class MultiPlayerController extends StateControllers {
                 if (!arena.getGameOver()) {
                     arena.checkCollisions(arena.getSnakeHeadPosition(),arena.getSnake());
                     arena.checkCollisions(arena.getSnakeHead2Position(),arena.getSnake2());
-
                     arena.checkAttack();
-
                     view.drawArena(arena,2);
 
                 }

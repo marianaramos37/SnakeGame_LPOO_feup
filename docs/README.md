@@ -10,40 +10,48 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 **Single Player**
 - **Virar**: A cobra está sempre em movimento, o jogador usa as teclas para mudar a direção em que a cobra vai;
 - **Score**: A score é calculada pelo número de maçãs comidas;
-- **Mapas**: Mapas diferentes para cada nível de dificuldade
-- **Maçãs**: As maçãs são colocadas em posições aleatórias na arena à medida que a cobra as vai comendo;
-- **Maças Especiais**: Maçãs especiais dão poderes há cobra: ficar mais curta e rápida durante um intervalo de tempo;
 - **TopScore**: Top score é sempre guardado;
-- **Níveis**: Existem três níveis distintos: Fácil, Médio e Difícil;
-- **Obstáculos**: Existem obstáculos no meio da arena que vão aparecendo ao longo do tempo;
-- **Maçãs envenenadas**: Maçãs envenenadas fazem a cobra diminuir de tamanho;
-- **Velocidade** e **tamanho dos obstáculos** mudam ao longo do nível e de nível para nível
-
-**Menus**: para selecionar o modo de jogo e o nível de dificuldade do modo de jogo Single Player.
-
-
-![screenshot of game](/docs/images/screenshot.png)
-
-
-## Funcionalidades Planeadas ##
-
-**Três modos de jogo:** Single Player, Multi Player e Construção de Mapas, selecionáveis a partir de um menu
+- **Níveis**: Existem quatro níveis distintos: Fácil, Médio, Difícil e Ultra Difícil;
+- **Obstáculos**: Existem obstáculos no meio da arena que vão aparecendo ao longo do tempo em locais aleatórios;
+- **Mapas**: Mapas diferentes para cada nível de dificuldade;
+- **Velocidade** e **tamanho dos obstáculos** mudam ao longo do nível e de nível para nível;
+- **Maçãs**: As maçãs são colocadas em posições aleatórias na arena à medida que a cobra as vai comendo;
+- **Maças Especiais**: Maçãs especiais dão poderes à cobra: ficar mais curta e rápida durante um intervalo de tempo;
+- **Maçãs Envenenadas**: Maçãs envenenadas fazem a cobra diminuir de tamanho e perder 5 pontos na score;
+- **Maçãs Fantasma**: Maçãs fantasma quando comidas fazem com que a cobra consiga passar por cima dos obstáculos;
 
 **Multi Player**
 - Estão duas cobras na mesma arena, a ser controladas por partes do teclado diferentes;
 - **Ataque**: Se uma cobra tocar no corpo da outra perde, isto dá possibilidade de uma cobra "matar" outra colocando o seu corpo à frente da cabeça da mesma;
-- **Rondas**: Esta versão é constituida por três rondas, quando um dos players morre o outro ganha um ponto;
+- **Rondas**: Esta versão é constituida por diferentes rondas, quando um dos players morre o outro ganha um ponto. O primeiro a chegar aos 3 pontos ganha o jogo;
 
-**Construção de mapas**
+
+**Menus**
+- **Menu Principal** - Permite escolher entre SinglePlayer, MultiPlayer, Instruções do Jogo e Sair;
+- **Menu de Escolha de nível** - Permite escolher entre os quatro níveis de dificuldade do modo SinglePlayer;
+- **Menu GameOver** - Permite retornar ao Menu Principal ou Sair.
+
+
+![MainMenu](/docs/images/MainMenu.PNG)
+![SinglePlayer_UltraHardLevel](/docs/images/SinglePlayer.PNG)
+![MultiPlayer](/docs/images/MultiPlayer.PNG)
+![GameOver](/docs/images/GameOver.PNG)
+
+## Funcionalidades Planeadas ##
+
+**Terceiro modo de jogo:** Construção de Mapas
 - No menu principal irá existir uma funcionalidade que permitirá aos jogadores construir os seus próprios mapas. Estes poderão ter uma serie de obstáculos previamente selecionados e poderão ser usados nas versões multiplayer.
 
 ## Architetural Pattern ##
+
 O nosso programa tem o padrão arquitetural MVC (Model-View-Controller). 
 Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
-- Model (package **model**): Contém todos os elementos do jogo.
+- Model (package **model**): Contém todos os elementos do jogo: Snake, ArenaModel, diferentes modelos de maçãs que implementam 
+a interface AppleInterface,  Walls e Obstaculos (constituidos por Walls) sendo que ambos estendem a classe Element, modelos dos 
+diferentes menus que estendem a classe MenuModel e por último modelo da Top Score.
 - View (package **view**): Representa a visualização de todos os dados contidos no model.
 - Controller (package **controller**): Existe entre a *view* e o *model*. O controller responde aos eventos enviados 
-por *view* e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação irá mudar o *model* que será
+por *view* através de Commands e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação muda o *model* que será
 visualizado por view.
 
 
@@ -51,53 +59,59 @@ Implementamos este modelo logo desde início dadas as vantagens que este design 
 
 Para além dos packages já mencionados decidimos adicionar:
 - **files**: Este package contém todos os ficheiros necessários para o funcionamento do jogo. Entre eles 3 mapas para 3 níveis diferentes (fácil, médio e díficil) e um ficheiro que guarda a atual top score do jogo.
-- **fileReaders**: Este package para já contém uma classe mapReader que tal como o nome indica lê os ficheiros dos mapas e encarrega-se de colocar as paredes da arena nas posições indicadas no ficheiro.
+- **fileReaders**: Este package  contém uma classe mapReader que tal como o nome indica lê os ficheiros dos mapas e encarrega-se de colocar as paredes da arena nas posições indicadas no ficheiro.
+- **commands**: Este package contém duas interfaces CommandArena e CommandMenu, e uma série de classes que implementam ou uma ou as duas interfaces.
 
 ## Design ##
 
- ### Métodos iguais em classes diferentes ### ---> já nao estamos a usar
- - **Contexto do problema**
- Tanto a classe [Snake](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/7194fca72d4975f532b82e50f981bdc8e7ece2c9/src/main/java/data/Snake.java#L6) como a classe [Wall](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/Wall.java#L3) funcionam à base de getters e setters de posições (apesar da classe Snake ter uma lista de posições, é necessário saber a posição da cabeça da Snake a todo o momento). Como era necessário fazer comparações de posições e usar métodos muito comuns às duas classes, decidimos que as duas classes deviam extender a mesma classe Element.
+ ### Maçãs diferentes -> adicionar strategy### 
  
- - **Factory Method**
- O Factory Method permite instanciar a superclasse e só depois dizer qual das classes concretas (que extendem essa mesma superclasse) é que queremos usar, além de agrupar classes com propriedades semelhantes numa mesma superclasse. No nosso caso, isto permite avaliar as colisões entre elementos muito mais facilmente.
+ - **Contexto do problema**
+ Aquando da criação de diferentes maçãs no jogo deparamo-nos com a repetição de métodos
+ No nosso jogo é necessário criar diferentes maçãs consumíveis que adoptam posições aleatórias depois de consumidas e têm 
+ poderes especificos associados, além de terem TextCharacter diferentes atribuídos a cada tipo de maçã. Isso torna 
+ imperativo uma interface comum às diferentes classes de maçãs com os métodos comuns às classes de maçãs que a implementam.
+ 
+ - **O Padrão**
+ Nós escolhemos usar o **Factory Method**
+ permite criar várias instanciações concretas de objetos com propriedades semelhantes através 
+ da criação de classes que implementem uma mesma interface abstrata que instancia todas as propriedades comuns a esses objetos.
  
  - **Implementação**
- Classe abstrata Element que engloba vários elementos de jogo (classe Snake, classe Wall).
- 
- ![diagrama factory](/docs/images/factoryMethod.png)
- 
- - **Consequências**
- Os Elements concretos são definidos e usados pela classe ArenaModel. As colisões e a verificação da posição dos vários elementos é facilitada.
- 
- 
- ### Maçãs diferentes ###
- - **Contexto do problema**
- No nosso jogo é necessário criar maçãs consumíveis que adoptam posições aleatórias depois de consumidas e têm poderes especificos associados, além de terem TextCharacter diferentes atribuídos a cada tipo de maçã. Isso torna imperativo uma interface comum às diferentes classes de maçãs com os métodos comuns às classes de maçãs que a implementam.
- 
- - **Abstract-Factory Pattern**
- O Abstract-Factory Pattern permite criar várias instanciações concretas de objetos com propriedades semelhantes através da criação de classes que implementem uma mesma interface abstrata que instancia todas as propriedades comuns a esses objetos.
- 
- - **Implementação**
- As classes [Apple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/Apple.java#L3) e [SpecialApple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/SpecialApple.java#L3) ambas implementam a Interface [AppleInterface](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/AppleInterface.java#L3). 
+ As classes [Apple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/Apple.java#L3) 
+ e [SpecialApple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/SpecialApple.java#L3)
+  ambas implementam a Interface [AppleInterface](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/AppleInterface.java#L3). 
   
-  ![diagrama command](/docs/images/abstractPattern.png)
   
  - **Consequências**
   Nas Classes Apple, todas as maçãs implementam os mesmos métodos. Acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface AppleInterface. ArenaModel pode ter uma lista de objetos AppleInterface em vez que ter uma lista diferente para cada classe que implementa a interface. Podemos usar o método getChar, ou outro método qualquer instanciado na interface, num elemento da interface Apple que o mesmo vai devolver o valor correto da classe concreta da Apple que o chama.
  Ao implementar este padrão respeitamos o Open-Close Principle.
- 
-## Menus
-- **Contexto do problema**
-- **Command Pattern**
-- **Implementação**
-- **Consequências**
+
 
 ## Criação de obstáculos
 - **Contexto do problema**
 - **Composite Pattern**
 - **Implementação**
 - **Consequências**
+
+## Parametrizar comandos 
+- **Contexto do problema**
+- **Command Pattern**
+- **Implementação**
+- **Consequências**
+
+## Commandos que funcionam tanto nos Menus como na Arena
+- **Contexto do problema**
+- **Adapter**
+- **Implementação**
+- **Consequências**
+
+## Menus
+- **Contexto do problema**
+- **State Pattern**
+- **Implementação**
+- **Consequências**
+
  
 ## Code Smells and Refactoring Technics
  - A velocidade default da snake é 150 (de momento, mais tarde este valor será variável). É o que se chama um **Magic Number** e deve ser substituído através da utilizacão de uma **Symbolic Constant** para uma melhor organização e compreeensão do código.

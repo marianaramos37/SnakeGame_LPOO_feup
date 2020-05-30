@@ -2,7 +2,7 @@ package commands;
 
 import model.MenuModel;
 
-public class IKey implements CommandMenu {
+public class IKey extends Command implements CommandMenu {
 
     @Override
     public void executeMenu(MenuModel menuModel) {

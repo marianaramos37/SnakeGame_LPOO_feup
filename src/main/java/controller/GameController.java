@@ -15,14 +15,9 @@ import java.io.IOException;
 public class GameController {
     Screen screen;
     StateControllers state;
-
     private View view;
 
     DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(60, 35));
-
-    public View getView(){
-        return view;
-    }
 
     public void init() throws IOException, InterruptedException, FontFormatException {
 

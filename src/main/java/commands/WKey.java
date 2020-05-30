@@ -2,7 +2,7 @@ package commands;
 
 import model.ArenaModel;
 
-public class WKey implements CommandArena {
+public class WKey extends Command implements CommandArena {
     @Override
     public void executeArena(ArenaModel arena) {
         if(arena.getSnake2().getDirection()!="down"){

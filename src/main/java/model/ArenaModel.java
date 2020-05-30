@@ -202,6 +202,7 @@ public class ArenaModel {
 
     public void eatenApple(AppleInterface a){
         int index=0;
+        //colocar maca numa nova posicao da arena
         for(AppleInterface apple: getApples()){
             if(apple.getPosition().equals(a.getPosition())) {
                 getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1)));
@@ -228,7 +229,6 @@ public class ArenaModel {
         else if(a instanceof GhostApple){
             this.getSnake().setGhost(true);
         }
-
         score+=1;
         if (score > topScore.getScore()) {
             topScore.incrementScore();

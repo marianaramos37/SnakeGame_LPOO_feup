@@ -246,12 +246,8 @@ public class View {
             if (key.getCharacter() == 'i') {
                 return new IKey();
             }
-            else {
-                return new NullCommand();
-            }
         }
-        else{
-            return new NullCommand();
-        }
+
+        return new NullCommand();
     }
 }

@@ -66,7 +66,6 @@ public class ArenaTest {
         Position npos=new Position(8,5);
         arena.walkSnake(npos, '-',snake);
 
-        //System.out.println(snake.getPos().get(0).getX());
 
         List<Character> snakebodyAfter = new ArrayList<>();
         List<Position> posAfter = new ArrayList<>();
@@ -146,21 +145,21 @@ public class ArenaTest {
 
         ArenaModel arenaModel=Mockito.mock(ArenaModel.class);
         Mockito.when(arenaModel.getApples()).thenReturn(apples);
-        arenaModel.setSnake(snake);
+        Mockito.when(arenaModel.getSnake()).thenReturn(snake);
 
-        arenaModel.eatenApple(appleP);
+        appleP.affect(snake);
         assertEquals(150,arenaModel.getSnake().getVelocidade());
 
 
-        arenaModel.eatenApple(appleS);
+        appleS.affect(snake);
         assertTrue(arenaModel.getSnake().getShrink());
 
 
-        arenaModel.eatenApple(appleG);
+        appleG.affect(snake);
         assertTrue(arenaModel.getSnake().isGhost());
 
         int previousLength = arenaModel.getSnake().getLength();
-        arenaModel.eatenApple(apple);
+        apple.affect(snake);
         assertEquals(previousLength+1,arenaModel.getSnake().getLength());
     }
 

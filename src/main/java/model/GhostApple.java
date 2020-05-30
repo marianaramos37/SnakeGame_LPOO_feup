@@ -22,4 +22,10 @@ public class GhostApple implements AppleInterface{
     public Character getChar() {
         return 'G';
     }
+
+    @Override
+    public void affect(Snake snake) {
+        snake.growSnake();
+        snake.setGhost(true);
+    }
 }

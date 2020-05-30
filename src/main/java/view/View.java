@@ -162,14 +162,6 @@ public class View {
         }
     }
 
-    public void drawObstaculos(ArenaModel arena){
-        java.util.List<Obstaculo> obstaculos=arena.getObstaculos();
-        TextGraphics graphics = screen.newTextGraphics();
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#790000"));
-        for(Obstaculo obstaculo:obstaculos) {
-            drawElements(obstaculo.getObstaculo());
-        }
-    }
 
     public void drawApples(ArenaModel arena) {
         List<AppleInterface> apples=arena.getApples();
@@ -206,8 +198,11 @@ public class View {
             List<Element> elements = new ArrayList<>();
             elements.addAll(arena.getWalls());
 
+            for(Obstaculo o: arena.getObstaculos()){
+                elements.addAll(o.getObstaculo());
+            }
+
             drawElements(elements);
-            drawObstaculos(arena);
 
             screen.refresh();
 

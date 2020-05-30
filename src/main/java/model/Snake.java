@@ -91,4 +91,29 @@ public class Snake{
         }
     }
 
+    public void growSnake(){
+        setLength(length+1);
+
+        if(snakebody.get(length - 1) == '-'){
+            snakebody.add(length ,'-');
+
+            if (pos.get(length - 2).getX() + 1 == pos.get(length- 1).getX()) {
+                pos.add(length, new Position(pos.get(length - 1).getX() + 1, pos.get(length - 1).getY()));
+            }
+            if (pos.get(length - 2).getX() - 1 == pos.get(getLength() - 1).getX()) {
+                pos.add(length, new Position(pos.get(length - 1).getX() - 1, pos.get(length - 1).getY()));
+            }
+
+
+        }else{
+            snakebody.add(length ,'|');
+
+            if(pos.get(length -2).getY()+1 == pos.get(length-1).getY()){
+                pos.add(length ,new Position(pos.get(length -1).getX(),pos.get(length -1).getY()+1));
+            }
+            if(pos.get(length -2).getY()-1 == pos.get(length-1).getY()){
+                pos.add(length ,new Position(pos.get(length -1).getX(),pos.get(length -1).getY()-1));
+            }
+        }
+    }
 }

@@ -22,5 +22,11 @@ public class SpecialApple implements AppleInterface{
         return 'S';
     }
 
+    @Override
+    public void affect(Snake snake) {
+        snake.setVelocidade(snake.getVelocidade()/2);
+        snake.shrink();
+    }
+
 
 }

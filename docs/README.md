@@ -103,9 +103,11 @@ No entanto um obstaculo é contituido por Walls que por sua vez também são ele
 - **O Padrão**
 
 Para resolver o problema optamos por usar o **Composite Pattern** (com uma variação em que ordenamos os elemets no Composite). 
-Este padrão permite-nos representar hierarquias de objetos parte-todo e fazer com que o cliente (neste caso ArenaModel e 
-consequentemente e mais importante **ArenaView**) ignore a diferença entre a composição de elementos (os Obstaculos) e os 
-elementos em si (as Walls).
+Este padrão permite-nos representar hierarquias de objetos parte-todo e fazer com que o cliente (neste caso **ArenaView**) ignore 
+a diferença entre a composição de elementos (os Obstaculos) e os elementos em si (as Walls). 
+É importante notar que no nosso caso, para o cliente Arena Model interessa ainda distinguir obstaculos de paredes (em especifico no
+caso de a Snake ter comido uma GhostApple e conseguir ultrapassar obstaculos mas não paredes). No entanto este padrão é extremamente
+útil na Arenaview como expliado mais à frente em "Consequências".
 
 - **Implementação**
 
@@ -120,7 +122,8 @@ Estas classes podem ser encontradas nos seguintes ficheiros:
 
 Usar o Composite Pattern no nosso design do nosso projeto forneceu-nos as seguintes vantagens:
 
- - Simplificamos bastante a nossa Classe View 
+ Simplificamos bastante a nossa Classe View uma vez que desenhar obstaculos não é mais do que desenhar elementos Walls
+ sem necessitar de distinguir entre eles.
 
 
 ## Parametrizar comandos 

@@ -22,4 +22,9 @@ public class Apple implements AppleInterface{
         return 'O';
     }
 
+    @Override
+    public void affect(Snake snake) {
+        snake.growSnake();
+    }
+
 }

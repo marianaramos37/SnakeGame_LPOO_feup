@@ -21,4 +21,9 @@ public class PoisonedApple implements AppleInterface{
         return '~';
     }
 
+    @Override
+    public void affect(Snake snake) {
+        snake.poison();
+    }
+
 }

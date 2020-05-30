@@ -8,13 +8,13 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 
 ## Funcionalidades Implementadas ##
 **Single Player**
-- **Virar**: A cobra está sempre em movimento, o jogador usa as teclas para mudar a direção em que a cobra vai;
+- **Virar**: A cobra está sempre em movimento, o jogador usa as teclas (Setas ou A,W,D,S) para mudar a direção em que a cobra vai;
 - **Score**: A score é calculada pelo número de maçãs comidas;
 - **TopScore**: Top score é sempre guardado;
 - **Níveis**: Existem quatro níveis distintos: Fácil, Médio, Difícil e Ultra Difícil;
 - **Obstáculos**: Existem obstáculos no meio da arena que vão aparecendo ao longo do tempo em locais aleatórios;
 - **Mapas**: Mapas diferentes para cada nível de dificuldade;
-- **Velocidade** e **tamanho dos obstáculos** mudam ao longo do nível e de nível para nível;
+- **Velocidade** muda ao longo do nível;
 - **Maçãs**: As maçãs são colocadas em posições aleatórias na arena à medida que a cobra as vai comendo;
 - **Maças Especiais**: Maçãs especiais dão poderes à cobra: ficar mais curta e rápida durante um intervalo de tempo;
 - **Maçãs Envenenadas**: Maçãs envenenadas fazem a cobra diminuir de tamanho e perder 5 pontos na score;
@@ -40,7 +40,8 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 ## Funcionalidades Planeadas ##
 
 **Terceiro modo de jogo:** Construção de Mapas
-- No menu principal irá existir uma funcionalidade que permitirá aos jogadores construir os seus próprios mapas. Estes poderão ter uma serie de obstáculos previamente selecionados e poderão ser usados nas versões multiplayer.
+- No menu principal irá existir uma funcionalidade que permitirá aos jogadores construir os seus próprios mapas. Estes 
+poderão ter uma serie de obstáculos previamente selecionados e poderão ser usados nas versões multiplayer.
 
 ## Architetural Pattern ##
 
@@ -48,14 +49,15 @@ O nosso programa tem o padrão arquitetural MVC (Model-View-Controller).
 Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
 - Model (package **model**): Contém todos os elementos do jogo: Snake, ArenaModel, diferentes modelos de maçãs que implementam 
 a interface AppleInterface,  Walls e Obstaculos (constituidos por Walls) sendo que ambos estendem a classe Element, modelos dos 
-diferentes menus que estendem a classe MenuModel e por último modelo da Top Score.
+diferentes menus que estendem a classe MenuModel e por último modelo da TopScore.
 - View (package **view**): Representa a visualização de todos os dados contidos no model.
 - Controller (package **controller**): Existe entre a *view* e o *model*. O controller responde aos eventos enviados 
 por *view* através de Commands e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação muda o *model* que será
 visualizado por view.
 
 
-Implementamos este modelo logo desde início dadas as vantagens que este design apresenta, entre elas a organização do nosso código, o que facilitou o uso e paralelismo entre classes.
+Implementamos este modelo logo desde início dadas as vantagens que este design apresenta, entre elas a 
+organização do nosso código, o que facilitou o uso e paralelismo entre classes.
 
 Para além dos packages já mencionados decidimos adicionar:
 - **files**: Este package contém todos os ficheiros necessários para o funcionamento do jogo. Entre eles 3 mapas para 3 níveis diferentes (fácil, médio e díficil) e um ficheiro que guarda a atual top score do jogo.
@@ -64,27 +66,29 @@ Para além dos packages já mencionados decidimos adicionar:
 
 ## Design ##
 
- ### Maçãs diferentes -> adicionar strategy### 
+ ### Maçãs diferentes que provocam alterações diferentes na snake quando comidas### 
  
  - **Contexto do problema**
  
- Aquando da criação de diferentes maçãs no jogo deparamo-nos com a repetição de métodos
- No nosso jogo é necessário criar diferentes maçãs consumíveis que adoptam posições aleatórias depois de consumidas e têm 
- poderes especificos associados, além de terem TextCharacter diferentes atribuídos a cada tipo de maçã. Isso torna 
- imperativo uma interface comum às diferentes classes de maçãs com os métodos comuns às classes de maçãs que a implementam.
+ No nosso jogo é necessário criar diferentes maçãs consumíveis que adoptam posições aleatórias depois de consumidas, têm 
+ poderes especificos associados que alteram a snake e a arena de modos diferentes e têm TextCharacter diferentes 
+ atribuídos a cada tipo de maçã. Ao longo da criação da classe ArenaModel que contém várias maçãs dos diferentes tipos
+ achamos imperativo ter uma Lista com todas as maçãs juntas para poder iterar sobre elas sem especificar as classes concretas.
+ Para além disso na classe ArenaModel cada vez que era consumida uma maçã viamo-nos obrigadas a verificar que tipo de maçã 
+ era usando Conditional Statements muito longos de forma a alterar a snake da forma pretendida.
+ 
  
  - **O Padrão**
  
- Nós escolhemos usar o **Factory Method**
- permite criar várias instanciações concretas de objetos com propriedades semelhantes através 
- da criação de classes que implementem uma mesma interface abstrata que instancia todas as propriedades comuns a esses objetos.
+Para resolver este problema optamos por recorrer ao padrão de design Stratagy Pattern. Este padrão permitiu-nos encapsular
+algoritmos dentro de objetos. Desta forma o algoritmo usado pelo cliente (no nosso caso a Snake) pode ser parametrizavel
+sem ser necessário alterá-lo ou estende-lo.
  
  - **Implementação**
  
  As classes [Apple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/Apple.java#L3) 
  e [SpecialApple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/SpecialApple.java#L3)
   ambas implementam a Interface [AppleInterface](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/AppleInterface.java#L3). 
-  
   
  - **Consequências**
  
@@ -113,7 +117,7 @@ Este padrão permite-nos representar hierarquias de objetos parte-todo e fazer c
 a diferença entre a composição de elementos (os Obstaculos) e os elementos em si (as Walls). 
 É importante notar que no nosso caso, para o cliente Arena Model interessa ainda distinguir obstaculos de paredes (em especifico no
 caso de a Snake ter comido uma GhostApple e conseguir ultrapassar obstaculos mas não paredes). No entanto este padrão é extremamente
-útil na Arenaview como expliado mais à frente em "Consequências".
+útil na Arenaview como explicado mais à frente em "Consequências".
 
 - **Implementação**
 
@@ -131,7 +135,7 @@ Estas classes podem ser encontradas nos seguintes ficheiros:
 - **Consequências**
 
 Usar o Composite Pattern no nosso design do nosso projeto forneceu-nos as seguintes vantagens:
-    - Simplificamos bastante a nossa Classe View uma vez que desenhar obstaculos não é mais do que desenhar elementos Walls
+   1. Simplificamos bastante a nossa Classe View uma vez que desenhar obstaculos não é mais do que desenhar elementos Walls
     sem necessitar de distinguir entre eles.
 
 
@@ -157,8 +161,36 @@ Este padrão permite-nos encapsular um pedido (no nosso caso a chamada de funç�
  
 - **Implementação**
 
+A figura seguinte mostra como os papeis do padrão foram aplicados nas nossas classes:
+
+![Diagrama_Command](/docs/images/UMLCommandAdapter.png)
+
+Estas classes podem ser encontradas nos seguintes ficheiros:
+[Command](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/Command.java#L6),
+[CommandArena](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/CommandArena.java#L5),
+[CommandMenu](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/CommandMenu.java#L5),
+[ArrowLeft](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/ArrowLeft.java#L6),
+[ArrowRight](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/ArrowRight.java#L6),
+[ArrowUp](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/ArrowUp.java#L5),
+[ArrowDown](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/ArrowDown.java#L5),
+[AKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/AKey.java#L5),
+[WKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/WKey.java#L5),
+[DKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/DKey.java#L5),
+[SKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/SKey.java#L5),
+[EnterKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/EnterKey.java#L5),
+[EscKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/EscKey.java#L5),
+[IKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/IKey.java#L5),
+[NullCommand](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/NullCommand.java#L6)
+
 - **Consequências**
 
+Usar o Command Pattern no design do nosso projeto forneceu-nos as seguintes vantagens:
+1. Separamos as responsabilidades de saber quando executar um comando (nos Controllers) e como executar o comando 
+(nas classes mecionadas a cima). Cumprindo o Single Responsibility Principle;
+2. Tornou-se fácil ter comandos compostos. Por exemplo executar o comandos das Arrow e Enter para selecionar opções;
+3. Torna-se fácil adicionar novos comandos, não tendo que alterar nenhuma classe para o fazer, apenas acrescentar;
+4. Tivemos que adicionar muitas novas classes o que pode ser visto como uma desvantagem. Mas dada a dimensão do projeto não foi muito
+problemático.
 
 ## Menus
 - **Contexto do problema**
@@ -180,8 +212,8 @@ o próprio estado define as suas transições.
 As figuras seguintes mostram como os papeis do padrão foram aplicados nas nossas classes e um diagrama de estados do funcionamento 
 do objeto GameController:
 
-![Diagrama_State](/docs/images/UMLState.PNG)
-![DiagramaDeEstados](/docs/images/StateDiagram.PNG)
+![Diagrama_State](/docs/images/UMLState.png)
+![DiagramaDeEstados](/docs/images/StateDiagram.png)
 
 Estas classes podem ser encontradas nos seguintes ficheiros:
 
@@ -196,11 +228,11 @@ Estas classes podem ser encontradas nos seguintes ficheiros:
 - **Consequências**
 
 O uso do State Pattern no design do nosso projeto permitiu-nos:
-    - Os diferentes estados que representam o funcionamento geral do jogo tornam-se explicitos no código, em vez de serem apenas uma
+1. Os diferentes estados que representam o funcionamento geral do jogo tornam-se explicitos no código, em vez de serem apenas uma
     série de flags;
-    - Não necessitamos de usar longos Conditional Statements associados aos diferentes estados. Recorrendo ao polimorfismo
+2. Não necessitamos de usar longos Conditional Statements associados aos diferentes estados. Recorrendo ao polimorfismo
     criamos o funcionamento correto;
-    - Uma pequena desvantagem foi o número de classes adicionais.
+3. Uma pequena desvantagem foi o número de classes adicionais.
 
 
 

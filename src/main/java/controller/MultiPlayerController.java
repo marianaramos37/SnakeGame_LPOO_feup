@@ -14,7 +14,6 @@ import java.util.List;
 import static java.lang.Thread.sleep;
 
 public class MultiPlayerController extends StateControllers {
-    private ArenaController arenaController;
     private ArenaModel arena;
     private View gui;
 
@@ -22,7 +21,6 @@ public class MultiPlayerController extends StateControllers {
         super(v);
         gui = v;
         arena = new ArenaModel(60, 30,"src/main/java/files/mapHard.txt");
-        arenaController = new ArenaController(arena);
     }
 
     @Override
@@ -43,15 +41,14 @@ public class MultiPlayerController extends StateControllers {
             while (result_snake1!=3 && result_snake2!=3) {
 
                 sleep(arena.getSnake2().getVelocidade());
-
                 Command command = gui.getCommand();
                 command.executeArena(arena);
-
-                arenaController.movement();
+                arena.getSnake().walkSnake();
+                arena.getSnake2().walkSnake();
 
                 if (!arena.getGameOver()) {
-                    arena.checkCollisions(arena.getSnakeHeadPosition(),arena.getSnake());
-                    arena.checkCollisions(arena.getSnakeHead2Position(),arena.getSnake2());
+                    arena.checkCollisions(arena.getSnake());
+                    arena.checkCollisions(arena.getSnake2());
                     arena.checkAttack();
                     view.drawArena(arena,2);
 

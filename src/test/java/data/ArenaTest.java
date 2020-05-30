@@ -30,7 +30,7 @@ public class ArenaTest {
         when(snakeMock.getSnakeBody()).thenReturn(snakebody);
         when(snakeMock.getPos()).thenReturn(pos);
         when(snakeMock.getLength()).thenReturn(3);
-        when(snakeMock.getShrink()).thenReturn(false);
+        when(snakeMock.isShrink()).thenReturn(false);
     }
 
     @Test
@@ -152,7 +152,7 @@ public class ArenaTest {
 
 
         appleS.affect(snake);
-        assertTrue(arenaModel.getSnake().getShrink());
+        assertTrue(arenaModel.getSnake().isShrink());
 
 
         appleG.affect(snake);

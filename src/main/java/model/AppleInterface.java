@@ -2,7 +2,7 @@ package model;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public abstract interface AppleInterface {
+public interface AppleInterface {
     Position getPosition();
     void setPosition(Position position);
     Character getChar();

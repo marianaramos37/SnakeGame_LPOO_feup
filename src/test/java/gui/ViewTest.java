@@ -58,13 +58,13 @@ public class ViewTest {
         pos2.add(new Position(12,5));
 
         Mockito.when(snake.getSnakeBody()).thenReturn(snakebody);
-        Mockito.when(snake.getShrink()).thenReturn(false);
+        Mockito.when(snake.isShrink()).thenReturn(false);
         Mockito.when(snake.isGhost()).thenReturn(false);
         Mockito.when(snake.getPos()).thenReturn(pos);
         Mockito.when(snake.getPosition()).thenReturn(new Position(5,5));
 
         Mockito.when(snake2.getSnakeBody()).thenReturn(snakebody2);
-        Mockito.when(snake2.getShrink()).thenReturn(false);
+        Mockito.when(snake2.isShrink()).thenReturn(false);
         Mockito.when(snake2.isGhost()).thenReturn(true);
         Mockito.when(snake2.getPos()).thenReturn(pos2);
         Mockito.when(snake2.getPosition()).thenReturn(new Position(10,5));
@@ -155,7 +155,7 @@ public class ViewTest {
 
 
         //draw shrunk snake
-        Mockito.when(snake.getShrink()).thenReturn(true);
+        Mockito.when(snake.isShrink()).thenReturn(true);
 
         view.drawSnake(arena.getSnake());
         //checks for 2 invocations because method has already been called before once
@@ -164,7 +164,7 @@ public class ViewTest {
 
 
         //draw shrunk & ghost snake
-        Mockito.when(snake2.getShrink()).thenReturn(true);
+        Mockito.when(snake2.isShrink()).thenReturn(true);
         view.drawSnake(arena.getSnake2());
         Mockito.verify(graphics, Mockito.times(2)).putString(10, 5, "-", SGR.BLINK);
         Mockito.verify(graphics, Mockito.times(2)).putString(11, 5, "-", SGR.BLINK);

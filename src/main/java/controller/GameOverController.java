@@ -27,11 +27,9 @@ public class GameOverController extends StateControllers {
             sleep(200);
 
             Command command =view.getCommand();
-
             command.executeMenu(gameOverModel);
 
             view.drawGameOver();
-
             view.drawSelecting(gameOverModel);
 
             if(gameOverModel.isSelected()){

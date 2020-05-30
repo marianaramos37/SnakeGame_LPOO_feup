@@ -11,8 +11,6 @@ public abstract class MenuModel {
         cursorPosition=new Position(13,23);
     }
 
-    public abstract void changeOption(String side);
-
     public int getOption(){
         return option;
     }
@@ -34,4 +32,6 @@ public abstract class MenuModel {
     }
 
     public abstract void setInitialCursorPosition();
+
+    public abstract void changeOption(String side);
 }

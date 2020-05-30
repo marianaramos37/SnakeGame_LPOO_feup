@@ -8,7 +8,6 @@ import com.googlecode.lanterna.screen.Screen;
 import commands.*;
 import model.*;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ public class View {
         screen.doResizeIfNecessary();     // resize screen if necessary
     }
 
-    public void drawMenu(MainMenuModel menuModel) throws IOException, FontFormatException {
+    public void drawMenu(){
         try {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
@@ -247,12 +246,8 @@ public class View {
             if (key.getCharacter() == 'i') {
                 return new IKey();
             }
-            else {
-                return new NullCommand();
-            }
         }
-        else{
-            return new NullCommand();
-        }
+
+        return new NullCommand();
     }
 }

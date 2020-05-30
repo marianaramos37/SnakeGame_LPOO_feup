@@ -153,13 +153,11 @@ public class View {
         }
     }
 
-    public void drawWalls(ArenaModel arena) {
-        java.util.List<Wall> walls=arena.getWalls();
+    public void drawWalls(List<Element> walls) {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#790000"));
-        for(Wall wall:walls) {
+        for(Element wall:walls) {
             screen.setCharacter(wall.getPosition().getX(), wall.getPosition().getY(), new TextCharacter('#'));
-            //graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(wall.getPosition().getX(), wall.getPosition().getY()), ' ');
         }
     }
 
@@ -168,9 +166,7 @@ public class View {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#790000"));
         for(Obstaculo obstaculo:obstaculos) {
-            for(Element elem: obstaculo.getObstaculo()){
-                screen.setCharacter(elem.getPosition().getX(), elem.getPosition().getY(), new TextCharacter('#'));
-            }
+            drawWalls(obstaculo.getObstaculo());
         }
     }
 
@@ -205,8 +201,9 @@ public class View {
                 drawSnake(arena.getSnake());
                 drawSnake(arena.getSnake2());
             }
-
-            drawWalls(arena);
+            List<Element> elements = null;
+            elements.addAll(arena.getWalls());
+            drawWalls(elements);
             drawObstaculos(arena);
 
             screen.refresh();

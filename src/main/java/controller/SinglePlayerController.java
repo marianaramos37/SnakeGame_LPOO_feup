@@ -1,6 +1,6 @@
 package controller;
 
-import commands.CommandArena;
+import commands.Command;
 import model.ArenaModel;
 import view.View;
 
@@ -45,7 +45,7 @@ public class SinglePlayerController extends StateControllers {
             while (true) {
                 Thread.sleep(arena.getSnake().getVelocidade());
 
-                CommandArena command = gui.getCommandArena();
+                Command command = gui.getCommand();
                 command.executeArena(arena);
 
                 arenaController.movement();

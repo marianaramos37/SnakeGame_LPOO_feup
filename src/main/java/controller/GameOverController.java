@@ -1,7 +1,7 @@
 package controller;
 
 
-import commands.CommandMenu;
+import commands.Command;
 import model.GameOverModel;
 import view.View;
 
@@ -26,7 +26,7 @@ public class GameOverController extends StateControllers {
 
             sleep(200);
 
-            CommandMenu command =view.getCommandMenu();
+            Command command =view.getCommand();
 
             command.executeMenu(gameOverModel);
 

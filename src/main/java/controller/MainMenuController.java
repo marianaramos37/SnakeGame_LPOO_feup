@@ -1,6 +1,6 @@
 package controller;
 
-import commands.CommandMenu;
+import commands.Command;
 import model.MainMenuModel;
 import view.View;
 
@@ -25,7 +25,7 @@ public class MainMenuController extends StateControllers{
 
             sleep(200);
 
-            CommandMenu command =view.getCommandMenu();
+            Command command =view.getCommand();
 
             command.executeMenu(menuModel);
 

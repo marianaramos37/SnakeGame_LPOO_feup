@@ -3,7 +3,7 @@ package commands;
 import model.ArenaModel;
 import model.MenuModel;
 
-public class ArrowRight implements CommandArena, CommandMenu {
+public class ArrowRight  extends Command implements CommandArena, CommandMenu {
     @Override
     public void executeArena(ArenaModel arena) {
         if(arena.getSnake().getDirection()!="left"){

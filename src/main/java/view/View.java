@@ -1,14 +1,11 @@
 package view;
 
-import commands.*;
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
+import commands.*;
 import model.*;
 
 import java.awt.*;
@@ -17,14 +14,6 @@ import java.util.List;
 
 public class View {
     public Screen screen;
-
-    public View(int width, int height) throws IOException {
-        Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
-        screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null);   // we don't need a cursor
-        screen.startScreen();             // screens must be started
-        screen.doResizeIfNecessary();     // resize screen if necessary
-    }
 
     public View(int width, int height, Screen screen) throws IOException {
         this.screen=screen;
@@ -227,7 +216,7 @@ public class View {
         }
     }
 
-    public CommandArena getCommandArena() throws IOException {
+    public Command getCommand() throws IOException {
         KeyStroke key = screen.pollInput();
         if (key != null) {
             if (key.getKeyType() == KeyType.ArrowUp) {
@@ -252,25 +241,7 @@ public class View {
                 return new SKey();
             }
             if (key.getCharacter() == 'a') {
-                 return new AKey();
-            }
-            else {
-                return new NullCommand();
-            }
-        }
-        else{
-            return new NullCommand();
-        }
-    }
-
-    public CommandMenu getCommandMenu() throws IOException {
-        KeyStroke key = screen.pollInput();
-        if (key != null) {
-            if (key.getKeyType() == KeyType.ArrowRight) {
-                return new ArrowRight();
-            }
-            if (key.getKeyType() == KeyType.ArrowLeft) {
-                return new ArrowLeft();
+                return new AKey();
             }
             if (key.getKeyType() == KeyType.Escape) {
                 return new EscKey();
@@ -280,13 +251,13 @@ public class View {
             }
             if (key.getCharacter() == 'i') {
                 return new IKey();
-            } else {
+            }
+            else {
                 return new NullCommand();
             }
         }
         else{
             return new NullCommand();
         }
-
     }
 }

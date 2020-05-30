@@ -9,10 +9,6 @@ public class ArenaController {
         this.arenaModel= arenaModel;
     }
 
-    public ArenaModel getArenaModel(){
-        return arenaModel;
-    }
-
     public void movement() {
         if(arenaModel.getSnake().getDirection()=="left"){
             arenaModel.setSnakeHeadPosition(arenaModel.getSnakeHeadPosition().left());

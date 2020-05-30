@@ -100,12 +100,33 @@ No nosso jogo criamos obstaculos que funcionam exatamente como elementos (Classe
 No entanto um obstaculo é contituido por Walls que por sua vez também são elementos que também contém uma posição.
 
 
-- **Composite Pattern**
+- **O Padrão**
+
+Para resolver o problema optamos por usar o **Composite Pattern** (com uma variação em que ordenamos os elemets no Composite). 
+Este padrão permite-nos representar hierarquias de objetos parte-todo e fazer com que o cliente (neste caso ArenaModel e 
+consequentemente e mais importante **ArenaView**) ignore a diferença entre a composição de elementos (os Obstaculos) e os 
+elementos em si (as Walls).
+
 - **Implementação**
+
+A figura seguinte mostra como os papeis do padrão foram aplicados nas nossas classes:
+
+![Diagrama_Composite](/docs/images/UMLComposite.PNG)
+
+Estas classes podem ser encontradas nos seguintes ficheiros:
+
+
 - **Consequências**
+
+Usar o Composite Pattern no nosso design do nosso projeto forneceu-nos as seguintes vantagens:
+
+ - Simplificamos bastante a nossa Classe View 
+
 
 ## Parametrizar comandos 
 - **Contexto do problema**
+
+
 - **Command Pattern**
 - **Implementação**
 - **Consequências**

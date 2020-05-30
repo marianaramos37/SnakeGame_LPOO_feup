@@ -6,6 +6,7 @@ import java.util.List;
 public class Obstaculo extends Element{
     private List<Element> obstaculo;
     private int type;
+
     public Obstaculo(Position p,int t) {
         super(p);
         this.type=t;
@@ -25,14 +26,11 @@ public class Obstaculo extends Element{
 
     /*
     obstaculo type 1: _|
-    obstaculo type 2: ###
+    obstaculo type 2: ___
      */
 
     public List<Element> getObstaculo() {
         return obstaculo;
-    }
-    public void setObstaculo(List<Element> obstaculo) {
-        this.obstaculo = obstaculo;
     }
 
     public int getType(){
@@ -51,6 +49,5 @@ public class Obstaculo extends Element{
             obstaculo.get(1).setPosition(new Position(position.getX()+1,position.getY()));
             obstaculo.get(2).setPosition(new Position(position.getX()+2,position.getY()));
         }
-
     }
 }

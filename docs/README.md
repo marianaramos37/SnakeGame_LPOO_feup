@@ -67,29 +67,39 @@ Para além dos packages já mencionados decidimos adicionar:
  ### Maçãs diferentes -> adicionar strategy### 
  
  - **Contexto do problema**
+ 
  Aquando da criação de diferentes maçãs no jogo deparamo-nos com a repetição de métodos
  No nosso jogo é necessário criar diferentes maçãs consumíveis que adoptam posições aleatórias depois de consumidas e têm 
  poderes especificos associados, além de terem TextCharacter diferentes atribuídos a cada tipo de maçã. Isso torna 
  imperativo uma interface comum às diferentes classes de maçãs com os métodos comuns às classes de maçãs que a implementam.
  
  - **O Padrão**
+ 
  Nós escolhemos usar o **Factory Method**
  permite criar várias instanciações concretas de objetos com propriedades semelhantes através 
  da criação de classes que implementem uma mesma interface abstrata que instancia todas as propriedades comuns a esses objetos.
  
  - **Implementação**
+ 
  As classes [Apple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/Apple.java#L3) 
  e [SpecialApple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/SpecialApple.java#L3)
   ambas implementam a Interface [AppleInterface](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/AppleInterface.java#L3). 
   
   
  - **Consequências**
+ 
   Nas Classes Apple, todas as maçãs implementam os mesmos métodos. Acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface AppleInterface. ArenaModel pode ter uma lista de objetos AppleInterface em vez que ter uma lista diferente para cada classe que implementa a interface. Podemos usar o método getChar, ou outro método qualquer instanciado na interface, num elemento da interface Apple que o mesmo vai devolver o valor correto da classe concreta da Apple que o chama.
  Ao implementar este padrão respeitamos o Open-Close Principle.
 
 
 ## Criação de obstáculos
+
 - **Contexto do problema**
+
+No nosso jogo criamos obstaculos que funcionam exatamente como elementos (Classe Element) uma vez que têm uma posição.
+No entanto um obstaculo é contituido por Walls que por sua vez também são elementos que também contém uma posição.
+
+
 - **Composite Pattern**
 - **Implementação**
 - **Consequências**

@@ -2,6 +2,7 @@ package controller;
 
 import commands.Command;
 import model.MenuLevelsModel;
+import model.MenuModel;
 import view.View;
 
 import java.awt.*;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import static java.lang.Thread.sleep;
 
 public class MenuLevelsController extends StateControllers{
-    private MenuLevelsModel menuModel;
+    private MenuModel menuModel;
     private View view;
 
     MenuLevelsController(View v) {

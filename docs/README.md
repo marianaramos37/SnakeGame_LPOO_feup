@@ -91,13 +91,19 @@ Para além dos packages já mencionados decidimos adicionar:
   Nas Classes Apple, todas as maçãs implementam os mesmos métodos. Acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface AppleInterface. ArenaModel pode ter uma lista de objetos AppleInterface em vez que ter uma lista diferente para cada classe que implementa a interface. Podemos usar o método getChar, ou outro método qualquer instanciado na interface, num elemento da interface Apple que o mesmo vai devolver o valor correto da classe concreta da Apple que o chama.
  Ao implementar este padrão respeitamos o Open-Close Principle.
 
+## Menus Models
+- **Contexto do problema**
+- **Factory Method**
+- **Implementação**
+- **Consequências**
 
 ## Criação de obstáculos
 
 - **Contexto do problema**
 
 No nosso jogo criamos obstaculos que funcionam exatamente como elementos (Classe Element) uma vez que têm uma posição.
-No entanto um obstaculo é contituido por Walls que por sua vez também são elementos que também contém uma posição.
+No entanto um obstaculo é contituido por Walls que por sua vez também são elementos que também contém uma posição. 
+Desenhar elementos Walls e Obstaculos que não apresentam diferenças na sua representação seria repetir métodos desnecessários.
 
 
 - **O Padrão**
@@ -117,34 +123,86 @@ A figura seguinte mostra como os papeis do padrão foram aplicados nas nossas cl
 
 Estas classes podem ser encontradas nos seguintes ficheiros:
 
+[Element](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/model/Element.java#L3),
+[Wall](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/model/Wall.java#L3) e
+[Obstaculo](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/model/Obstaculo.java#L6).
+
 
 - **Consequências**
 
 Usar o Composite Pattern no nosso design do nosso projeto forneceu-nos as seguintes vantagens:
+    - Simplificamos bastante a nossa Classe View uma vez que desenhar obstaculos não é mais do que desenhar elementos Walls
+    sem necessitar de distinguir entre eles.
 
- Simplificamos bastante a nossa Classe View uma vez que desenhar obstaculos não é mais do que desenhar elementos Walls
- sem necessitar de distinguir entre eles.
 
-
-## Parametrizar comandos 
+## Parametrizar comandos e reutilizalos em vários estados do jogo
 - **Contexto do problema**
 
+Aquando da criação dos diferentes Controllers (com papel de States) reparamos que a interação com o utilizador através da View envolvia 
+muitas verificações sobre que teclas estavam a ser precionadas (através de swich cases que continham um obvio Code Smell). 
+Para além disso cada tecla produzia mudanças nos Models muito semelhantes mas que estavam a ser repetidas sempre para cada Controller.
 
-- **Command Pattern**
+Dentro do mesmo problema deparamo-nos com o facto de as mesmas teclas provocarem ações diferentes consoante o estado do jogo.
+Caso estivesse-mos num Menu a tecla ArrowLeft iria mudar a opção selecionada. Mas caso estivessemos na Arena a mesma tecla iria 
+alterar a posição de uma das snakes.
+
+- **O Padrão**
+
+Para resolver este problema recorremos ao **Command Pattern** onde optamos por inserir duas interfaces.
+Este padrão permite-nos encapsular um pedido (no nosso caso a chamada de funções que alteram os modelos) num objeto de forma
+ a que este possa ser parametrizavel. Desta forma em cada Controller apenas precisamos de chamar o objeto Command através 
+ da View com getCommand() e de seguida chamar a função execute() desse objeto, evitando assim um grande Swich Statment.
+ De forma a que na Classe View não tenhamos que ter duas funções que devolvam Commands de interfaces diferentes optamos ainda por
+ recorrer ao **Adapter Pattern** de modo a podermos trabalhar interfaces não previstas.
+ 
 - **Implementação**
+
 - **Consequências**
 
-## Commandos que funcionam tanto nos Menus como na Arena
-- **Contexto do problema**
-- **Adapter**
-- **Implementação**
-- **Consequências**
 
 ## Menus
 - **Contexto do problema**
-- **State Pattern**
+
+Depois de criar a Classe GameController que iria tratar de todo o funcionamento do jogo reparamos que este se iria comportar
+de maneiras diferentes consoante o estado de jogo em que estivesse, SinglePlayer, Multiplayer, Menu, etc. Para isso iriamos 
+precisar de grandes Conditional Statements e diversas flags num mesmo método o que violava o Single Responsability Principle.
+
+- **O padrão**
+
+Obtamos por escolher o **State Pattern** de modo resolver esse problema. Este padrão permite-nos representar diferentes
+estados de jogo com diferentes subclasses. Desta forma podemos aterar o estado de jogo mudando para outra implementação. Resolvemos 
+assim o problema uma vez que na nossa Classe GameController apenas temos que inicializar um State usando o seu método "run()" que 
+por sua vez irá devolver o próximo State que irá de novo fazer "run()" e devolver o próximo State por aí a fora. Desta forma
+o próprio estado define as suas transições.
+ 
 - **Implementação**
+
+As figuras seguintes mostram como os papeis do padrão foram aplicados nas nossas classes e um diagrama de estados do funcionamento 
+do objeto GameController:
+
+![Diagrama_State](/docs/images/UMLState.PNG)
+![DiagramaDeEstados](/docs/images/StateDiagram.PNG)
+
+Estas classes podem ser encontradas nos seguintes ficheiros:
+
+[StateControllers](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/StateControllers.java#L8),
+[MainMenuController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/MainMenuController.java#L23),
+[SinglePlayerController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/SinglePlayerController.java#L9),
+[MultiPlayerController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/MultiPlayerController.java#L16),
+[GameOverController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/GameOverController.java#L13),
+[InstructionsController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/IntructionsController.java#L12) e
+[MenuLevelsController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/MenuLevelsController.java#L12).
+
 - **Consequências**
+
+O uso do State Pattern no design do nosso projeto permitiu-nos:
+    - Os diferentes estados que representam o funcionamento geral do jogo tornam-se explicitos no código, em vez de serem apenas uma
+    série de flags;
+    - Não necessitamos de usar longos Conditional Statements associados aos diferentes estados. Recorrendo ao polimorfismo
+    criamos o funcionamento correto;
+    - Uma pequena desvantagem foi o número de classes adicionais.
+
+
 
  
 ## Code Smells and Refactoring Technics

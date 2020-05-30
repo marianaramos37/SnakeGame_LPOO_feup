@@ -29,7 +29,7 @@ public class MainMenuController extends StateControllers{
 
             command.executeMenu(menuModel);
 
-            view.drawMenu(menuModel);
+            view.drawMenu();
             view.drawSelecting(menuModel);
 
             if(menuModel.getOption()==3){

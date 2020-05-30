@@ -142,7 +142,7 @@ public class ArenaModel {
     }
 
     public AppleInterface getCollidingApples(Position position) {
-        for (AppleInterface apple : this.getApples())
+        for (AppleInterface apple : apples)
             if (apple.getPosition().equals(position))
                 return apple;
         return null;
@@ -196,18 +196,11 @@ public class ArenaModel {
     }
 
     public void eatenApple(AppleInterface a){
-        int index=0;
         //colocar maca numa nova posicao aleatoria da arena:
-        for(AppleInterface apple: getApples()){
-            if(apple.getPosition().equals(a.getPosition())) {
-                getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1)));
-                while(getCollidingElement(getApples().get(index).getPosition()) != null || getCollidingBody(getApples().get(index).getPosition())) {
-                    getApples().get(index).setPosition(new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1)));
-                }
-                break;
-            }
-            index++;
-        }
+        do{
+            a.changePosition();
+        }while(getCollidingElement(a.getPosition())!=null || getCollidingBody(a.getPosition()));
+
         //Altera a score:
         score+=1;
         if(a instanceof PoisonedApple){

@@ -1,8 +1,13 @@
 package model;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public abstract interface AppleInterface {
     Position getPosition();
     void setPosition(Position position);
     Character getChar();
-    public void affect(Snake snake);
+    void affect(Snake snake);
+    default void changePosition(){
+        setPosition(new Position(ThreadLocalRandom.current().nextInt(1, 60-1), ThreadLocalRandom.current().nextInt(1, 30 - 1)));
+    }
 }

@@ -6,6 +6,7 @@ import model.MenuModel;
 public abstract class Command {
     CommandArena commandArena;
     CommandMenu commandMenu;
+
     public void executeArena(ArenaModel arena) {
         commandArena.executeArena(arena);
     }

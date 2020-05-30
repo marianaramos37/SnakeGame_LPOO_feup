@@ -10,5 +10,4 @@ public class SKey extends Command implements CommandArena {
         }
     }
 
-
 }

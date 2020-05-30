@@ -10,6 +10,7 @@ import model.*;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class View {
@@ -153,7 +154,7 @@ public class View {
         }
     }
 
-    public void drawWalls(List<Element> walls) {
+    public void drawElements(List<Element> walls) {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#790000"));
         for(Element wall:walls) {
@@ -166,7 +167,7 @@ public class View {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#790000"));
         for(Obstaculo obstaculo:obstaculos) {
-            drawWalls(obstaculo.getObstaculo());
+            drawElements(obstaculo.getObstaculo());
         }
     }
 
@@ -201,9 +202,9 @@ public class View {
                 drawSnake(arena.getSnake());
                 drawSnake(arena.getSnake2());
             }
-            List<Element> elements = null;
+            List<Element> elements = new ArrayList<>();
             elements.addAll(arena.getWalls());
-            drawWalls(elements);
+            drawElements(elements);
             drawObstaculos(arena);
 
             screen.refresh();

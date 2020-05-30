@@ -145,9 +145,8 @@ public class ArenaTest {
         Snake snake= new Snake(new Position(5,5));
 
         ArenaModel arenaModel=Mockito.mock(ArenaModel.class);
-        when(arenaModel.getApples()).thenReturn(apples);
+        Mockito.when(arenaModel.getApples()).thenReturn(apples);
         arenaModel.setSnake(snake);
-        when(arenaModel.getSnake()).thenCallRealMethod();
 
         arenaModel.eatenApple(appleP);
         assertEquals(150,arenaModel.getSnake().getVelocidade());
@@ -183,15 +182,15 @@ public class ArenaTest {
         arena.setScore(3);
 
 
-        arena.checkCollisions(new Position(10,12), arena.getSnake()); //primeiro
-
+        arena.checkCollisions(new Position(10,12), arena.getSnake());   //eats apple
         assertEquals(4,arena.getScore());
         assertEquals(2,arena.getSnake().getLength());
 
-        arena.checkCollisions(new Position(0,0),arena.getSnake()); //segundo
+        arena.checkCollisions(new Position(1,1),arena.getSnake());  //hits nothing
         assertFalse(arena.getGameOver());
 
-        arena.checkCollisions(new Position(10,11),arena.getSnake()); //terceiro
+
+        arena.checkCollisions(new Position(10,11),arena.getSnake()); //hits wall
         assertTrue(arena.getGameOver());
     }
 

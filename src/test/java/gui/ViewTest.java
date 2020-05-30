@@ -85,7 +85,10 @@ public class ViewTest {
 
         // Execute
         View view = new View(30,30,screen);
-        view.drawWalls(arena);
+
+        List<Element> elements = new ArrayList<>();
+        elements.addAll(walls);
+        view.drawElements(elements);
 
         // Verify
         Mockito.verify(screen, Mockito.times(1))
@@ -176,11 +179,11 @@ public class ViewTest {
         Mockito.verify(screen, Mockito.times(1))
                 .setCharacter(11, 20, new TextCharacter('O'));
         Mockito.verify(graphics, Mockito.times(1))
-                .setCharacter(5, 5, new TextCharacter('-'));
+                .setCharacter(5, 5, new TextCharacter('|'));
         Mockito.verify(graphics, Mockito.times(1))
-                .setCharacter(5, 6, new TextCharacter('-'));
+                .setCharacter(5, 6, new TextCharacter('|'));
         Mockito.verify(graphics, Mockito.times(1))
-                .setCharacter(5, 7, new TextCharacter('-'));
+                .setCharacter(5, 7, new TextCharacter('|'));
     }
 
 
@@ -190,8 +193,11 @@ public class ViewTest {
         Mockito.when(arena.getScore()).thenReturn(0);
         Mockito.when(arena.getTopScore()).thenReturn((new SinglePlayerTopScore()));
         Mockito.when(arena.getSnake()).thenReturn((snake));
+        Mockito.when(arena.getSnake2()).thenReturn((snake2));
         Mockito.when(arena.getWalls()).thenReturn((walls));
         Mockito.when(arena.getApples()).thenReturn((apples));
+
+        Mockito.when(snake2.isGhost()).thenReturn(false);
 
         // A TerminalScreen Mock
         TerminalScreen screen = Mockito.mock(TerminalScreen.class);
@@ -208,11 +214,19 @@ public class ViewTest {
         Mockito.verify(screen, Mockito.times(1))
                 .setCharacter(11, 20, new TextCharacter('O'));
         Mockito.verify(graphics, Mockito.times(1))
-                .setCharacter(5, 5, new TextCharacter('-'));
+                .setCharacter(5, 5, new TextCharacter('|'));
         Mockito.verify(graphics, Mockito.times(1))
-                .setCharacter(5, 6, new TextCharacter('-'));
+                .setCharacter(5, 6, new TextCharacter('|'));
         Mockito.verify(graphics, Mockito.times(1))
-                .setCharacter(5, 7, new TextCharacter('-'));
+                .setCharacter(5, 7, new TextCharacter('|'));
+
+        Mockito.verify(graphics, Mockito.times(1))
+                .setCharacter(10, 5, new TextCharacter('-'));
+        Mockito.verify(graphics, Mockito.times(1))
+                .setCharacter(11, 5, new TextCharacter('-'));
+        Mockito.verify(graphics, Mockito.times(1))
+                .setCharacter(12, 5, new TextCharacter('-'));
+
     }
 
 

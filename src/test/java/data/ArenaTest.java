@@ -1,6 +1,5 @@
 package data;
 
-import controller.ArenaController;
 import model.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -176,19 +175,17 @@ public class ArenaTest {
         List<Wall> walls=new ArrayList<>();
         apples.add(apple);
         walls.add(wall);
-        SinglePlayerScore score = new SinglePlayerScore();
-        score.setScore(3);
 
         ArenaModel arena= new ArenaModel(30,30);
         arena.setSnake(snake);
         arena.setWalls(walls);
         arena.setApples(apples);
-        arena.setScore(score);
+        arena.setScore(3);
 
 
         arena.checkCollisions(new Position(10,12), arena.getSnake()); //primeiro
 
-        assertEquals(4,arena.getScore().getScore());
+        assertEquals(4,arena.getScore());
         assertEquals(2,arena.getSnake().getLength());
 
         arena.checkCollisions(new Position(0,0),arena.getSnake()); //segundo

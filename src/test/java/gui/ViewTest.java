@@ -6,13 +6,13 @@ import model.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import view.ArenaView;
+import view.View;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArenaViewTest {
+public class ViewTest {
     Snake snake;
     Snake snake2;
 
@@ -40,7 +40,9 @@ public class ArenaViewTest {
 
         Mockito.when(snake.getSnakeBody()).thenReturn(snakebody);
         Mockito.when(snake.getShrink()).thenReturn(false);
+        Mockito.when(snake.isGhost()).thenReturn(false);
         Mockito.when(snake.getPos()).thenReturn(pos);
+        Mockito.when(snake.getPosition()).thenReturn(new Position(5,5));
         Mockito.when(apple.getPosition()).thenReturn(new Position(11, 20));
         Mockito.when(apple.getChar()).thenReturn('O');
         Mockito.when(wall.getPosition()).thenReturn(new Position(12, 20));
@@ -51,16 +53,17 @@ public class ArenaViewTest {
 
     @Test
     public void testDrawWalls() throws IOException {
-        ArenaModel arena=Mockito.mock(ArenaModel.class);
+        ArenaModel arena = Mockito.mock(ArenaModel.class);
         Mockito.when(arena.getSnake()).thenReturn((snake));
         Mockito.when(arena.getWalls()).thenReturn((walls));
         Mockito.when(arena.getApples()).thenReturn((apples));
+
 
         // A TerminalScreen Mock
         TerminalScreen screen = Mockito.mock(TerminalScreen.class);
 
         // Execute
-        ArenaView view = new ArenaView(30,30,screen);
+        View view = new View(30,30,screen);
         view.drawWalls(arena);
 
         // Verify
@@ -79,7 +82,7 @@ public class ArenaViewTest {
         TerminalScreen screen = Mockito.mock(TerminalScreen.class);
 
         // Execute
-        ArenaView view = new ArenaView(30,30,screen);
+        View view = new View(30,30,screen);
         view.drawApples(arena);
 
         // Verify
@@ -98,7 +101,7 @@ public class ArenaViewTest {
         TerminalScreen screen = Mockito.mock(TerminalScreen.class);
 
         // Execute
-        ArenaView view = new ArenaView(30,30,screen);
+        View view = new View(30,30,screen);
         view.drawSnake(arena.getSnake());
 
         // Verify
@@ -125,7 +128,7 @@ public class ArenaViewTest {
         TerminalScreen screen = Mockito.mock(TerminalScreen.class);
 
         // Execute
-        ArenaView view = new ArenaView(30,30,screen);
+        View view = new View(30,30,screen);
         view.drawArena(arena,1);
 
         // Verify
@@ -149,3 +152,4 @@ public class ArenaViewTest {
     */
 
 }
+

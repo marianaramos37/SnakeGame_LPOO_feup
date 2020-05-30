@@ -72,7 +72,7 @@ public class ArenaModel {
     }
     public Snake getSnake(){return snake;}
     public List<Wall> getWalls(){
-        return this.walls;
+        return walls;
     }
     public List<Obstaculo> getObstaculos(){
         return this.obstaculos;

@@ -21,7 +21,7 @@ public class CommandTest {
         Mockito.when(arenaModel.getSnake()).thenReturn(snake);
         Mockito.when(arenaModel.getSnake2()).thenReturn(snake);
     }
-    
+
 
     @Test
     public void testAKey(){

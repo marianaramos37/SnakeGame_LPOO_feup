@@ -61,6 +61,7 @@ public class ArenaModel {
         this.game_over = false;
     }
 
+
     public int getWidth() {
         return width;
     }
@@ -97,14 +98,6 @@ public class ArenaModel {
         return snake2;
     }
 
-    public Position getSnakeHeadPosition() {
-        return snake.getPosition();
-    }
-
-    public Position getSnakeHead2Position() {
-        return snake2.getPosition();
-    }
-
     public void setSnake2(Snake snake2) {
         this.snake2 = snake2;
     }
@@ -125,13 +118,6 @@ public class ArenaModel {
         this.score = s;
     }
 
-    public void setSnakeHeadPosition(Position position) {
-        snake.setPosition(position);
-    }
-
-    public void setSnakeHead2Position(Position position) {
-        snake2.setPosition(position);
-    }
 
     public boolean getGameOver() {
         return game_over;
@@ -140,7 +126,9 @@ public class ArenaModel {
     public void restartGame() {
         this.game_over = false;
         this.snake = new Snake(new Position(50, 17));
+        this.snake.setLoser(false);
         this.snake2 = new Snake(new Position(7, 17));
+        this.snake2.setLoser(false);
     }
 
     public void endGame() throws IOException {
@@ -173,7 +161,7 @@ public class ArenaModel {
     }
 
     public AppleInterface getCollidingApples(Position position) {
-        for (AppleInterface apple : apples)
+        for (AppleInterface apple : getApples())
             if (apple.getPosition().equals(position))
                 return apple;
         return null;

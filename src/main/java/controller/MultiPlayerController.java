@@ -27,7 +27,8 @@ public class MultiPlayerController extends StateControllers {
     public StateControllers run() {
         try {
             arena.buildWalls();
-            List<AppleInterface> newapples = new ArrayList<>();
+
+            List<AppleInterface> newapples = new ArrayList<>(); //MultiPlayer com mais maçãs
             newapples.add(new Apple(8,6));
             newapples.add(new Apple(30,15));
             newapples.add(new Apple(50,23));
@@ -51,15 +52,17 @@ public class MultiPlayerController extends StateControllers {
                     arena.checkCollisions(arena.getSnake2());
                     arena.checkAttack();
                     view.drawArena(arena,2);
-
                 }
                 else{
-                    if(arena.getSnake().getLoser() && !arena.getSnake2().getLoser()) result_snake2++;
-                    else if(arena.getSnake2().getLoser() && !arena.getSnake().getLoser()) result_snake1++;
+                    if(arena.getSnake().getLoser() && !arena.getSnake2().getLoser())
+                        result_snake2++;
+                    else if(arena.getSnake2().getLoser() && !arena.getSnake().getLoser())
+                        result_snake1++;
+
                     view.drawResults(result_snake1,result_snake2);
+
                     arena.restartGame();
-                    arena.getSnake().setLoser(false);
-                    arena.getSnake2().setLoser(false);
+
                     sleep(3000);
                 }
             }

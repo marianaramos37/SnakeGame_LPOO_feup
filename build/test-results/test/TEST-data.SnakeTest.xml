@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="data.SnakeTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-05-30T15:47:49" hostname="LAPTOP-DDA1VVIE" time="0.002">
+<testsuite name="data.SnakeTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-05-31T00:04:22" hostname="LAPTOP-GER1ALIG" time="0.001">
   <properties/>
-  <testcase name="unshrinkSnakeTest" classname="data.SnakeTest" time="0.001"/>
+  <testcase name="unshrinkSnakeTest" classname="data.SnakeTest" time="0.0"/>
   <testcase name="shrinkSnakeTest" classname="data.SnakeTest" time="0.0"/>
   <testcase name="testSetHeadPosition" classname="data.SnakeTest" time="0.0"/>
   <testcase name="testSetLength" classname="data.SnakeTest" time="0.0"/>

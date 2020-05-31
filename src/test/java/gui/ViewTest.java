@@ -260,7 +260,7 @@ public class ViewTest {
         Mockito.verify(graphics, Mockito.times(1))
                 .putString(27,10,"SNAKE", SGR.BOLD);
         Mockito.verify(graphics, Mockito.times(1))
-                .putString(28,30,"Press ESC to leave",SGR.ITALIC);
+                .putString(28,30,"Press Q to leave",SGR.ITALIC);
         Mockito.verify(graphics, Mockito.times(1))
                 .putString(28,32,"Press I to see the instructions",SGR.ITALIC);
         Mockito.verify(graphics, Mockito.times(1))
@@ -416,9 +416,6 @@ public class ViewTest {
         Mockito.when(keyStroke.getKeyType()).thenReturn(KeyType.ArrowRight);
         assertEquals(view.getCommand().getClass(), ArrowRight.class);
 
-        Mockito.when(keyStroke.getKeyType()).thenReturn(KeyType.Escape);
-        assertEquals(view.getCommand().getClass(), EscKey.class);
-
         Mockito.when(keyStroke.getKeyType()).thenReturn(KeyType.Enter);
         assertEquals(view.getCommand().getClass(), EnterKey.class);
 
@@ -441,6 +438,9 @@ public class ViewTest {
 
         Mockito.when(keyStroke.getCharacter()).thenReturn('i');
         assertEquals(view.getCommand().getClass(), IKey.class);
+
+        Mockito.when(keyStroke.getCharacter()).thenReturn('q');
+        assertEquals(view.getCommand().getClass(), EscKey.class);
 
         //test invalid input
         Mockito.when(keyStroke.getCharacter()).thenReturn('p');

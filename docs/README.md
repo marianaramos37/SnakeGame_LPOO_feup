@@ -66,7 +66,7 @@ Para além dos packages já mencionados decidimos adicionar:
 
 ## Design ##
 
- ### Maçãs diferentes que provocam alterações diferentes na snake quando comidas### 
+ ### Maçãs diferentes que provocam alterações diferentes na snake quando comidas ### 
  
  - **Contexto do problema**
  
@@ -95,13 +95,13 @@ sem ser necessário alterá-lo ou estende-lo.
   Nas Classes Apple, todas as maçãs implementam os mesmos métodos. Acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface AppleInterface. ArenaModel pode ter uma lista de objetos AppleInterface em vez que ter uma lista diferente para cada classe que implementa a interface. Podemos usar o método getChar, ou outro método qualquer instanciado na interface, num elemento da interface Apple que o mesmo vai devolver o valor correto da classe concreta da Apple que o chama.
  Ao implementar este padrão respeitamos o Open-Close Principle.
 
-## Menus Models
+### Menus Models ###
 - **Contexto do problema**
 - **Factory Method**
 - **Implementação**
 - **Consequências**
 
-## Criação de obstáculos
+### Criação de obstáculos ###
 
 - **Contexto do problema**
 
@@ -139,7 +139,7 @@ Usar o Composite Pattern no nosso design do nosso projeto forneceu-nos as seguin
     sem necessitar de distinguir entre eles.
 
 
-## Parametrizar comandos e reutilizalos em vários estados do jogo
+### Parametrizar comandos e reutilizalos em vários estados do jogo ###
 - **Contexto do problema**
 
 Aquando da criação dos diferentes Controllers (com papel de States) reparamos que a interação com o utilizador através da View envolvia 
@@ -192,7 +192,7 @@ Usar o Command Pattern no design do nosso projeto forneceu-nos as seguintes vant
 4. Tivemos que adicionar muitas novas classes o que pode ser visto como uma desvantagem. Mas dada a dimensão do projeto não foi muito
 problemático.
 
-## Menus
+### Menus ###
 - **Contexto do problema**
 
 Depois de criar a Classe GameController que iria tratar de todo o funcionamento do jogo reparamos que este se iria comportar
@@ -236,8 +236,7 @@ O uso do State Pattern no design do nosso projeto permitiu-nos:
 
 
 
- 
-## Code Smells and Refactoring Technics
+## Code Smells and Refactoring Technics ##
  - A velocidade default da snake é 150 (de momento, mais tarde este valor será variável). É o que se chama um **Magic Number** e deve ser substituído através da utilizacão de uma **Symbolic Constant** para uma melhor organização e compreeensão do código.
 
  - O método movement() da ArenaController pode ser simplificado removendo o código duplicado para um método diferente (**Extract Method**). Tornando o método movement muito mais legível e pequeno, uma vez que as if-statements do mesmo são longas e complexas.

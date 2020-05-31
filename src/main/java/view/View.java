@@ -29,7 +29,7 @@ public class View {
             graphics.setBackgroundColor(TextColor.Factory.fromString("#66012E"));
             graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(60, 35), ' ');
             graphics.putString(27,10,"SNAKE", SGR.BOLD);
-            graphics.putString(28,30,"Press ESC to leave",SGR.ITALIC);
+            graphics.putString(28,30,"Press Q to leave",SGR.ITALIC);
             graphics.putString(28,32,"Press I to see the instructions",SGR.ITALIC);
             graphics.putString(12,19,"PLAY");
             graphics.putString(8,21,"SINGLEPLAYER");
@@ -237,7 +237,7 @@ public class View {
             if (key.getCharacter() == 'a') {
                 return new AKey();
             }
-            if (key.getKeyType() == KeyType.Escape) {
+            if (key.getCharacter() == 'q') {
                 return new EscKey();
             }
             if (key.getKeyType() == KeyType.Enter) {

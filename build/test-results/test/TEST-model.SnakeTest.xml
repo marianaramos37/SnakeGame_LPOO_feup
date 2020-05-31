@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="model.SnakeTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-05-31T02:01:35" hostname="LAPTOP-DDA1VVIE" time="0.001">
+<testsuite name="model.SnakeTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-05-31T17:47:52" hostname="LAPTOP-DDA1VVIE" time="0.001">
   <properties/>
+  <testcase name="backToNormalTest" classname="model.SnakeTest" time="0.0"/>
   <testcase name="unshrinkSnakeTest" classname="model.SnakeTest" time="0.0"/>
+  <testcase name="growSnakeTest" classname="model.SnakeTest" time="0.0"/>
   <testcase name="shrinkSnakeTest" classname="model.SnakeTest" time="0.0"/>
   <testcase name="testSetHeadPosition" classname="model.SnakeTest" time="0.0"/>
+  <testcase name="walkSnakeTest" classname="model.SnakeTest" time="0.001"/>
   <testcase name="testSetLength" classname="model.SnakeTest" time="0.0"/>
+  <testcase name="poisonTest" classname="model.SnakeTest" time="0.0"/>
   <testcase name="testSetBody" classname="model.SnakeTest" time="0.0"/>
   <testcase name="testSetPos" classname="model.SnakeTest" time="0.0"/>
   <testcase name="testConstructor" classname="model.SnakeTest" time="0.0"/>

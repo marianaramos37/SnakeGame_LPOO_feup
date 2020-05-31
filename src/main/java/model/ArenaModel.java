@@ -90,6 +90,10 @@ public class ArenaModel {
         return this.apples;
     }
 
+    public void setTopScore(SinglePlayerTopScore topScore) {
+        this.topScore = topScore;
+    }
+
     public SinglePlayerTopScore getTopScore() {
         return this.topScore;
     }
@@ -150,10 +154,10 @@ public class ArenaModel {
 
         Obstaculo obstaculo;
         obstaculo = new Obstaculo(new Position(0, 0), ThreadLocalRandom.current().nextInt(1, 3));
-        Position randomPosition = new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
-        while (getCollidingElement(randomPosition) != null || getCollidingBody(randomPosition) || getCollidingApples(randomPosition) != null) {
+        Position randomPosition;
+        do{
             randomPosition = new Position(ThreadLocalRandom.current().nextInt(1, getWidth() - 1), ThreadLocalRandom.current().nextInt(1, getHeight() - 1));
-        }
+        }while(getCollidingElement(randomPosition) != null || getCollidingBody(randomPosition) || getCollidingApples(randomPosition) != null);
         obstaculo.setPosition(randomPosition);
 
         obstaculos.add(obstaculo);

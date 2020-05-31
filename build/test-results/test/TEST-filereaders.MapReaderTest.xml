@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="filereaders.MapReaderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T02:01:35" hostname="LAPTOP-DDA1VVIE" time="0.001">
+<testsuite name="filereaders.MapReaderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T17:47:51" hostname="LAPTOP-DDA1VVIE" time="0.002">
   <properties/>
-  <testcase name="mapReaderTest" classname="filereaders.MapReaderTest" time="0.001"/>
+  <testcase name="mapReaderTest" classname="filereaders.MapReaderTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

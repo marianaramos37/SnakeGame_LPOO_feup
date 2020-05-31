@@ -17,6 +17,23 @@ public class SPTopScoreTest {
 
     }
 
+    @Test
+    public void testFileReaderAndGet() throws IOException {
+        SinglePlayerTopScore spScore = new SinglePlayerTopScore();
+
+        spScore.setFilename("src/main/java/files/testTopScore.txt");
+
+        spScore.fileReader();
+
+        assertEquals(89, spScore.getScore());
+    }
+
+    @Test
+    public void testSetScore(){
+        SinglePlayerTopScore spScore = new SinglePlayerTopScore();
+        spScore.setScore(90);
+        assertEquals(90,spScore.getScore());
+    }
 
     @Test
     public void testIncrementScore() {
@@ -25,4 +42,16 @@ public class SPTopScoreTest {
         assertEquals(1, spScore.getScore());
     }
 
+    @Test
+    public void testFileWritter() throws IOException {
+        SinglePlayerTopScore spScore = new SinglePlayerTopScore();
+        spScore.setFilename("src/main/java/files/testTopScoreWritter");
+        spScore.setScore(8888);
+
+        spScore.fileWriter();
+
+        spScore.fileReader();
+
+        assertEquals(8888,spScore.getScore());
+    }
 }

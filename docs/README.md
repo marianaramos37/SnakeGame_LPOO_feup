@@ -53,12 +53,12 @@ poderão ter uma serie de obstáculos previamente selecionados e poderão ser us
 
 O nosso programa tem o padrão arquitetural MVC (Model-View-Controller). 
 Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
-- Model (package **com.g44.model**): Contém todos os elementos do jogo: Snake, ArenaModel, diferentes modelos de maçãs que implementam 
+- Model (package **com.g44.com.g44.model**): Contém todos os elementos do jogo: Snake, ArenaModel, diferentes modelos de maçãs que implementam 
 a interface AppleInterface,  Walls e Obstaculos (constituidos por Walls) sendo que ambos estendem a classe Element, modelos dos 
 diferentes menus que estendem a classe MenuModel e por último modelo da TopScore.
-- View (package **com.g44.view**): Representa a visualização de todos os dados contidos no com.g44.model.
-- Controller (package **com.g44.controller**): Existe entre a *com.g44.view* e o *com.g44.model*. O com.g44.controller responde aos eventos enviados 
-por *com.g44.view* através de Commands e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação muda o *com.g44.model* que será
+- View (package **com.g44.view**): Representa a visualização de todos os dados contidos no com.g44.com.g44.model.
+- Controller (package **com.g44.controller**): Existe entre a *com.g44.view* e o *com.g44.com.g44.model*. O com.g44.controller responde aos eventos enviados 
+por *com.g44.view* através de Commands e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação muda o *com.g44.com.g44.model* que será
 visualizado por com.g44.view.
 
 
@@ -133,9 +133,9 @@ A figura seguinte mostra como os papeis do padrão foram aplicados nas nossas cl
 
 Estas classes podem ser encontradas nos seguintes ficheiros:
 
-[Element](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.model/Element.java#L3),
-[Wall](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.model/Wall.java#L3) e
-[Obstaculo](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.model/Obstaculo.java#L6).
+[Element](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.com.g44.model/Element.java#L3),
+[Wall](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.com.g44.model/Wall.java#L3) e
+[Obstaculo](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.com.g44.model/Obstaculo.java#L6).
 
 
 - **Consequências**

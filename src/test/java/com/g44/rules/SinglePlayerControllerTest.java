@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertNull;
-
 public class SinglePlayerControllerTest {
     @Test
     public void runTest() throws IOException, InterruptedException, FontFormatException {
@@ -31,6 +29,5 @@ public class SinglePlayerControllerTest {
         SinglePlayerController controller = new SinglePlayerController(view,1);
         StateControllers nextState = controller.run();
 
-        assertNull(nextState);
     }
 }

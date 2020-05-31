@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.g44.model.SnakeTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-05-31T18:10:49" hostname="LAPTOP-GER1ALIG" time="0.002">
+  <properties/>
+  <testcase name="backToNormalTest" classname="com.g44.model.SnakeTest" time="0.001"/>
+  <testcase name="unshrinkSnakeTest" classname="com.g44.model.SnakeTest" time="0.0"/>
+  <testcase name="growSnakeTest" classname="com.g44.model.SnakeTest" time="0.0"/>
+  <testcase name="shrinkSnakeTest" classname="com.g44.model.SnakeTest" time="0.0"/>
+  <testcase name="testSetHeadPosition" classname="com.g44.model.SnakeTest" time="0.0"/>
+  <testcase name="walkSnakeTest" classname="com.g44.model.SnakeTest" time="0.0"/>
+  <testcase name="testSetLength" classname="com.g44.model.SnakeTest" time="0.0"/>
+  <testcase name="poisonTest" classname="com.g44.model.SnakeTest" time="0.0"/>
+  <testcase name="testSetBody" classname="com.g44.model.SnakeTest" time="0.0"/>
+  <testcase name="testSetPos" classname="com.g44.model.SnakeTest" time="0.0"/>
+  <testcase name="testConstructor" classname="com.g44.model.SnakeTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

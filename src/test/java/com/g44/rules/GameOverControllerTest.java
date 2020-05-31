@@ -33,6 +33,7 @@ public class GameOverControllerTest {
         assertNull(nextState);
 
         //Comandos mudam para estado mainmenu - restart
+        commands.add(new ArrowRight());
         commands.add(new EnterKey());
 
         view = new ViewMock(commands);

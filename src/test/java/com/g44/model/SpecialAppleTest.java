@@ -2,8 +2,8 @@ package com.g44.model;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import static junit.framework.Assert.assertNotSame;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 import static junit.framework.TestCase.assertEquals;
 
 public class SpecialAppleTest {
@@ -31,6 +31,6 @@ public class SpecialAppleTest {
 
         Position previous = specialApple.getPosition();
         specialApple.changePosition();
-        assertNotSame(previous,specialApple.getPosition());
+        assertThat(previous,not(specialApple.getPosition()));
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="commands.CommandTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-05-31T00:30:44" hostname="LAPTOP-DDA1VVIE" time="0.06">
+  <properties/>
+  <testcase name="testEnterKey" classname="commands.CommandTest" time="0.027"/>
+  <testcase name="testAKey" classname="commands.CommandTest" time="0.006"/>
+  <testcase name="testDKey" classname="commands.CommandTest" time="0.002"/>
+  <testcase name="testIKey" classname="commands.CommandTest" time="0.001"/>
+  <testcase name="testSKey" classname="commands.CommandTest" time="0.002"/>
+  <testcase name="testWKey" classname="commands.CommandTest" time="0.002"/>
+  <testcase name="testArrowUp" classname="commands.CommandTest" time="0.003"/>
+  <testcase name="testArrowDown" classname="commands.CommandTest" time="0.003"/>
+  <testcase name="testArrowLeft" classname="commands.CommandTest" time="0.003"/>
+  <testcase name="testEscKey" classname="commands.CommandTest" time="0.003"/>
+  <testcase name="testArrowRight" classname="commands.CommandTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

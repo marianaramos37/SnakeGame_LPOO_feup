@@ -57,7 +57,6 @@ public class View {
             graphics.putString(34,21,"LEVEL");
             graphics.putString(46,20,"ULTRA-HARD");
             graphics.putString(49,21,"LEVEL");
-
             screen.refresh();
         } catch (IOException e) {
             e.printStackTrace();

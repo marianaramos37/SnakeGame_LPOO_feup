@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.g44.commands.CommandTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-05-31T22:52:26" hostname="LAPTOP-GER1ALIG" time="0.11">
+<testsuite name="com.g44.commands.CommandTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-05-31T22:54:27" hostname="LAPTOP-GER1ALIG" time="0.054">
   <properties/>
-  <testcase name="testEnterKey" classname="com.g44.commands.CommandTest" time="0.047"/>
-  <testcase name="testAKey" classname="com.g44.commands.CommandTest" time="0.008"/>
-  <testcase name="testDKey" classname="com.g44.commands.CommandTest" time="0.005"/>
-  <testcase name="testIKey" classname="com.g44.commands.CommandTest" time="0.003"/>
-  <testcase name="testSKey" classname="com.g44.commands.CommandTest" time="0.005"/>
-  <testcase name="testWKey" classname="com.g44.commands.CommandTest" time="0.004"/>
-  <testcase name="testArrowUp" classname="com.g44.commands.CommandTest" time="0.004"/>
-  <testcase name="testArrowDown" classname="com.g44.commands.CommandTest" time="0.005"/>
-  <testcase name="testArrowLeft" classname="com.g44.commands.CommandTest" time="0.01"/>
-  <testcase name="testEscKey" classname="com.g44.commands.CommandTest" time="0.003"/>
-  <testcase name="testArrowRight" classname="com.g44.commands.CommandTest" time="0.006"/>
+  <testcase name="testEnterKey" classname="com.g44.commands.CommandTest" time="0.021"/>
+  <testcase name="testAKey" classname="com.g44.commands.CommandTest" time="0.004"/>
+  <testcase name="testDKey" classname="com.g44.commands.CommandTest" time="0.003"/>
+  <testcase name="testIKey" classname="com.g44.commands.CommandTest" time="0.002"/>
+  <testcase name="testSKey" classname="com.g44.commands.CommandTest" time="0.002"/>
+  <testcase name="testWKey" classname="com.g44.commands.CommandTest" time="0.003"/>
+  <testcase name="testArrowUp" classname="com.g44.commands.CommandTest" time="0.002"/>
+  <testcase name="testArrowDown" classname="com.g44.commands.CommandTest" time="0.002"/>
+  <testcase name="testArrowLeft" classname="com.g44.commands.CommandTest" time="0.003"/>
+  <testcase name="testEscKey" classname="com.g44.commands.CommandTest" time="0.002"/>
+  <testcase name="testArrowRight" classname="com.g44.commands.CommandTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.g44.view.ViewTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-05-31T22:52:36" hostname="LAPTOP-GER1ALIG" time="0.582">
+<testsuite name="com.g44.view.ViewTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-05-31T22:54:36" hostname="LAPTOP-GER1ALIG" time="0.267">
   <properties/>
-  <testcase name="testDrawInstructions" classname="com.g44.view.ViewTest" time="0.407"/>
-  <testcase name="testDrawMenuLevels" classname="com.g44.view.ViewTest" time="0.015"/>
-  <testcase name="testDrawGameOver" classname="com.g44.view.ViewTest" time="0.008"/>
-  <testcase name="testDrawArenaSinglePlayer" classname="com.g44.view.ViewTest" time="0.021"/>
-  <testcase name="testDrawApples" classname="com.g44.view.ViewTest" time="0.008"/>
-  <testcase name="testDrawArenaMultiPlayer" classname="com.g44.view.ViewTest" time="0.02"/>
-  <testcase name="testDrawResults" classname="com.g44.view.ViewTest" time="0.006"/>
-  <testcase name="testDrawMenu" classname="com.g44.view.ViewTest" time="0.01"/>
-  <testcase name="testDrawSelecting" classname="com.g44.view.ViewTest" time="0.004"/>
-  <testcase name="testDrawSnake" classname="com.g44.view.ViewTest" time="0.021"/>
-  <testcase name="testDrawWalls" classname="com.g44.view.ViewTest" time="0.005"/>
-  <testcase name="testGetCommand" classname="com.g44.view.ViewTest" time="0.05"/>
+  <testcase name="testDrawInstructions" classname="com.g44.view.ViewTest" time="0.185"/>
+  <testcase name="testDrawMenuLevels" classname="com.g44.view.ViewTest" time="0.008"/>
+  <testcase name="testDrawGameOver" classname="com.g44.view.ViewTest" time="0.003"/>
+  <testcase name="testDrawArenaSinglePlayer" classname="com.g44.view.ViewTest" time="0.007"/>
+  <testcase name="testDrawApples" classname="com.g44.view.ViewTest" time="0.003"/>
+  <testcase name="testDrawArenaMultiPlayer" classname="com.g44.view.ViewTest" time="0.007"/>
+  <testcase name="testDrawResults" classname="com.g44.view.ViewTest" time="0.003"/>
+  <testcase name="testDrawMenu" classname="com.g44.view.ViewTest" time="0.003"/>
+  <testcase name="testDrawSelecting" classname="com.g44.view.ViewTest" time="0.003"/>
+  <testcase name="testDrawSnake" classname="com.g44.view.ViewTest" time="0.008"/>
+  <testcase name="testDrawWalls" classname="com.g44.view.ViewTest" time="0.003"/>
+  <testcase name="testGetCommand" classname="com.g44.view.ViewTest" time="0.032"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

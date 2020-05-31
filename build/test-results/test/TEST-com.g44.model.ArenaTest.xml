@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.g44.model.ArenaTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-05-31T22:52:35" hostname="LAPTOP-GER1ALIG" time="0.159">
+<testsuite name="com.g44.model.ArenaTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-05-31T22:54:36" hostname="LAPTOP-GER1ALIG" time="0.044">
   <properties/>
-  <testcase name="checkCollisionsTest" classname="com.g44.model.ArenaTest" time="0.005"/>
-  <testcase name="testBuildWalls" classname="com.g44.model.ArenaTest" time="0.003"/>
-  <testcase name="checkAttackTest" classname="com.g44.model.ArenaTest" time="0.015"/>
-  <testcase name="setAndGetTopScoreTest" classname="com.g44.model.ArenaTest" time="0.083"/>
-  <testcase name="getCollidingTest" classname="com.g44.model.ArenaTest" time="0.006"/>
-  <testcase name="testRestartGame" classname="com.g44.model.ArenaTest" time="0.012"/>
-  <testcase name="testFileConstructor" classname="com.g44.model.ArenaTest" time="0.012"/>
-  <testcase name="eatAppleTest" classname="com.g44.model.ArenaTest" time="0.003"/>
-  <testcase name="updateVelocidadeTest" classname="com.g44.model.ArenaTest" time="0.005"/>
-  <testcase name="testGetWidthAndHeight" classname="com.g44.model.ArenaTest" time="0.003"/>
+  <testcase name="checkCollisionsTest" classname="com.g44.model.ArenaTest" time="0.002"/>
+  <testcase name="testBuildWalls" classname="com.g44.model.ArenaTest" time="0.001"/>
+  <testcase name="checkAttackTest" classname="com.g44.model.ArenaTest" time="0.003"/>
+  <testcase name="setAndGetTopScoreTest" classname="com.g44.model.ArenaTest" time="0.022"/>
+  <testcase name="getCollidingTest" classname="com.g44.model.ArenaTest" time="0.002"/>
+  <testcase name="testRestartGame" classname="com.g44.model.ArenaTest" time="0.002"/>
+  <testcase name="testFileConstructor" classname="com.g44.model.ArenaTest" time="0.002"/>
+  <testcase name="eatAppleTest" classname="com.g44.model.ArenaTest" time="0.001"/>
+  <testcase name="updateVelocidadeTest" classname="com.g44.model.ArenaTest" time="0.003"/>
+  <testcase name="testGetWidthAndHeight" classname="com.g44.model.ArenaTest" time="0.001"/>
   <testcase name="randomWallsTest" classname="com.g44.model.ArenaTest" time="0.002"/>
-  <testcase name="testConstructor" classname="com.g44.model.ArenaTest" time="0.003"/>
+  <testcase name="testConstructor" classname="com.g44.model.ArenaTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

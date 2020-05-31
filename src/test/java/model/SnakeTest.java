@@ -1,7 +1,5 @@
-package data;
+package model;
 
-import model.Position;
-import model.Snake;
 import org.junit.Before;
 import org.junit.Test;
 

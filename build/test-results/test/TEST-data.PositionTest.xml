@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="data.PositionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-05-31T01:09:39" hostname="LAPTOP-DDA1VVIE" time="0.002">
+<testsuite name="data.PositionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-05-31T02:01:35" hostname="LAPTOP-DDA1VVIE" time="0.001">
   <properties/>
   <testcase name="downPositionTest" classname="data.PositionTest" time="0.0"/>
   <testcase name="upPositionTest" classname="data.PositionTest" time="0.0"/>

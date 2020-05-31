@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="data.ArenaTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-05-31T01:09:39" hostname="LAPTOP-DDA1VVIE" time="0.017">
+<testsuite name="data.ArenaTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-05-31T02:01:35" hostname="LAPTOP-DDA1VVIE" time="0.016">
   <properties/>
   <testcase name="checkCollisionsTest" classname="data.ArenaTest" time="0.005"/>
-  <testcase name="testBuildWalls" classname="data.ArenaTest" time="0.001"/>
+  <testcase name="testBuildWalls" classname="data.ArenaTest" time="0.002"/>
   <testcase name="getColidingTest" classname="data.ArenaTest" time="0.003"/>
   <testcase name="growSnakeTest" classname="data.ArenaTest" time="0.001"/>
   <testcase name="eatAppleTest" classname="data.ArenaTest" time="0.003"/>

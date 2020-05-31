@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="model.SnakeTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-05-31T02:01:35" hostname="LAPTOP-DDA1VVIE" time="0.001">
+  <properties/>
+  <testcase name="unshrinkSnakeTest" classname="model.SnakeTest" time="0.0"/>
+  <testcase name="shrinkSnakeTest" classname="model.SnakeTest" time="0.0"/>
+  <testcase name="testSetHeadPosition" classname="model.SnakeTest" time="0.0"/>
+  <testcase name="testSetLength" classname="model.SnakeTest" time="0.0"/>
+  <testcase name="testSetBody" classname="model.SnakeTest" time="0.0"/>
+  <testcase name="testSetPos" classname="model.SnakeTest" time="0.0"/>
+  <testcase name="testConstructor" classname="model.SnakeTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

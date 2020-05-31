@@ -1,6 +1,5 @@
-package data;
+package model;
 
-import model.SinglePlayerTopScore;
 import org.junit.Test;
 
 import java.io.IOException;

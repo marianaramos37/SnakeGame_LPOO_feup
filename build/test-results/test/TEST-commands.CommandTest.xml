@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.CommandTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T00:04:22" hostname="LAPTOP-GER1ALIG" time="0.057">
-  <properties/>
-  <testcase name="testAKey" classname="commands.CommandTest" time="0.057"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

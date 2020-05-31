@@ -1,10 +1,14 @@
 # LPOO_T4G4 - SNAKE #
 
 ## Descrição ##
-O programa irá seguir a ideia base do jogo conhecido como "Snake", em que o jogador controla uma cobra posicionada numa arena que contém maçãs. Á medida que a cobra come as maçãs cresce em tamanho. O jogador perde se a cobra tocar numa parede ou no seu próprio corpo. O objetivo é aguentar na arena o máximo de tempo possível sem tocar em nada.
-Na nossa versão do jogo vamos ter uma versão single player descrita acima com algumas funcionalidades extra, bem como uma versão multiplayer onde poderam existir mais cobras no mesmo ecrã.
+O programa irá seguir a ideia base do jogo conhecido como "Snake", em que o jogador controla uma cobra posicionada numa 
+arena que contém maçãs. Á medida que a cobra come as maçãs cresce em tamanho. O jogador perde se a cobra tocar numa parede 
+ou no seu próprio corpo. O objetivo é aguentar na arena o máximo de tempo possível sem tocar em nada.
+Na nossa versão do jogo vamos ter uma versão single player descrita acima com algumas funcionalidades extra, bem como uma 
+versão multiplayer onde poderam existir mais cobras no mesmo ecrã.
 
-Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) e Mariana Ramos (up201806869@fe.up.pt) no âmbito da cadeira Laboratório de Programação Orientada por Objectos no ano letivo 19/20.
+Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) e Mariana Ramos (up201806869@fe.up.pt) no 
+âmbito da cadeira Laboratório de Programação Orientada por Objectos no ano letivo 19/20.
 
 ## Funcionalidades Implementadas ##
 **Single Player**
@@ -22,8 +26,10 @@ Este projeto foi desenvolvido por por Flávia Carvalhido (up201806857@fe.up.pt) 
 
 **Multi Player**
 - Estão duas cobras na mesma arena, a ser controladas por partes do teclado diferentes;
-- **Ataque**: Se uma cobra tocar no corpo da outra perde, isto dá possibilidade de uma cobra "matar" outra colocando o seu corpo à frente da cabeça da mesma;
-- **Rondas**: Esta versão é constituida por diferentes rondas, quando um dos players morre o outro ganha um ponto. O primeiro a chegar aos 3 pontos ganha o jogo;
+- **Ataque**: Se uma cobra tocar no corpo da outra perde, isto dá possibilidade de uma cobra "matar" outra colocando o 
+seu corpo à frente da cabeça da mesma;
+- **Rondas**: Esta versão é constituida por diferentes rondas, quando um dos players morre o outro ganha um ponto. 
+O primeiro a chegar aos 3 pontos ganha o jogo;
 
 
 **Menus**
@@ -47,22 +53,22 @@ poderão ter uma serie de obstáculos previamente selecionados e poderão ser us
 
 O nosso programa tem o padrão arquitetural MVC (Model-View-Controller). 
 Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
-- Model (package **model**): Contém todos os elementos do jogo: Snake, ArenaModel, diferentes modelos de maçãs que implementam 
+- Model (package **com.g44.model**): Contém todos os elementos do jogo: Snake, ArenaModel, diferentes modelos de maçãs que implementam 
 a interface AppleInterface,  Walls e Obstaculos (constituidos por Walls) sendo que ambos estendem a classe Element, modelos dos 
 diferentes menus que estendem a classe MenuModel e por último modelo da TopScore.
-- View (package **view**): Representa a visualização de todos os dados contidos no model.
-- Controller (package **controller**): Existe entre a *view* e o *model*. O controller responde aos eventos enviados 
-por *view* através de Commands e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação muda o *model* que será
-visualizado por view.
+- View (package **com.g44.view**): Representa a visualização de todos os dados contidos no com.g44.model.
+- Controller (package **com.g44.controller**): Existe entre a *com.g44.view* e o *com.g44.model*. O com.g44.controller responde aos eventos enviados 
+por *com.g44.view* através de Commands e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação muda o *com.g44.model* que será
+visualizado por com.g44.view.
 
 
 Implementamos este modelo logo desde início dadas as vantagens que este design apresenta, entre elas a 
 organização do nosso código, o que facilitou o uso e paralelismo entre classes.
 
 Para além dos packages já mencionados decidimos adicionar:
-- **files**: Este package contém todos os ficheiros necessários para o funcionamento do jogo. Entre eles 3 mapas para 3 níveis diferentes (fácil, médio e díficil) e um ficheiro que guarda a atual top score do jogo.
+- **com.g44.files**: Este package contém todos os ficheiros necessários para o funcionamento do jogo. Entre eles 3 mapas para 3 níveis diferentes (fácil, médio e díficil) e um ficheiro que guarda a atual top score do jogo.
 - **fileReaders**: Este package  contém uma classe mapReader que tal como o nome indica lê os ficheiros dos mapas e encarrega-se de colocar as paredes da arena nas posições indicadas no ficheiro.
-- **commands**: Este package contém duas interfaces CommandArena e CommandMenu, e uma série de classes que implementam ou uma ou as duas interfaces.
+- **com.g44.commands**: Este package contém duas interfaces CommandArena e CommandMenu, e uma série de classes que implementam ou uma ou as duas interfaces.
 
 ## Design ##
 
@@ -127,9 +133,9 @@ A figura seguinte mostra como os papeis do padrão foram aplicados nas nossas cl
 
 Estas classes podem ser encontradas nos seguintes ficheiros:
 
-[Element](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/model/Element.java#L3),
-[Wall](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/model/Wall.java#L3) e
-[Obstaculo](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/model/Obstaculo.java#L6).
+[Element](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.model/Element.java#L3),
+[Wall](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.model/Wall.java#L3) e
+[Obstaculo](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.model/Obstaculo.java#L6).
 
 
 - **Consequências**
@@ -166,21 +172,21 @@ A figura seguinte mostra como os papeis do padrão foram aplicados nas nossas cl
 ![Diagrama_Command](/docs/images/UMLCommandAdapter.png)
 
 Estas classes podem ser encontradas nos seguintes ficheiros:
-[Command](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/Command.java#L6),
-[CommandArena](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/CommandArena.java#L5),
-[CommandMenu](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/CommandMenu.java#L5),
-[ArrowLeft](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/ArrowLeft.java#L6),
-[ArrowRight](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/ArrowRight.java#L6),
-[ArrowUp](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/ArrowUp.java#L5),
-[ArrowDown](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/ArrowDown.java#L5),
-[AKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/AKey.java#L5),
-[WKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/WKey.java#L5),
-[DKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/DKey.java#L5),
-[SKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/SKey.java#L5),
-[EnterKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/EnterKey.java#L5),
-[EscKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/EscKey.java#L5),
-[IKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/IKey.java#L5),
-[NullCommand](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/commands/NullCommand.java#L6)
+[Command](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/Command.java#L6),
+[CommandArena](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/CommandArena.java#L5),
+[CommandMenu](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/CommandMenu.java#L5),
+[ArrowLeft](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowLeft.java#L6),
+[ArrowRight](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowRight.java#L6),
+[ArrowUp](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowUp.java#L5),
+[ArrowDown](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowDown.java#L5),
+[AKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/AKey.java#L5),
+[WKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/WKey.java#L5),
+[DKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/DKey.java#L5),
+[SKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/SKey.java#L5),
+[EnterKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/EnterKey.java#L5),
+[EscKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/EscKey.java#L5),
+[IKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/IKey.java#L5),
+[NullCommand](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/NullCommand.java#L6)
 
 - **Consequências**
 
@@ -217,13 +223,13 @@ do objeto GameController:
 
 Estas classes podem ser encontradas nos seguintes ficheiros:
 
-[StateControllers](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/StateControllers.java#L8),
-[MainMenuController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/MainMenuController.java#L23),
-[SinglePlayerController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/SinglePlayerController.java#L9),
-[MultiPlayerController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/MultiPlayerController.java#L16),
-[GameOverController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/GameOverController.java#L13),
-[InstructionsController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/IntructionsController.java#L12) e
-[MenuLevelsController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/controller/MenuLevelsController.java#L12).
+[StateControllers](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.controller/StateControllers.java#L8),
+[MainMenuController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.controller/MainMenuController.java#L23),
+[SinglePlayerController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.controller/SinglePlayerController.java#L9),
+[MultiPlayerController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.controller/MultiPlayerController.java#L16),
+[GameOverController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.controller/GameOverController.java#L13),
+[InstructionsController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.controller/IntructionsController.java#L12) e
+[MenuLevelsController](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/c70e6046a344b3570dd8400f064b025b1863836c/src/main/java/com.g44.controller/MenuLevelsController.java#L12).
 
 - **Consequências**
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.g44.controller.MainMeuControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T21:46:49" hostname="LAPTOP-GER1ALIG" time="2.419">
+<testsuite name="com.g44.controller.MainMeuControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T22:48:01" hostname="LAPTOP-GER1ALIG" time="2.428">
   <properties/>
-  <testcase name="runTest" classname="com.g44.controller.MainMeuControllerTest" time="2.419"/>
+  <testcase name="runTest" classname="com.g44.controller.MainMeuControllerTest" time="2.428"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

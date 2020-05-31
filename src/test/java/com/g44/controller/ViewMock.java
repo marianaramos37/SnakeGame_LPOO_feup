@@ -17,7 +17,7 @@ public class ViewMock extends View {
     private List<Command> commands = new ArrayList<>();
 
     public ViewMock(List<Command> c) throws IOException, FontFormatException {
-        super(0,0, null);
+        super(null);
         commands=c;
     }
 

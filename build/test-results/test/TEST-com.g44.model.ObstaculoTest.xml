@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.g44.model.ObstaculoTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-05-31T21:46:57" hostname="LAPTOP-GER1ALIG" time="0.001">
+<testsuite name="com.g44.model.ObstaculoTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-05-31T22:48:08" hostname="LAPTOP-GER1ALIG" time="0.0">
   <properties/>
   <testcase name="testGetType" classname="com.g44.model.ObstaculoTest" time="0.0"/>
-  <testcase name="testConstructorandGet" classname="com.g44.model.ObstaculoTest" time="0.001"/>
+  <testcase name="testConstructorandGet" classname="com.g44.model.ObstaculoTest" time="0.0"/>
   <testcase name="testSetPosition" classname="com.g44.model.ObstaculoTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

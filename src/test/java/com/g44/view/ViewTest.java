@@ -91,7 +91,7 @@ public class ViewTest {
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         // Execute
-        View view = new View(30,30,screen);
+        View view = new View(screen);
 
         List<Element> elements = new ArrayList<>();
         elements.addAll(walls);
@@ -114,7 +114,7 @@ public class ViewTest {
         TerminalScreen screen = Mockito.mock(TerminalScreen.class);
 
         // Execute
-        View view = new View(30,30,screen);
+        View view = new View(screen);
         view.drawApples(arena);
 
         // Verify
@@ -136,7 +136,7 @@ public class ViewTest {
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         // Execute
-        View view = new View(30,30,screen);
+        View view = new View(screen);
         view.drawSnake(arena.getSnake());
 
         // Verify
@@ -186,7 +186,7 @@ public class ViewTest {
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         // Execute
-        View view = new View(30,30,screen);
+        View view = new View(screen);
         view.drawArena(arena,1);
 
         // Verify
@@ -220,7 +220,7 @@ public class ViewTest {
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         // Execute
-        View view = new View(30,30,screen);
+        View view = new View(screen);
         view.drawArena(arena,2);
 
         // Verify
@@ -252,7 +252,7 @@ public class ViewTest {
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         // Execute
-        View view = new View(60,60,screen);
+        View view = new View(screen);
 
         view.drawMenu();
 
@@ -280,7 +280,7 @@ public class ViewTest {
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         // Execute
-        View view = new View(60,60,screen);
+        View view = new View(screen);
 
         view.drawMenuLevels();
 
@@ -313,7 +313,7 @@ public class ViewTest {
         Mockito.when(menuModel.getCursorPosition()).thenReturn(new Position(5,5));
 
         // Execute
-        View view = new View(60,60,screen);
+        View view = new View(screen);
         view.drawSelecting(menuModel);
 
         Mockito.verify(graphics, Mockito.times(1))
@@ -328,7 +328,7 @@ public class ViewTest {
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         // Execute
-        View view = new View(60,60,screen);
+        View view = new View(screen);
 
         view.drawGameOver();
 
@@ -349,7 +349,7 @@ public class ViewTest {
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         // Execute
-        View view = new View(60,60,screen);
+        View view = new View(screen);
         view.drawResults(5,6);
 
         Mockito.verify(graphics, Mockito.times(1))
@@ -371,7 +371,7 @@ public class ViewTest {
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         // Execute
-        View view = new View(60,60,screen);
+        View view = new View(screen);
         view.drawInstructions();
 
 
@@ -401,7 +401,7 @@ public class ViewTest {
         Mockito.when(screen.pollInput()).thenReturn(keyStroke);
 
         // Execute
-        View view = new View(60,60,screen);
+        View view = new View(screen);
 
         Mockito.when(keyStroke.getKeyType()).thenReturn(KeyType.ArrowUp);
         assertEquals(view.getCommand().getClass(), ArrowUp.class);

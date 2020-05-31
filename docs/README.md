@@ -53,22 +53,22 @@ poderão ter uma serie de obstáculos previamente selecionados e poderão ser us
 
 O nosso programa tem o padrão arquitetural MVC (Model-View-Controller). 
 Tal como o nome indica, este padrão divide a estrutura do nosso programa em três partes interconectadas:
-- Model (package **com.g44.com.g44.model**): Contém todos os elementos do jogo: Snake, ArenaModel, diferentes modelos de maçãs que implementam 
+- Model (package **model**): Contém todos os elementos do jogo: Snake, ArenaModel, diferentes modelos de maçãs que implementam 
 a interface AppleInterface,  Walls e Obstaculos (constituidos por Walls) sendo que ambos estendem a classe Element, modelos dos 
 diferentes menus que estendem a classe MenuModel e por último modelo da TopScore.
-- View (package **com.g44.view**): Representa a visualização de todos os dados contidos no com.g44.com.g44.model.
-- Controller (package **com.g44.controller**): Existe entre a *com.g44.view* e o *com.g44.com.g44.model*. O com.g44.controller responde aos eventos enviados 
-por *com.g44.view* através de Commands e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação muda o *com.g44.com.g44.model* que será
-visualizado por com.g44.view.
+- View (package **view**): Representa a visualização de todos os dados contidos nomodel.
+- Controller (package **controller**): Existe entre a *view* e o *model*. O controller responde aos eventos enviados 
+por *view* através de Commands e executa a ação apropriada a esses eventos. Na maioria dos casos, essa ação muda o *model* que será
+visualizado por view.
 
 
 Implementamos este modelo logo desde início dadas as vantagens que este design apresenta, entre elas a 
 organização do nosso código, o que facilitou o uso e paralelismo entre classes.
 
 Para além dos packages já mencionados decidimos adicionar:
-- **com.g44.files**: Este package contém todos os ficheiros necessários para o funcionamento do jogo. Entre eles 3 mapas para 3 níveis diferentes (fácil, médio e díficil) e um ficheiro que guarda a atual top score do jogo.
+- **files**: Este package contém todos os ficheiros necessários para o funcionamento do jogo. Entre eles 3 mapas para 3 níveis diferentes (fácil, médio e díficil) e um ficheiro que guarda a atual top score do jogo.
 - **fileReaders**: Este package  contém uma classe mapReader que tal como o nome indica lê os ficheiros dos mapas e encarrega-se de colocar as paredes da arena nas posições indicadas no ficheiro.
-- **com.g44.commands**: Este package contém duas interfaces CommandArena e CommandMenu, e uma série de classes que implementam ou uma ou as duas interfaces.
+- **commands**: Este package contém duas interfaces CommandArena e CommandMenu, e uma série de classes que implementam ou uma ou as duas interfaces.
 
 ## Design ##
 
@@ -220,7 +220,7 @@ recorrendo ao refactoring **Extract Method** onde moveriamos o código para mét
 apesar de os métodos terem um tamanho considerável, achamos que separar o seu conteúdo iria tornar o código
 confuso em vez de o simplificar.
 
--**Data Class**
+- **Data Class**
 A classe [Element](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/318bdf4cd5f6105e1dddf5aa904e03e168845c88/src/main/java/com/g44/model/Element.java#L3) 
 é uma Data Classes uma vez que só contem parâmetros e os respetivos getters
 e setters sem nenhum comportamento. Isto é um problema porque não damos nenhum poder à classe, ela 
@@ -230,7 +230,9 @@ mas no nosso caso em particular traria-nos mais desvantagens do que vantagens e 
 
 
 ## Testing Results
-![testing](/docs/images/testing.PNG)
+
+![ResultsMutatingTests](/docs/images/MutatingTest.PNG)
+![ResultsTests](/docs/images/Test.PNG)
 
 ## Self Evaluation
 Mariana Ramos: 50%

@@ -19,5 +19,6 @@ no âmbito da cadeira Laboratório de Programação Orientada por Objectos no an
 ![GameOver](/docs/images/GameOver.PNG)
 
 
-![Gif_SinglePlayer](https://gfycat.com/dimspicycottontail)
-![Gif_MultiPlayer](https://gfycat.com/opentalkativegentoopenguin)
+[Gif_SinglePlayer](https://gfycat.com/dimspicycottontail)
+
+[Gif_MultiPlayer](https://gfycat.com/opentalkativegentoopenguin)

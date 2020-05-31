@@ -7,7 +7,6 @@ import view.View;
 import java.io.IOException;
 
 public class SinglePlayerController extends StateControllers {
-    private ArenaController arenaController;
     private View gui;
     private ArenaModel arena;
 
@@ -26,8 +25,6 @@ public class SinglePlayerController extends StateControllers {
         else if(level==4) {
             arena= new ArenaModel(60,30,"src/main/java/files/mapUltraHard.txt");
         }
-
-        arenaController = new ArenaController(arena);
     }
 
     @Override
@@ -38,41 +35,30 @@ public class SinglePlayerController extends StateControllers {
 
 
             int counter = 0;
-            int counterGhost = 0;
             int wallSpawn = 0;
 
             //comeca jogo
             while (true) {
+                //movimentar a snake à sua velocidade:
                 Thread.sleep(arena.getSnake().getVelocidade());
-
                 Command command = gui.getCommand();
                 command.executeArena(arena);
-
-                arenaController.movement();
+                arena.getSnake().walkSnake();
 
                 if (!arena.getGameOver()) {
-                    arena.checkCollisions(arena.getSnake().getPosition(), arena.getSnake());
+                    arena.checkCollisions(arena.getSnake()); //verificar colisoes
 
-                    if (arena.getScore() % 2 == 0 && arena.getScore() != 0 && wallSpawn == 0) {
+                    if (arena.getScore() % 2 == 0 && arena.getScore() != 0 && wallSpawn==0) { //colocar obstaculos
                         arena.randomWalls();
                         wallSpawn++;
+                        if (arena.getScore() % 2 != 0) wallSpawn = 0;
                     }
-                    if (arena.getScore() % 2 != 0) wallSpawn = 0;
 
-                    if (arena.getSnake().getShrink()) {
+                    if (arena.getSnake().isShrink() || arena.getSnake().isGhost()) { // voltar a colocar snake normal depois de tempo = 85
                         counter++;
-                        if (counter == 100) {
-                            arena.getSnake().setVelocidade(arena.getSnake().getVelocidade() * 2);
-                            arena.getSnake().unshrink();
+                        if (counter == 85) {
+                            arena.getSnake().goBackToNormal();
                             counter = 0;
-                        }
-                    }
-
-                    if (arena.getSnake().isGhost()) {
-                        counterGhost++;
-                        if (counterGhost == 85) {
-                            counter = 0;
-                            arena.getSnake().setGhost(false);
                         }
                     }
 

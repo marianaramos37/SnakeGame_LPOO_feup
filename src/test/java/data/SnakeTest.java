@@ -82,7 +82,7 @@ public class SnakeTest {
         Snake snake = new Snake(headPosition);
         snake.setSnakeBody(snakebody);
         snake.shrink();
-        assertTrue(snake.getShrink());
+        assertTrue(snake.isShrink());
     }
 
     @Test
@@ -90,7 +90,7 @@ public class SnakeTest {
         Snake snake = new Snake(headPosition);
         snake.setSnakeBody(snakebody);
         snake.unshrink();
-        assertFalse(snake.getShrink());
+        assertFalse(snake.isShrink());
     }
 
 }

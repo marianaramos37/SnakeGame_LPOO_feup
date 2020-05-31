@@ -30,7 +30,7 @@ public class ArenaTest {
         when(snakeMock.getSnakeBody()).thenReturn(snakebody);
         when(snakeMock.getPos()).thenReturn(pos);
         when(snakeMock.getLength()).thenReturn(3);
-        when(snakeMock.getShrink()).thenReturn(false);
+        when(snakeMock.isShrink()).thenReturn(false);
     }
 
     @Test
@@ -58,14 +58,11 @@ public class ArenaTest {
 
     @Test
     public void walkSnakeTest() throws IOException {
-        ArenaModel arena= new ArenaModel(30,30);
         Snake snake= new Snake(new Position(7,5));
 
-        arena.setSnake(snake);
+        snake.setDirection("right");
 
-        Position npos=new Position(8,5);
-        arena.walkSnake(npos, '-',snake);
-
+        snake.walkSnake();
 
         List<Character> snakebodyAfter = new ArrayList<>();
         List<Position> posAfter = new ArrayList<>();
@@ -152,7 +149,7 @@ public class ArenaTest {
 
 
         appleS.affect(snake);
-        assertTrue(arenaModel.getSnake().getShrink());
+        assertTrue(arenaModel.getSnake().isShrink());
 
 
         appleG.affect(snake);
@@ -168,7 +165,7 @@ public class ArenaTest {
         Snake snake=new Snake(new Position(7,5));
 
         Wall wall = new Wall(10,11);
-        Apple apple=new Apple(10,12);
+        Apple apple=new Apple(7,5);
         List<AppleInterface> apples=new ArrayList<>();
         List<Wall> walls=new ArrayList<>();
         apples.add(apple);
@@ -181,15 +178,15 @@ public class ArenaTest {
         arena.setScore(3);
 
 
-        arena.checkCollisions(new Position(10,12), arena.getSnake());   //eats apple
+        arena.checkCollisions( arena.getSnake());   //eats apple
         assertEquals(4,arena.getScore());
         assertEquals(2,arena.getSnake().getLength());
 
-        arena.checkCollisions(new Position(1,1),arena.getSnake());  //hits nothing
+        arena.checkCollisions(arena.getSnake());  //hits nothing
         assertFalse(arena.getGameOver());
 
-
-        arena.checkCollisions(new Position(10,11),arena.getSnake()); //hits wall
+        snake.setPosition(new Position(10,11));
+        arena.checkCollisions(arena.getSnake()); //hits wall
         assertTrue(arena.getGameOver());
     }
 

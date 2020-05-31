@@ -22,7 +22,7 @@ public class View {
         screen.doResizeIfNecessary();     // resize screen if necessary
     }
 
-    public void drawMenu(){
+    public void drawMenu() {
         try {
             screen.clear();
             TextGraphics graphics = screen.newTextGraphics();
@@ -130,7 +130,7 @@ public class View {
     public void drawSnake(Snake snake) {
         int index=0;
         TextGraphics graphics = screen.newTextGraphics();
-        if(!snake.getShrink()) {
+        if(!snake.isShrink()) {
             for (Character c : snake.getSnakeBody()) {
                 if (index >= snake.getPos().size()) {
                     snake.getPos().add(snake.getLength(), new Position(snake.getPos().get(snake.getLength() - 1).getX() + 1, snake.getPos().get(snake.getLength() - 1).getY()));

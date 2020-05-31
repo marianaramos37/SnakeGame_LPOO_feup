@@ -14,7 +14,6 @@ import java.util.List;
 import static java.lang.Thread.sleep;
 
 public class MultiPlayerController extends StateControllers {
-    private ArenaController arenaController;
     private ArenaModel arena;
     private View gui;
 
@@ -22,14 +21,14 @@ public class MultiPlayerController extends StateControllers {
         super(v);
         gui = v;
         arena = new ArenaModel(60, 30,"src/main/java/files/mapHard.txt");
-        arenaController = new ArenaController(arena);
     }
 
     @Override
     public StateControllers run() {
         try {
             arena.buildWalls();
-            List<AppleInterface> newapples = new ArrayList<>();
+
+            List<AppleInterface> newapples = new ArrayList<>(); //MultiPlayer com mais maçãs
             newapples.add(new Apple(8,6));
             newapples.add(new Apple(30,15));
             newapples.add(new Apple(50,23));
@@ -43,26 +42,27 @@ public class MultiPlayerController extends StateControllers {
             while (result_snake1!=3 && result_snake2!=3) {
 
                 sleep(arena.getSnake2().getVelocidade());
-
                 Command command = gui.getCommand();
                 command.executeArena(arena);
-
-                arenaController.movement();
+                arena.getSnake().walkSnake();
+                arena.getSnake2().walkSnake();
 
                 if (!arena.getGameOver()) {
-                    arena.checkCollisions(arena.getSnakeHeadPosition(),arena.getSnake());
-                    arena.checkCollisions(arena.getSnakeHead2Position(),arena.getSnake2());
+                    arena.checkCollisions(arena.getSnake());
+                    arena.checkCollisions(arena.getSnake2());
                     arena.checkAttack();
                     view.drawArena(arena,2);
-
                 }
                 else{
-                    if(arena.getSnake().getLoser() && !arena.getSnake2().getLoser()) result_snake2++;
-                    else if(arena.getSnake2().getLoser() && !arena.getSnake().getLoser()) result_snake1++;
+                    if(arena.getSnake().getLoser() && !arena.getSnake2().getLoser())
+                        result_snake2++;
+                    else if(arena.getSnake2().getLoser() && !arena.getSnake().getLoser())
+                        result_snake1++;
+
                     view.drawResults(result_snake1,result_snake2);
+
                     arena.restartGame();
-                    arena.getSnake().setLoser(false);
-                    arena.getSnake2().setLoser(false);
+
                     sleep(3000);
                 }
             }

@@ -26,5 +26,4 @@ public class Apple implements AppleInterface{
     public void affect(Snake snake) {
         snake.growSnake();
     }
-
 }

@@ -25,7 +25,6 @@ public class Snake{
         loser=false;
     }
 
-
     public List<Character> getSnakeBody(){ return snakebody; }
     public void setSnakeBody(List<Character> sb){this.snakebody=sb;}
     public List<Position> getPos(){
@@ -44,13 +43,13 @@ public class Snake{
     public void setLength(int l){
         this.length=l;
     }
-    public boolean getShrink(){return isShrink;}
     public int getVelocidade() {
         return velocidade;
     }
     public void setVelocidade(int velocidade) {
         this.velocidade = velocidade;
     }
+    public boolean isShrink(){return isShrink;}
     public void shrink(){
         this.isShrink = true;
     }
@@ -114,6 +113,53 @@ public class Snake{
             if(pos.get(length -2).getY()-1 == pos.get(length-1).getY()){
                 pos.add(length ,new Position(pos.get(length -1).getX(),pos.get(length -1).getY()-1));
             }
+        }
+    }
+
+    public void walkSnake(/*Character headOrientation*/){
+        Character headOrientation= '-';
+        if(getDirection()=="left"){
+            setPosition(getPosition().left());
+            headOrientation='-';
+        }
+        if(getDirection()=="right"){
+            setPosition(getPosition().right());
+            headOrientation='-';
+        }
+        if(getDirection()=="up"){
+            setPosition(getPosition().up());
+            headOrientation='|';
+        }
+        if(getDirection()=="down"){
+           setPosition(getPosition().down());
+           headOrientation='|';
+        }
+        Position nextPosition= this.getPosition();
+        Position previous;
+        int index=0;
+        for(Position p:pos){
+            previous=p;
+            pos.set(index,nextPosition);
+            nextPosition=previous;
+            index++;
+        }
+        index=0;
+        Character previousOrientation;
+        for(Character c:snakebody){
+            previousOrientation=c;
+            snakebody.set(index,headOrientation);
+            headOrientation=previousOrientation;
+            index++;
+        }
+    }
+
+    public void goBackToNormal(){
+        if(isShrink){
+            velocidade*=2;
+            unshrink();
+        }
+        if(ghost){
+            setGhost(false);
         }
     }
 }

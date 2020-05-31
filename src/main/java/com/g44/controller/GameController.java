@@ -34,7 +34,7 @@ public class GameController {
         Terminal terminal = defaultTerminalFactory.createTerminal();
         screen = new TerminalScreen(terminal);
 
-        view=new View(60,35,screen);
+        view=new View(screen);
 
         state=new MainMenuController(view);
 

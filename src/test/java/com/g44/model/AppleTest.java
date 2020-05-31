@@ -2,9 +2,10 @@ package com.g44.model;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+
 import static junit.framework.TestCase.assertEquals;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertThat;
 
 public class AppleTest {
 

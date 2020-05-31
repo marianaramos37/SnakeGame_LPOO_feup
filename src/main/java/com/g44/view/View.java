@@ -15,7 +15,7 @@ import java.util.List;
 public class View {
     public Screen screen;
 
-    public View(int width, int height, Screen screen) throws IOException {
+    public View(Screen screen) throws IOException {
         this.screen=screen;
         if(screen!=null){
             screen.setCursorPosition(null);   // we don't need a cursor

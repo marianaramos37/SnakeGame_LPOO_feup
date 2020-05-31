@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.g44.rules.GameOverControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T18:10:49" hostname="LAPTOP-GER1ALIG" time="1.007">
-  <properties/>
-  <testcase name="runTest" classname="com.g44.rules.GameOverControllerTest" time="1.007"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

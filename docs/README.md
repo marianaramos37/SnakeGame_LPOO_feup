@@ -72,40 +72,61 @@ Para além dos packages já mencionados decidimos adicionar:
 
 ## Design ##
 
- ### Maçãs diferentes que provocam alterações diferentes na snake quando comidas ### 
- 
- - **Contexto do problema**
- 
- No nosso jogo é necessário criar diferentes maçãs consumíveis que adoptam posições aleatórias depois de consumidas, têm 
- poderes especificos associados que alteram a snake e a arena de modos diferentes e têm TextCharacter diferentes 
- atribuídos a cada tipo de maçã. Ao longo da criação da classe ArenaModel que contém várias maçãs dos diferentes tipos
- achamos imperativo ter uma Lista com todas as maçãs juntas para poder iterar sobre elas sem especificar as classes concretas.
- Para além disso na classe ArenaModel cada vez que era consumida uma maçã viamo-nos obrigadas a verificar que tipo de maçã 
- era usando Conditional Statements muito longos de forma a alterar a snake da forma pretendida.
- 
- 
- - **O Padrão**
- 
-Para resolver este problema optamos por recorrer ao padrão de design Stratagy Pattern. Este padrão permitiu-nos encapsular
-algoritmos dentro de objetos. Desta forma o algoritmo usado pelo cliente (no nosso caso a Snake) pode ser parametrizavel
-sem ser necessário alterá-lo ou estende-lo.
- 
- - **Implementação**
- 
- As classes [Apple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/Apple.java#L3) 
- e [SpecialApple](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/SpecialApple.java#L3)
-  ambas implementam a Interface [AppleInterface](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3f8697ca49d4d44437c2285ba599dc59d9dae1f7/src/main/java/data/AppleInterface.java#L3). 
-  
- - **Consequências**
- 
-  Nas Classes Apple, todas as maçãs implementam os mesmos métodos. Acrescentar mais maças diferentes é fácil porque não temos de modificar outras classes, basta acrescentar outra clase que implemente a interface AppleInterface. ArenaModel pode ter uma lista de objetos AppleInterface em vez que ter uma lista diferente para cada classe que implementa a interface. Podemos usar o método getChar, ou outro método qualquer instanciado na interface, num elemento da interface Apple que o mesmo vai devolver o valor correto da classe concreta da Apple que o chama.
- Ao implementar este padrão respeitamos o Open-Close Principle.
 
-### Menus Models ###
+### Parametrizar comandos e reutilizalos em vários estados do jogo ###
 - **Contexto do problema**
-- **Factory Method**
+
+Aquando da criação dos diferentes Controllers (com papel de States) reparamos que a interação com o utilizador através da View envolvia 
+muitas verificações sobre que teclas estavam a ser precionadas (através de swich cases que continham um obvio Code Smell). 
+Para além disso cada tecla produzia mudanças nos Models muito semelhantes mas que estavam a ser repetidas sempre para cada Controller.
+
+Dentro do mesmo problema deparamo-nos com o facto de as mesmas teclas provocarem ações diferentes consoante o estado do jogo.
+Caso estivesse-mos num Menu a tecla ArrowLeft iria mudar a opção selecionada. Mas caso estivessemos na Arena a mesma tecla iria 
+alterar a posição de uma das snakes.
+
+- **O Padrão**
+
+Para resolver este problema recorremos ao **Command Pattern**.
+Este padrão permite-nos encapsular um pedido (no nosso caso a chamada de funções que alteram os modelos) num objeto de forma
+ a que este possa ser parametrizavel. Desta forma em cada Controller apenas precisamos de chamar o objeto Command através 
+ da View com getCommand() e de seguida chamar a função execute() desse objeto, evitando assim um grande Swich Statment.
+ No nosso caso optamos por colocar duas funções execute (executeArena() e executeMenu()) de forma a resolver 
+ o segundo problema mencionado. Na interface ambos os métodos têm uma implementação default que não altera os modelos.
+ 
 - **Implementação**
+
+A figura seguinte mostra como os papeis do padrão foram aplicados nas nossas classes:
+
+![Diagrama_Command](/docs/images/UMLCommand.png)
+
+Estas classes podem ser encontradas nos seguintes ficheiros:
+[Command](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/Command.java#L6),
+[CommandArena](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/CommandArena.java#L5),
+[CommandMenu](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/CommandMenu.java#L5),
+[ArrowLeft](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowLeft.java#L6),
+[ArrowRight](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowRight.java#L6),
+[ArrowUp](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowUp.java#L5),
+[ArrowDown](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowDown.java#L5),
+[AKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/AKey.java#L5),
+[WKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/WKey.java#L5),
+[DKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/DKey.java#L5),
+[SKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/SKey.java#L5),
+[EnterKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/EnterKey.java#L5),
+[EscKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/EscKey.java#L5),
+[IKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/IKey.java#L5),
+[NullCommand](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/NullCommand.java#L6)
+
 - **Consequências**
+
+Usar o Command Pattern no design do nosso projeto forneceu-nos as seguintes vantagens:
+1. Separamos as responsabilidades de saber quando executar um comando (nos Controllers) e como executar o comando 
+(nas classes mecionadas a cima). Cumprindo o Single Responsibility Principle;
+2. Tornou-se fácil ter comandos compostos. Por exemplo executar o comandos das Arrow e Enter para selecionar opções;
+3. Torna-se fácil adicionar novos comandos, não tendo que alterar nenhuma classe para o fazer, apenas acrescentar;
+4. Tivemos que adicionar muitas novas classes o que pode ser visto como uma desvantagem. Mas dada a dimensão do projeto não foi muito
+problemático.
+
+
 
 ### Criação de obstáculos ###
 
@@ -143,61 +164,8 @@ Estas classes podem ser encontradas nos seguintes ficheiros:
 Usar o Composite Pattern no nosso design do nosso projeto forneceu-nos as seguintes vantagens:
    1. Simplificamos bastante a nossa Classe View uma vez que desenhar obstaculos não é mais do que desenhar elementos Walls
     sem necessitar de distinguir entre eles.
-
-
-### Parametrizar comandos e reutilizalos em vários estados do jogo ###
-- **Contexto do problema**
-
-Aquando da criação dos diferentes Controllers (com papel de States) reparamos que a interação com o utilizador através da View envolvia 
-muitas verificações sobre que teclas estavam a ser precionadas (através de swich cases que continham um obvio Code Smell). 
-Para além disso cada tecla produzia mudanças nos Models muito semelhantes mas que estavam a ser repetidas sempre para cada Controller.
-
-Dentro do mesmo problema deparamo-nos com o facto de as mesmas teclas provocarem ações diferentes consoante o estado do jogo.
-Caso estivesse-mos num Menu a tecla ArrowLeft iria mudar a opção selecionada. Mas caso estivessemos na Arena a mesma tecla iria 
-alterar a posição de uma das snakes.
-
-- **O Padrão**
-
-Para resolver este problema recorremos ao **Command Pattern** onde optamos por inserir duas interfaces.
-Este padrão permite-nos encapsular um pedido (no nosso caso a chamada de funções que alteram os modelos) num objeto de forma
- a que este possa ser parametrizavel. Desta forma em cada Controller apenas precisamos de chamar o objeto Command através 
- da View com getCommand() e de seguida chamar a função execute() desse objeto, evitando assim um grande Swich Statment.
- De forma a que na Classe View não tenhamos que ter duas funções que devolvam Commands de interfaces diferentes optamos ainda por
- recorrer ao **Adapter Pattern** de modo a podermos trabalhar interfaces não previstas.
- 
-- **Implementação**
-
-A figura seguinte mostra como os papeis do padrão foram aplicados nas nossas classes:
-
-![Diagrama_Command](/docs/images/UMLCommandAdapter.png)
-
-Estas classes podem ser encontradas nos seguintes ficheiros:
-[Command](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/Command.java#L6),
-[CommandArena](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/CommandArena.java#L5),
-[CommandMenu](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/CommandMenu.java#L5),
-[ArrowLeft](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowLeft.java#L6),
-[ArrowRight](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowRight.java#L6),
-[ArrowUp](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowUp.java#L5),
-[ArrowDown](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/ArrowDown.java#L5),
-[AKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/AKey.java#L5),
-[WKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/WKey.java#L5),
-[DKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/DKey.java#L5),
-[SKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/SKey.java#L5),
-[EnterKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/EnterKey.java#L5),
-[EscKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/EscKey.java#L5),
-[IKey](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/IKey.java#L5),
-[NullCommand](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/3a241ee1079a3fb4ca6b5edfbbbd76892033a5c1/src/main/java/com.g44.commands/NullCommand.java#L6)
-
-- **Consequências**
-
-Usar o Command Pattern no design do nosso projeto forneceu-nos as seguintes vantagens:
-1. Separamos as responsabilidades de saber quando executar um comando (nos Controllers) e como executar o comando 
-(nas classes mecionadas a cima). Cumprindo o Single Responsibility Principle;
-2. Tornou-se fácil ter comandos compostos. Por exemplo executar o comandos das Arrow e Enter para selecionar opções;
-3. Torna-se fácil adicionar novos comandos, não tendo que alterar nenhuma classe para o fazer, apenas acrescentar;
-4. Tivemos que adicionar muitas novas classes o que pode ser visto como uma desvantagem. Mas dada a dimensão do projeto não foi muito
-problemático.
-
+    
+    
 ### Menus ###
 - **Contexto do problema**
 
@@ -243,13 +211,22 @@ O uso do State Pattern no design do nosso projeto permitiu-nos:
 
 
 ## Code Smells and Refactoring Technics ##
- - A velocidade default da snake é 150 (de momento, mais tarde este valor será variável). É o que se chama um **Magic Number** e deve ser substituído através da utilizacão de uma **Symbolic Constant** para uma melhor organização e compreeensão do código.
+- **Long Method**
+No nosso projeto encontramos dois métodos que tem um tamanho um pouco maior do que o desejado:
+[run()](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/318bdf4cd5f6105e1dddf5aa904e03e168845c88/src/main/java/com/g44/controller/SinglePlayerController.java#L35) 
+do SinglePlayerController e [run()](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/318bdf4cd5f6105e1dddf5aa904e03e168845c88/src/main/java/com/g44/controller/MultiPlayerController.java#L27) 
+do MultiPlayerController. Este Smell poderia ser resolvido 
+recorrendo ao refactoring **Extract Method** onde moveriamos o código para métodos mais pequenos. No entanto,
+apesar de os métodos terem um tamanho considerável, achamos que separar o seu conteúdo iria tornar o código
+confuso em vez de o simplificar.
 
- - O método movement() da ArenaController pode ser simplificado removendo o código duplicado para um método diferente (**Extract Method**). Tornando o método movement muito mais legível e pequeno, uma vez que as if-statements do mesmo são longas e complexas.
-
- - O construtor da Class MapReader chama o método fileReader(), tendo assim mais uma responsabilidade que não deveria estar a seu cargo (Replace Constructor with Factory Method). Devemos chamar o método fileReader() fora do construtor.
-
- - O construtor da ArenaView (ArenaView(int width, int height,Screen screen)) recebe os parâmetros Width e Height e não os usa dentro do mesmo. Eliminando esses mesmos parâmetros, uma vez que são obsoletos, removemos o Code Smell (Remove Parameters).
+-**Data Class**
+A classe [Element](https://github.com/FEUP-LPOO/lpoo-2020-g44/blob/318bdf4cd5f6105e1dddf5aa904e03e168845c88/src/main/java/com/g44/model/Element.java#L3) 
+é uma Data Classes uma vez que só contem parâmetros e os respetivos getters
+e setters sem nenhum comportamento. Isto é um problema porque não damos nenhum poder à classe, ela 
+apenas têm dados que podem ser usados por outras. Recorrendo aos refactoring  **Move Method** and **Extract Method**
+poderiamos ser capazes de mover alguns dos métodos da classe ArenaModel por exemplo para as classes Element ou Wall
+mas no nosso caso em particular traria-nos mais desvantagens do que vantagens e optamos por continuar com o Smell.
 
 
 ## Testing Results

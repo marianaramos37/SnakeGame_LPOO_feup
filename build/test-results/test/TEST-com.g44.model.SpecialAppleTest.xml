@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.g44.model.SpecialAppleTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T18:10:49" hostname="LAPTOP-GER1ALIG" time="0.002">
+<testsuite name="com.g44.model.SpecialAppleTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T21:46:57" hostname="LAPTOP-GER1ALIG" time="0.001">
   <properties/>
-  <testcase name="testSpecialApple" classname="com.g44.model.SpecialAppleTest" time="0.002"/>
+  <testcase name="testSpecialApple" classname="com.g44.model.SpecialAppleTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -20,13 +20,13 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">84</div>
+<div class="counter">75</div>
 <p>tests</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">9</div>
+<div class="counter">0</div>
 <p>failures</p>
 </div>
 </td>
@@ -38,7 +38,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">9.213s</div>
+<div class="counter">9.473s</div>
 <p>duration</p>
 </div>
 </td>
@@ -47,8 +47,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox failures" id="successRate">
-<div class="percent">89%</div>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
 <p>successful</p>
 </div>
 </td>
@@ -58,57 +58,13 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Failed tests</a>
+<a href="#tab0">Packages</a>
 </li>
 <li>
-<a href="#tab1">Packages</a>
-</li>
-<li>
-<a href="#tab2">Classes</a>
+<a href="#tab1">Classes</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
-<h2>Failed tests</h2>
-<ul class="linkList">
-<li>
-<a href="classes/model.AppleTest.html">AppleTest</a>.
-<a href="classes/model.AppleTest.html#testApple">testApple</a>
-</li>
-<li>
-<a href="classes/model.GhostAppleTest.html">GhostAppleTest</a>.
-<a href="classes/model.GhostAppleTest.html#testGhostApple">testGhostApple</a>
-</li>
-<li>
-<a href="classes/model.PoisonedAppleTest.html">PoisonedAppleTest</a>.
-<a href="classes/model.PoisonedAppleTest.html#testPoisonedApple">testPoisonedApple</a>
-</li>
-<li>
-<a href="classes/model.SPTopScoreTest.html">SPTopScoreTest</a>.
-<a href="classes/model.SPTopScoreTest.html#testConstructor">testConstructor</a>
-</li>
-<li>
-<a href="classes/model.SPTopScoreTest.html">SPTopScoreTest</a>.
-<a href="classes/model.SPTopScoreTest.html#testFileReaderAndGet">testFileReaderAndGet</a>
-</li>
-<li>
-<a href="classes/model.SPTopScoreTest.html">SPTopScoreTest</a>.
-<a href="classes/model.SPTopScoreTest.html#testFileWritter">testFileWritter</a>
-</li>
-<li>
-<a href="classes/model.SPTopScoreTest.html">SPTopScoreTest</a>.
-<a href="classes/model.SPTopScoreTest.html#testIncrementScore">testIncrementScore</a>
-</li>
-<li>
-<a href="classes/model.SPTopScoreTest.html">SPTopScoreTest</a>.
-<a href="classes/model.SPTopScoreTest.html#testSetScore">testSetScore</a>
-</li>
-<li>
-<a href="classes/model.SpecialAppleTest.html">SpecialAppleTest</a>.
-<a href="classes/model.SpecialAppleTest.html#testSpecialApple">testSpecialApple</a>
-</li>
-</ul>
-</div>
-<div id="tab1" class="tab">
 <h2>Packages</h2>
 <table>
 <thead>
@@ -129,7 +85,17 @@
 <td>11</td>
 <td>0</td>
 <td>0</td>
-<td>0.067s</td>
+<td>0.068s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="packages/com.g44.controller.html">com.g44.controller</a>
+</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>8.762s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -139,17 +105,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.005s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="packages/com.g44.gui.html">com.g44.gui</a>
-</td>
-<td>12</td>
-<td>0</td>
-<td>0</td>
-<td>0.304s</td>
+<td>0.002s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -159,33 +115,23 @@
 <td>46</td>
 <td>0</td>
 <td>0</td>
-<td>0.093s</td>
+<td>0.167s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
 <td class="success">
-<a href="packages/com.g44.rules.html">com.g44.rules</a>
+<a href="packages/com.g44.view.html">com.g44.view</a>
 </td>
-<td>5</td>
+<td>12</td>
 <td>0</td>
 <td>0</td>
-<td>8.740s</td>
+<td>0.474s</td>
 <td class="success">100%</td>
-</tr>
-<tr>
-<td class="failures">
-<a href="packages/model.html">model</a>
-</td>
-<td>9</td>
-<td>9</td>
-<td>0</td>
-<td>0.004s</td>
-<td class="failures">0%</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="tab2" class="tab">
+<div id="tab1" class="tab">
 <h2>Classes</h2>
 <table>
 <thead>
@@ -206,7 +152,57 @@
 <td>11</td>
 <td>0</td>
 <td>0</td>
-<td>0.067s</td>
+<td>0.068s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/com.g44.controller.GameOverControllerTest.html">com.g44.controller.GameOverControllerTest</a>
+</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1.012s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/com.g44.controller.InstructionsControllerTest.html">com.g44.controller.InstructionsControllerTest</a>
+</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.603s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/com.g44.controller.MainMeuControllerTest.html">com.g44.controller.MainMeuControllerTest</a>
+</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>2.419s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/com.g44.controller.MenuLevelsControllerTest.html">com.g44.controller.MenuLevelsControllerTest</a>
+</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.200s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/com.g44.controller.SinglePlayerControllerTest.html">com.g44.controller.SinglePlayerControllerTest</a>
+</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>4.528s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -216,17 +212,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.005s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/com.g44.gui.ViewTest.html">com.g44.gui.ViewTest</a>
-</td>
-<td>12</td>
-<td>0</td>
-<td>0</td>
-<td>0.304s</td>
+<td>0.002s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -236,7 +222,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.006s</td>
+<td>0.013s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -246,7 +232,7 @@
 <td>12</td>
 <td>0</td>
 <td>0</td>
-<td>0.069s</td>
+<td>0.143s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -256,7 +242,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.003s</td>
+<td>0.001s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -266,7 +252,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.002s</td>
+<td>0.003s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -276,7 +262,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.001s</td>
+<td>0s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -286,7 +272,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.001s</td>
+<td>0s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -306,7 +292,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.001s</td>
+<td>0.002s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -316,7 +302,7 @@
 <td>8</td>
 <td>0</td>
 <td>0</td>
-<td>0.001s</td>
+<td>0s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -326,7 +312,7 @@
 <td>5</td>
 <td>0</td>
 <td>0</td>
-<td>0.005s</td>
+<td>0.003s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -336,7 +322,7 @@
 <td>11</td>
 <td>0</td>
 <td>0</td>
-<td>0.001s</td>
+<td>0s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -346,108 +332,18 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.002s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/com.g44.rules.GameOverControllerTest.html">com.g44.rules.GameOverControllerTest</a>
-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1.007s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/com.g44.rules.InstructionsControllerTest.html">com.g44.rules.InstructionsControllerTest</a>
-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0.602s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/com.g44.rules.MainMeuControllerTest.html">com.g44.rules.MainMeuControllerTest</a>
-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>2.410s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/com.g44.rules.MenuLevelsControllerTest.html">com.g44.rules.MenuLevelsControllerTest</a>
-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0.201s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="success">
-<a href="classes/com.g44.rules.SinglePlayerControllerTest.html">com.g44.rules.SinglePlayerControllerTest</a>
-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>4.520s</td>
-<td class="success">100%</td>
-</tr>
-<tr>
-<td class="failures">
-<a href="classes/model.AppleTest.html">model.AppleTest</a>
-</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0.003s</td>
-<td class="failures">0%</td>
-</tr>
-<tr>
-<td class="failures">
-<a href="classes/model.GhostAppleTest.html">model.GhostAppleTest</a>
-</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0s</td>
-<td class="failures">0%</td>
-</tr>
-<tr>
-<td class="failures">
-<a href="classes/model.PoisonedAppleTest.html">model.PoisonedAppleTest</a>
-</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0s</td>
-<td class="failures">0%</td>
-</tr>
-<tr>
-<td class="failures">
-<a href="classes/model.SPTopScoreTest.html">model.SPTopScoreTest</a>
-</td>
-<td>5</td>
-<td>5</td>
-<td>0</td>
 <td>0.001s</td>
-<td class="failures">0%</td>
+<td class="success">100%</td>
 </tr>
 <tr>
-<td class="failures">
-<a href="classes/model.SpecialAppleTest.html">model.SpecialAppleTest</a>
+<td class="success">
+<a href="classes/com.g44.view.ViewTest.html">com.g44.view.ViewTest</a>
 </td>
-<td>1</td>
-<td>1</td>
+<td>12</td>
 <td>0</td>
-<td>0s</td>
-<td class="failures">0%</td>
+<td>0</td>
+<td>0.474s</td>
+<td class="success">100%</td>
 </tr>
 </tbody>
 </table>
@@ -460,7 +356,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.2.1</a> at 31/05/2020, 19:10:58</p>
+<a href="http://www.gradle.org">Gradle 5.2.1</a> at 31/05/2020, 22:46:57</p>
 </div>
 </div>
 </body>

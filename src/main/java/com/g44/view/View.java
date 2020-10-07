@@ -158,10 +158,10 @@ public class View {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#790000"));
         for(Element wall:walls) {
-            screen.setCharacter(wall.getPosition().getX(), wall.getPosition().getY(), new TextCharacter('#'));
+            graphics.putString(wall.getPosition().getX(),wall.getPosition().getY()," ");
+            //screen.setCharacter(wall.getPosition().getX(), wall.getPosition().getY(), new TextCharacter('█'));
         }
     }
-
 
     public void drawApples(ArenaModel arena) {
         List<AppleInterface> apples=arena.getApples();
